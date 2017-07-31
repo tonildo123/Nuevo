@@ -17,14 +17,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-        private TextView tv3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        tv3 = (TextView)findViewById(R.id.textView3);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager m =  getSupportFragmentManager();
+        m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();
+
     }
 
     @Override
@@ -75,19 +79,20 @@ public class MainActivity extends AppCompatActivity
         FragmentManager m =  getSupportFragmentManager();
 
         if (id == R.id.nav_camera) {
-            tv3.setText("");
+
+
             m.beginTransaction().replace(R.id.contenedor, new ProgresarR()).commit();
         } else if (id == R.id.nav_gallery) {
-            tv3.setText("");
+
             m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit();
         } else if (id == R.id.nav_slideshow) {
-            tv3.setText("");
+
             m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();
         } else if (id == R.id.nav_manage) {
-            tv3.setText("");
+
             m.beginTransaction().replace(R.id.contenedor, new JovenesC()).commit();
         } else if (id == R.id.nav_share) {
-            tv3.setText("");
+
             m.beginTransaction().replace(R.id.contenedor, new Mipyme()).commit();
         } else if (id == R.id.nav_send) {
                   System.exit(0);
