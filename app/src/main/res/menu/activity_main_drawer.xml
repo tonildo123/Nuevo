@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="REQUISITOS PROGRESAR" />
+        <!--android:icon="@drawable/ic_menu_camera" -->
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="CUANDO Y DONDE COBRO" />
+        <!--android:icon="@drawable/ic_menu_gallery" -->
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="REQUISITOS JOVENES" />
+        <!--android:icon="@drawable/ic_menu_slideshow" -->
+        <item
+            android:id="@+id/nav_manage"
+            android:title="CRONOGRAMA DE PAGO JOVEN" />
+        <!--android:icon="@drawable/ic_menu_manage" -->
+    </group>
+
+    <item android:title="OTROS ENLACES">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Mi PyME"
+            />
+            <!--android:icon="@drawable/ic_menu_share" -->
+            <item
+                android:id="@+id/nav_send"
+                android:title="SALIR" />
+            <!--android:icon="@drawable/ic_menu_send" -->
+        </menu>
+    </item>
+
+</menu>
