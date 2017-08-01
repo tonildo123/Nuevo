@@ -78,25 +78,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager m =  getSupportFragmentManager();
 
-        if (id == R.id.nav_camera) {
-
-
-            m.beginTransaction().replace(R.id.contenedor, new ProgresarR()).commit();
-        } else if (id == R.id.nav_gallery) {
-
-            m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-            m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();
-        } else if (id == R.id.nav_manage) {
-
-            m.beginTransaction().replace(R.id.contenedor, new JovenesC()).commit();
-        } else if (id == R.id.nav_share) {
-
-            m.beginTransaction().replace(R.id.contenedor, new Mipyme()).commit();
-        } else if (id == R.id.nav_send) {
-                  System.exit(0);
-        }
+        if (id == R.id.nav_reqpro) {         m.beginTransaction().replace(R.id.contenedor, new ProgresarR()).commit(); }
+        else if (id == R.id.nav_noticias) {  m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();}
+        else if (id == R.id.nav_consulta) {  m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
+        else if (id == R.id.nav_reqjov){     m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();   }
+        else if (id == R.id.nav_crojov) {    m.beginTransaction().replace(R.id.contenedor, new JovenesC()).commit(); }
+        else if (id == R.id.nav_mipyme) {    m.beginTransaction().replace(R.id.contenedor, new Mipyme()).commit();   }
+        else if (id == R.id.nav_exit) {      System.exit(0);}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
