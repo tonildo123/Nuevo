@@ -22,21 +22,25 @@ public class Mipyme extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflamos la vista con este fragmento
 
         View view =inflater.inflate(R.layout.fragment_mipyme, container, false);
-
+            // crea un acceso a la vista
         View contenedor = (View)container.getParent();
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
+        // returna la vista del fragmento asociado
         tabs= new TabLayout(getActivity());
         tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
+        // inserta el tab en el appbar
         appBar.addView(tabs);
+
+
 
         viewPager = (ViewPager)view.findViewById(R.id.pager);
         ViewPagerAdapter paginaAdapter = new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(paginaAdapter);
         tabs.setupWithViewPager(viewPager);
-
+    // retornamos la viosta cargada
         return view;
     }
 
@@ -55,7 +59,7 @@ public class Mipyme extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-
+            // instanciamos los fragmentos de la clase tabs para crear los objetos
             switch (position){
 
                 case 0:

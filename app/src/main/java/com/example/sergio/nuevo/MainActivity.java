@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_reqpro) {         m.beginTransaction().replace(R.id.contenedor, new ProgresarR()).commit(); }
         else if (id == R.id.nav_noticias) {  m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();}
+        else if (id == R.id.nav_laboral) {   m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();}
+        else if (id == R.id.nav_mapas) {     m.beginTransaction().replace(R.id.contenedor, new Mapas()).commit();}
         else if (id == R.id.nav_consulta) {  m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
         else if (id == R.id.nav_reqjov){     m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();   }
         else if (id == R.id.nav_crojov) {    m.beginTransaction().replace(R.id.contenedor, new JovenesC()).commit(); }

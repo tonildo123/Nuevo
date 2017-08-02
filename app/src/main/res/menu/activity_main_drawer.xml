@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_noticias"
-            android:title="INICIO - HOME" />
+            android:title="INICIO" />
         <!--android:icon="@drawable/ic_menu_camera" -->
         <item
             android:id="@+id/nav_reqpro"
@@ -22,6 +22,14 @@
             android:id="@+id/nav_crojov"
             android:title="CRONOGRAMA DE PAGO JOVEN" />
         <!--android:icon="@drawable/ic_menu_manage" -->
+        <item
+            android:id="@+id/nav_mapas"
+            android:title="TU OFICINA CERCA" />
+        <!--android:icon="@drawable/ic_menu_send" -->
+        <item
+            android:id="@+id/nav_laboral"
+            android:title="OFERTA DE TRABAJO" />
+        <!--android:icon="@drawable/ic_menu_send" -->
         <item
             android:id="@+id/nav_mipyme"
             android:title="Mi PyME" />
