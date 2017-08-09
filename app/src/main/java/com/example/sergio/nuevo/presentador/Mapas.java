@@ -45,13 +45,6 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
 
     public void marcadores(){
         /*
-Colalao del Valle
-
-9 De Julio S/N
-(0381) 155093627
-Colalao del Valle, Tafi del Valle
-colalaodelvalle@empleotucuman.gob.ar
-
 Concepción
 
 Sarmiento esq. Moreno
@@ -335,19 +328,14 @@ santalucia@empleotucuman.gob.ar*/
                 .title(" Choromoro - Juan Malensek"));
         // sin coordenadas
 
-        // aguilares _ 1
-        LatLng aguilares = new LatLng(-26.8167, -65.2167);
+        // Colalao del Valle 9
+        LatLng colalao_del_Valle = new LatLng(-26.8167, -65.2167);
         mMap.addMarker(new MarkerOptions()
-                .position(aguilares)
-                .title(" Aguilares - Remedios de Escalada 950"));
+                .position(colalao_del_Valle)
+                .title(" Colalao del Valle - 9 De Julio S/N"));
         // sin coordenadas
 
-        // aguilares _ 1
-        LatLng aguilares = new LatLng(-26.8167, -65.2167);
-        mMap.addMarker(new MarkerOptions()
-                .position(aguilares)
-                .title(" Aguilares - Remedios de Escalada 950"));
-        // sin coordenadas
+
 
 
 
