@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo;
+package com.example.sergio.nuevo.vistas;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.tabfragements.TabDosPyme;
+import com.example.sergio.nuevo.tabfragements.TabUnoPyme;
 
 
 public class Mipyme extends Fragment {

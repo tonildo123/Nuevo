@@ -1,10 +1,8 @@
-package com.example.sergio.nuevo;
+package com.example.sergio.nuevo.presentador;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,7 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import com.example.sergio.nuevo.vistas.JovenesC;
+import com.example.sergio.nuevo.vistas.JovenesR;
+import com.example.sergio.nuevo.vistas.Mipyme;
+import com.example.sergio.nuevo.vistas.Noticias;
+import com.example.sergio.nuevo.vistas.OfertaLaboral;
+import com.example.sergio.nuevo.vistas.ProgresarC;
+import com.example.sergio.nuevo.vistas.ProgresarR;
+import com.example.sergio.nuevo.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        Mapas mp = new Mapas();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,7 +87,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_reqpro) {         m.beginTransaction().replace(R.id.contenedor, new ProgresarR()).commit(); }
         else if (id == R.id.nav_noticias) {  m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();}
         else if (id == R.id.nav_laboral) {   m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();}
-        else if (id == R.id.nav_mapas) {     m.beginTransaction().replace(R.id.contenedor, new Mapas()).commit();}
+        else if (id == R.id.nav_mapas) {
+
+            Intent pasar = new Intent(MainActivity.this, Mapas.class);
+            startActivity(pasar);
+
+
+        }
         else if (id == R.id.nav_consulta) {  m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
         else if (id == R.id.nav_reqjov){     m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();   }
         else if (id == R.id.nav_crojov) {    m.beginTransaction().replace(R.id.contenedor, new JovenesC()).commit(); }

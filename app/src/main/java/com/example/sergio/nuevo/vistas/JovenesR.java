@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo;
+package com.example.sergio.nuevo.vistas;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sergio.nuevo.R;
 
-public class TabUnoPyme extends Fragment {
+
+public class JovenesR extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mipymetab1, container, false);
+        return inflater.inflate(R.layout.fragment_jovenes_r, container, false);
     }
 }
