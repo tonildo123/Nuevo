@@ -45,12 +45,7 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
 
     public void marcadores(){
         /*
-Concepción
 
-Sarmiento esq. Moreno
-(03865) 455003
-Concepción, Chicligasta
-concepcion@empleotucuman.gob.ar
 
 Famaillá
 
@@ -273,70 +268,55 @@ Santa Lucia, Monteros
 santalucia@empleotucuman.gob.ar*/
         // nuestras oficinas marcadas a continuacion
         // aguilares _ 1
-        LatLng aguilares = new LatLng(-26.8167, -65.2167);
+        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
         mMap.addMarker(new MarkerOptions()
                 .position(aguilares)
                 .title(" Aguilares - Remedios de Escalada 950"));
-        // sin coordenadas
-
-        // alderetes _ 2
-        LatLng alderetes = new LatLng(-26.8167, -65.2167);
+                // alderetes _ 2
+        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
         mMap.addMarker(new MarkerOptions()
                 .position(alderetes)
                 .title(" Alderetes - Caseros y Blas Parera"));
-        // sin coordenadas
-
         // Amaicha del Valle_ 3
-        LatLng amaicha_del_valle = new LatLng(-26.8167, -65.2167);
+        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
         mMap.addMarker(new MarkerOptions()
                 .position(amaicha_del_valle)
                 .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
-        // sin coordenadas
-
         // Banda del Rio Salí 4
-        LatLng banda_del_Rio_Salí = new LatLng(-26.8167, -65.2167);
+        LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
         mMap.addMarker(new MarkerOptions()
                 .position(banda_del_Rio_Salí)
                 .title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
-        // sin coordenadas
-
         // Bella Vista 5
-        LatLng bella_vista = new LatLng(-26.8167, -65.2167);
+        LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
         mMap.addMarker(new MarkerOptions()
                 .position(bella_vista)
                 .title(" Bella vista - García Fernández 199"));
-        // sin coordenadas
-
         // Burruyacu 6
-        LatLng burruyacu = new LatLng(-26.8167, -65.2167);
+        LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
         mMap.addMarker(new MarkerOptions()
                 .position(burruyacu)
                 .title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
-        // sin coordenadas
-
         // Cevil Redondo 7
-        LatLng cevil_redondo = new LatLng(-26.8167, -65.2167);
+        LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
         mMap.addMarker(new MarkerOptions()
                 .position(cevil_redondo)
                 .title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
-        // sin coordenadas
-
         // Choromoro 8
-        LatLng choromoro = new LatLng(-26.8167, -65.2167);
+        LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
         mMap.addMarker(new MarkerOptions()
                 .position(choromoro)
                 .title(" Choromoro - Juan Malensek"));
-        // sin coordenadas
-
         // Colalao del Valle 9
-        LatLng colalao_del_Valle = new LatLng(-26.8167, -65.2167);
+        LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
         mMap.addMarker(new MarkerOptions()
                 .position(colalao_del_Valle)
                 .title(" Colalao del Valle - 9 De Julio S/N"));
-        // sin coordenadas
-
-
-
+        // Concepción 10
+        LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
+        mMap.addMarker(new MarkerOptions()
+                .position(concepción)
+                .title(" Concepción - Sarmiento esq. Moreno"));
 
 
     }
