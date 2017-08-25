@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text=" Tab 1 Mi Pyme"
-        android:textSize="42sp"
+        android:text=" SECRETARIA DE ESTADO DE MIPyME Y EMPLEO"
+        android:textSize="22sp"
         android:textStyle="bold"/>
 
 

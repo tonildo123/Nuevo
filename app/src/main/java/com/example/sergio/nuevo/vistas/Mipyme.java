@@ -59,7 +59,7 @@ public class Mipyme extends Fragment {
                 super(fragmentManager);
 
             }
-        String[] titulo ={"MI PYME TABS 1","MI PYME TABS 2"};
+        String[] titulo ={"CRONOGRAMA DE PAGO JOVENES","CRONOGRAMA DE PAGO PROGRESAR"};
 
         @Override
         public Fragment getItem(int position) {

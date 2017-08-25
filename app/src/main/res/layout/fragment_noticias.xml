@@ -8,26 +8,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Secretaria de Estado de Mipyme y Empleo" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Noticias "
-            android:textSize="25sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imgNotivcias"
+            android:id="@+id/imagen"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -48,9 +28,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtDescripcion"
+            android:id="@+id/tvDescripcion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="TextView" />
     </LinearLayout>
+
+
 </LinearLayout>

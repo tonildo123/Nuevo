@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text=" Tab 2 Mi Pyme"
-        android:textSize="42sp"
+        android:text="LAPRIDA 55 - SAN MIGUEL DE TUCUMAN"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
 

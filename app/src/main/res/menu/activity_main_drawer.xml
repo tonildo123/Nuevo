@@ -7,21 +7,21 @@
             android:title="INICIO" />
         <!--android:icon="@drawable/ic_menu_camera" -->
         <item
-            android:id="@+id/nav_reqpro"
-            android:title="REQUISITOS PROGRESAR" />
-        <!--android:icon="@drawable/ic_menu_camera" -->
-        <item
             android:id="@+id/nav_consulta"
             android:title="CUANDO Y DONDE COBRO" />
+        <!--android:icon="@drawable/ic_menu_camera" -->
+        <item
+            android:id="@+id/nav_reqtab"
+            android:title="REQUISITOS JOVENES - PROGRESAR" />
         <!--android:icon="@drawable/ic_menu_gallery" -->
         <item
-            android:id="@+id/nav_reqjov"
-            android:title="REQUISITOS JOVENES" />
+            android:id="@+id/nav_CRONOGRAMAtab"
+            android:title="CRONOGRAMA DE PAGO" />
         <!--android:icon="@drawable/ic_menu_slideshow" -->
-        <item
-            android:id="@+id/nav_crojov"
-            android:title="CRONOGRAMA DE PAGO JOVEN" />
-        <!--android:icon="@drawable/ic_menu_manage" -->
+        <!--<item-->
+            <!--android:id="@+id/nav_crojov"-->
+            <!--android:title="CRONOGRAMA DE PAGO JOVEN" />-->
+        <!--&lt;!&ndash;android:icon="@drawable/ic_menu_manage" &ndash;&gt;-->
         <item
             android:id="@+id/nav_mapas"
             android:title="TU OFICINA CERCA" />
@@ -30,9 +30,9 @@
             android:id="@+id/nav_laboral"
             android:title="OFERTA DE TRABAJO" />
         <!--android:icon="@drawable/ic_menu_send" -->
-        <item
-            android:id="@+id/nav_mipyme"
-            android:title="Mi PyME" />
+        <!--<item-->
+            <!--android:id="@+id/nav_mipyme"-->
+            <!--android:title="Mi PyME" />-->
         <!--android:icon="@drawable/ic_menu_share" -->
         <item
             android:id="@+id/nav_exit"
