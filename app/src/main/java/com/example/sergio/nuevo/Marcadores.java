@@ -11,7 +11,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public abstract class Marcadores {
     public static void marcadores(GoogleMap mMap) {
        /* Famaillá
-
         Sarmiento 236
         (03863) 462032
         Famaillá, Famaillá

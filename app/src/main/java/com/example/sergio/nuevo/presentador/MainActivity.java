@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
 
 
         }
-        else if (id == R.id.nav_reqtab) {  m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
+        else if (id == R.id.nav_reqtab) {  m.beginTransaction().replace(R.id.contenedor, new Mipyme()).commit(); }
         else if (id == R.id.nav_laboral){  m.beginTransaction().replace(R.id.contenedor, new JovenesR()).commit();   }
         else if (id == R.id.nav_exit) {    System.exit(0);}
 
