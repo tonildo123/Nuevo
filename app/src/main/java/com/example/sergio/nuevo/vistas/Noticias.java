@@ -1,50 +1,52 @@
 package com.example.sergio.nuevo.vistas;
 
-import android.content.Context;
-import android.icu.util.RangeValueIterator;
-import android.icu.util.ValueIterator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.app.Activity.*;
+import android.widget.Button;
+import android.widget.ListView;
+
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.presentador.MainActivity;
-import com.squareup.picasso.Picasso;
+import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
+import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
+import com.example.sergio.nuevo.aplicacion.servicios.Noticia;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Noticias extends Fragment {
-    private String url="http://181.14.240.59/Portal/wp-content/uploads/2017/08/Imagen11.jpeg", descripcion;
-    private ImageView img;
-    private TextView tvd;
-    private Element tomarDiv;
-    private Elements parrafos;
-
-
+    private Noticia not;
+    private List<List> noticias = new ArrayList<>();
+    private Servicio s;
+    private ListView listView;
+    private AdaptadorNoticia listAdapter;
+    private Button boton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_noticias, container, false);
+        s = new Servicio(not.getInstance());
+
+        noticias = s.getNovedades();
+
+        listView = (ListView) v.findViewById(R.id.list);
+        listAdapter = new AdaptadorNoticia(this.getActivity(),noticias);
+        listView.setAdapter(listAdapter);
+        boton = (Button)getActivity().findViewById(R.id.btnLeerMas);
+
         // Inflate the layout for this fragment
-        img = (ImageView)getActivity().findViewById(R.id.imagen);
-        tvd = (TextView)getActivity().findViewById(R.id.tvDescripcion);
-
-//        Picasso.with(getActivity().getApplication()).
-//                load(url).into(img);
-//
-
-        return inflater.inflate(R.layout.fragment_noticias, container, false);
+        return v;
     }
 
+    public void llamarNoticia(){
+        FragmentWebView fweb = new FragmentWebView();
+        FragmentManager m = getActivity().getSupportFragmentManager();
+        m.beginTransaction().replace(R.id.contenedor, fweb).commit();
+
+    }
 
     }

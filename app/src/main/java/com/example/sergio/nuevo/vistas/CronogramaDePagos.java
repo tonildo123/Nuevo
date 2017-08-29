@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.tabfragements.TabDosPyme;
-import com.example.sergio.nuevo.tabfragements.TabUnoPyme;
+import com.example.sergio.nuevo.vistas.tabs.TabDosProcro;
+import com.example.sergio.nuevo.vistas.tabs.TabUnoJovcro;
 
 
-public class Mipyme extends Fragment {
+public class CronogramaDePagos extends Fragment {
     private AppBarLayout appBar;
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -28,7 +28,7 @@ public class Mipyme extends Fragment {
                              Bundle savedInstanceState) {
         // inflamos la vista con este fragmento
 
-        View view =inflater.inflate(R.layout.fragment_mipyme, container, false);
+        View view =inflater.inflate(R.layout.fragment_cronograma, container, false);
             // crea un acceso a la vista
         View contenedor = (View)container.getParent();
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
@@ -67,10 +67,10 @@ public class Mipyme extends Fragment {
             switch (position){
 
                 case 0:
-                    TabUnoPyme tuno = new TabUnoPyme();
+                    TabUnoJovcro tuno = new TabUnoJovcro();
                     return tuno;
                 case 1:
-                    TabDosPyme tdos = new TabDosPyme();
+                    TabDosProcro tdos = new TabDosProcro();
                     return tdos;
 
 

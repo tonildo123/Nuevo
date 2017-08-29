@@ -4,97 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.vistas.ProgresarR">
+    tools:context="com.example.sergio.nuevo.vistas.tabfragements.TabUnoReqPro1"
+    android:weightSum="1">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="CONSULTA PROGRESAR" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"></LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="CONSULTA PROGRESAR" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ingrese cuil sin espacios ni barras" />
-
-            <EditText
-                android:id="@+id/etCuil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="captcha" />
-
-            <EditText
-                android:id="@+id/etCaptcha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="ingrese cuil sin espacios ni barras" />
 
-        <Button
-            android:id="@+id/bConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="CUANDO Y DONDE COBRO" />
-    </LinearLayout>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/etCuil"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
 
-        <TextView
-            android:id="@+id/tvResultado"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Resultado" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="captcha" />
+
+    <ImageView
+        android:id="@+id/ivCaptcha"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_weight="0.09" />
+
+    <EditText
+        android:id="@+id/etCaptcha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/bConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CUANDO Y DONDE COBRO" />
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.tabfragements;
+package com.example.sergio.nuevo.vistas.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import com.example.sergio.nuevo.R;
 
 
-public class TabUnoPyme extends Fragment {
+public class TabDosReqPro2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mipymetab1, container, false);
+        return inflater.inflate(R.layout.fragment_progresar_requisitos2, container, false);
     }
 }

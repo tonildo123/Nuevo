@@ -1,5 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,13 +7,8 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="fill_horizontal"
-        android:text="Recibiras las Noticias Sobre 0fertas Laborales"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:text="requiitos Progresar 1" />
 
-
-</FrameLayout>
+</LinearLayout>

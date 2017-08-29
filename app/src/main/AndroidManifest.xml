@@ -3,6 +3,7 @@
     package="com.example.sergio.nuevo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,13 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentador.Mapas"></activity>
-        <activity
-            android:name=".presentador.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-
-        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
