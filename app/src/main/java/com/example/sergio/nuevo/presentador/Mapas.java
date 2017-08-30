@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -37,28 +38,38 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
         // marcadores son las ubicaciones de las demas reparticiones de las oficinas de empleo de la Provincia de tucuman
         Marcadores.marcadores(mMap);
-        // Add a marker in Sydney and move the camera
-        LatLng tucuman = new LatLng(-26.8167, -65.2167);
+
+        // Add a marker in Tucuman
+        LatLng tucuman = new LatLng(-26.8307052, -65.20279649999998);
         mMap.addMarker(new MarkerOptions()
                 .position(tucuman)
-                .title("Oficina Centro - laprida 55 - Tucuman"));
+                .title("Oficina Centro - laprida 55 - Tucuman")
+                .snippet("Oficina Central")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+        );
+
+
+
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tucuman));
 
+        // permisos y parametros necesario para mostar mi posicion
         if(ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
+
+        this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
                       PackageManager.PERMISSION_GRANTED){
 
             ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
         }
 
-
+        // seteo mi posicion
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        mMap.setMinZoomPreference(6.0f);
+        mMap.setMinZoomPreference(7.5f);
         mMap.setMaxZoomPreference(19.0f);
 
 
@@ -66,7 +77,7 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
 
 
     }
-
+    // permisos y parametros necesario para mostar mi posicion
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == 1000 ){
