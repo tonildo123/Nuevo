@@ -1,7 +1,12 @@
 package com.example.sergio.nuevo.presentador;
 
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.example.sergio.nuevo.Marcadores;
 import com.example.sergio.nuevo.R;
@@ -38,15 +43,39 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
                 .position(tucuman)
                 .title("Oficina Centro - laprida 55 - Tucuman"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tucuman));
-        mMap.setMinZoomPreference(9.0f);
+
+        if(ActivityCompat.checkSelfPermission(
+                this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
+                      PackageManager.PERMISSION_GRANTED){
+
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
+        }
+
+
+        mMap.setMyLocationEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.getUiSettings().setMapToolbarEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        mMap.setMinZoomPreference(6.0f);
         mMap.setMaxZoomPreference(19.0f);
+
+
+        mMap.setMapType(googleMap.MAP_TYPE_NORMAL);
 
 
     }
 
-
-
-
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 1000 ){
+            if(permissions.length>0
+                    && permissions[0].equals(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "permiso de loction aceptado", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
 

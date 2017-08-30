@@ -10,276 +10,351 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public abstract class Marcadores {
     public static void marcadores(GoogleMap mMap) {
-       /* Famaillá
-        Sarmiento 236
-        (03863) 462032
-        Famaillá, Famaillá
-        famailla@empleotucuman.gob.ar
 
-                Graneros
 
-        Avellaneda y Moreno
-                (03891) 491231
-        Graneros, Graneros
-        graneros@empleotucuman.gob.ar
+    /* Famaillá - Sarmiento 236 - 11
 
-        Juan Bautista Alberdi
+      Graneros - Avellaneda y Moreno - 12
 
-        Laprida Nº 668
-        (03865) 472870
-        Juan Bautista Alberdi, Juan Bautista Alberdi
-        juanbautistaalberdi@empleotucuman.gob.ar
+      Juan Bautista Alberdi - Laprida Nº 668 -13
 
-        La Cocha
+      La Cocha - San Martín Norte 55 - 14
 
-        San Martín Norte 55
-        (03865) 496340
-        La Cocha, La Cocha
-        lacocha@empleotucuman.gob.ar
+      Las Talitas - Calle 29 y 10, Villa Mariano Moreno - 15
 
-        Las Talitas
+      Lules - Alte. Brown 351 - 16
 
-        Calle 29 y 10, Villa Mariano Moreno
-        (0381) 4373405
-        Las Talitas, Tafí Viejo
-        lastalitas@empleotucuman.gob.ar
+      Monteros - 25 de Mayo 261 - 17
 
-                Lules
+      Ranchillos - Av. San Martín 64 - 18
 
-        Alte. Brown 351
-        (0381) 4810068
-        Lules, Lules
-        lules@empleotucuman.gob.ar
+      San Miguel de Tucumán - Av. Juan B. Justo 951 - 19
 
-                Monteros
+      Santa Ana - Sarmiento Entre Urquiza y Carlos Pellegrini - 20
 
-        25 de Mayo 261
-        (03863) 428853
-        Monteros, Monteros
-        monteros@empleotucuman.gob.ar
+      Simoca - 25 De Mayo y Moreno - 21
 
-                Ranchillos
+      Tafí del Valle -  Peatonal Los Faroles S/Nº - 22
 
-        Av. San Martín 64
-        (03869) 421498 / 421217
-        Ranchillos, Cruz Alta
-        ranchillos@empleotucuman.gob.ar
+      Tafí Viejo - San Martín 130 - 23
 
-        San Miguel de Tucumán
+      Trancas - Av. Hipólito Irigoyen 508 - 24
 
-        Av. Juan B. Justo 951
-        (0381) 4224337/4228421
-        San Miguel de Tucumán, Capital
-        sanmigueldetucuman@empleotucuman.gob.ar
+      Yerba Buena - Av. Aconquija 2021, Galería central, Local 5 - 25
 
-        Santa Ana
+      Colombres - San Martin S/N - 26
 
-        Sarmiento Entre Urquiza y Carlos Pellegrini
-        (03865) 15417044 / 15598971
-        Santa Ana, Río Chico
-        santaana@empleotucuman.gob.ar
+      Delfín Gallo - Barrio El Bosque Primera Cuadra S/N - 27
 
-                Simoca
+      El Chañar - 25 De Mayo y Sarmiento - 28
 
-        25 De Mayo y Moreno
-        (03863) 481995
-        Simoca, Simoca
-        simoca@empleotucuman.gob.ar
+      El Manantial - Ruta 301 y Cristo Rey, B° Soberania Argentina - 29
 
-        Tafí del Valle
+      El Mollar - 21 De Noviembre S/N, Frente de la Plaza Principal - 30
 
-        Peatonal Los Faroles S/Nº (al lado de la casa del turista) Acceso Avenida Gobernador Miguel Crito, La Villa
-                (03867) 420183
-        Tafí del Valle, Tafí del Valle
-        tafidelvalle@empleotucuman.gob.ar
+      Escaba - La Calera - 31
 
-        Tafí Viejo
+      La Florida - Av Hipolito Irigoyen S/N - 31
+    La Florida y Luisiana, Cruz Alta
 
-        San Martín 130 Paseo Tafí Altos
-                (0381) 4616788
-        Tafí Viejo, Tafí Viejo
-        tafiviejo@empleotucuman.gob.ar
+    La Ramada - 24 De Sep y Prebistero Figueroa - 32
 
-                Trancas
+    La Trinidad -  Av Las Fuentes y Las Heras - 33
 
-        Av. Hipólito Irigoyen 508
-        (03862) 421974
-        Trancas, Trancas
-        trancas@empleotucuman.gob.ar
+    Lamadrid - 25 De Mayo S/N Frente a Plaza Principal - 34
 
-        Yerba Buena
+    León Rouges - 24 De Sep Esq 25 De Mayo - 35
 
-        Av. Aconquija 2021, Galería central, Local 5
-        (0381) 4258022
-        Yerba Buena, Yerba Buena
-        yerbabuena@empleotucuman.gob.ar
+    Los Nogales - Ruta 9 Km1308 Los Nogales - 36
 
-        Unidades de Empleo
+    Los Ralos - Perito Moreno y Güemes - 37
 
-                Colombres
+    Manuela Pedraza - Ruta 157 Km 1220 - 38
 
-        San Martin S/N
-                (0381) 155031339
-        Colombres, Cruz Alta
-        colombres@empleotucuman.gob.ar
+    Quilmes y Los Sueldos - Pje Ecuador 200 - 39
+    Quilmes y Los Sueldos, Leales
 
-        Delfín Gallo
+    San Pablo - Av. San Martin 4 - 40
 
-        Barrio El Bosque Primera Cuadra S/N
-                (0381) 154199833 / 155122599
-        Delfin Gallo, Cruz Alta
-        delfingallo@empleotucuman.gob.ar
+    San Pedro de Colalao - 9 De Julio y Las Heras - 41
 
-        El Chañar
+    Santa Lucia - Av. Libertador y Marco Avellaneda - 42 */
+    // nuestras oficinas marcadas a continuacion
+    // aguilares _ 1
+    LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
+        mMap.addMarker(new
 
-        25 De Mayo y Sarmiento
-        El Chañar, Burruyacu
-        elchaniar@empleotucuman.gob.ar
+    MarkerOptions()
+                .
 
-        El Manantial
+    position(aguilares)
+                .
 
-        Ruta 301 y Cristo Rey, B° Soberania Argentina
-        El Manantial, Lules
-        elmanantial@empleotucuman.gob.ar
+    title(" Aguilares - Remedios de Escalada 950"));
+    // alderetes _ 2
+    LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
+        mMap.addMarker(new
 
-        El Mollar
+    MarkerOptions()
+                .
 
-        21 De Noviembre S/N, Frente de la Plaza Principal
-        El Mollar, Tafi del Valle
-        elmollar@empleotucuman.gob.ar
+    position(alderetes)
+                .
 
-                Escaba
+    title(" Alderetes - Caseros y Blas Parera"));
+    // Amaicha del Valle_ 3
+    LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
+        mMap.addMarker(new
 
-        La Calera
-        (03865) 15308012
-        Escaba, Juan Bautista Alberdi
-        escaba@empleotucuman.gob.ar
+    MarkerOptions()
+                .
 
-        La Florida
-
-        Av Hipolito Irigoyen S/N
-        La Florida y Luisiana, Cruz Alta
-        lafloridayluisiana@empleotucuman.gob.ar
-
-        La Ramada
-
-        24 De Sep y Prebistero Figueroa
-        La Ramada y La Cruz, Burruyacu
-        laramada@empleotucuman.gob.ar
-
-        La Trinidad
-
-        Av Las Fuentes y Las Heras
-        La Trinidad, Chicligasta
-        latrinidad@empleotucuman.gob.ar
-
-                Lamadrid
-
-        25 De Mayo S/N Frente a Plaza Principal
-        Lamadrid, Graneros
-        lamadrid@empleotucuman.gob.ar
-
-        León Rouges
-
-        24 De Sep Esq 25 De Mayo
-        Leon Rouges, Monteros
-        leonrouges@empleotucuman.gob.ar
-
-        Los Nogales
-
-        Ruta 9 Km1308 Los Nogales
-                (0381) 155170144
-        Los Nogales, Tafi Viejo
-        losnogales@empleotucuman.gob.ar
-
-        Los Ralos
-
-        Perito Moreno y Güemes
-        Los Ralos, Cruz Alta
-        losralos@empleotucuman.gob.ar
-
-        Manuela Pedraza
-
-        Ruta 157 Km 1220
-        Manuela Pedraza, Simoca
-        manuelapedraza@empleotucuman.gob.ar
-
-        Quilmes y Los Sueldos
-
-        Pje Ecuador 200
-        Quilmes y Los Sueldos, Leales
-        quilmesylossueldos@empleotucuman.gob.ar
-
-        San Pablo
-
-        Av. San Martin 4
-        San Pablo, Lules
-        sanpablo@empleotucuman.gob.ar
-
-        San Pedro de Colalao
-
-        9 De Julio y Las Heras
-                (0381) 155750090
-        San Pedro de Colalao, Trancas
-        sanpedrodecolalao@empleotucuman.gob.ar
-
-        Santa Lucia
-
-        Av. Libertador y Marco Avellaneda
-        Santa Lucia, Monteros
-        santalucia@empleotucuman.gob.ar*/
-        // nuestras oficinas marcadas a continuacion
-        // aguilares _ 1
-        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
-        mMap.addMarker(new MarkerOptions()
-                .position(aguilares)
-                .title(" Aguilares - Remedios de Escalada 950"));
-        // alderetes _ 2
-        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
-        mMap.addMarker(new MarkerOptions()
-                .position(alderetes)
-                .title(" Alderetes - Caseros y Blas Parera"));
-        // Amaicha del Valle_ 3
-        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
-        mMap.addMarker(new MarkerOptions()
-                .position(amaicha_del_valle)
-                .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
-        // Banda del Rio Salí 4
-        LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
-        mMap.addMarker(new MarkerOptions()
-                .position(banda_del_Rio_Salí)
-                .title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
-        // Bella Vista 5
-        LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
-        mMap.addMarker(new MarkerOptions()
-                .position(bella_vista)
-                .title(" Bella vista - García Fernández 199"));
-        // Burruyacu 6
-        LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
-        mMap.addMarker(new MarkerOptions()
-                .position(burruyacu)
-                .title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
-        // Cevil Redondo 7
-        LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
-        mMap.addMarker(new MarkerOptions()
-                .position(cevil_redondo)
-                .title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
-        // Choromoro 8
-        LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
-        mMap.addMarker(new MarkerOptions()
-                .position(choromoro)
-                .title(" Choromoro - Juan Malensek"));
-        // Colalao del Valle 9
-        LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
-        mMap.addMarker(new MarkerOptions()
-                .position(colalao_del_Valle)
-                .title(" Colalao del Valle - 9 De Julio S/N"));
-        // Concepción 10
-        LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
-        mMap.addMarker(new MarkerOptions()
-                .position(concepción)
-                .title(" Concepción - Sarmiento esq. Moreno"));
-
-
-    }
-}
+    position(amaicha_del_valle)
+                .
+
+    title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
+    // Banda del Rio Salí 4
+    LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(banda_del_Rio_Salí)
+                .
+
+    title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
+    // Bella Vista 5
+    LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(bella_vista)
+                .
+
+    title(" Bella vista - García Fernández 199"));
+    // Burruyacu 6
+    LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(burruyacu)
+                .
+
+    title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
+    // Cevil Redondo 7
+    LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(cevil_redondo)
+                .
+
+    title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
+    // Choromoro 8
+    LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(choromoro)
+                .
+
+    title(" Choromoro - Juan Malensek"));
+    // Colalao del Valle 9
+    LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(colalao_del_Valle)
+                .
+
+    title(" Colalao del Valle - 9 De Julio S/N"));
+    // Concepción 10
+    LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
+        mMap.addMarker(new
+
+    MarkerOptions()
+                .
+
+    position(concepción)
+                .
+
+    title(" Concepción - Sarmiento esq. Moreno"));
+    // aguilares _ 1
+//        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(aguilares)
+//                .title(" Aguilares - Remedios de Escalada 950"));
+//        // alderetes _ 2
+//        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(alderetes)
+//                .title(" Alderetes - Caseros y Blas Parera"));
+//        // Amaicha del Valle_ 3
+//        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(amaicha_del_valle)
+//                .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
+//        // Banda del Rio Salí 4
+//        LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(banda_del_Rio_Salí)
+//                .title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
+//        // Bella Vista 5
+//        LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(bella_vista)
+//                .title(" Bella vista - García Fernández 199"));
+//        // Burruyacu 6
+//        LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(burruyacu)
+//                .title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
+//        // Cevil Redondo 7
+//        LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(cevil_redondo)
+//                .title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
+//        // Choromoro 8
+//        LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(choromoro)
+//                .title(" Choromoro - Juan Malensek"));
+//        // Colalao del Valle 9
+//        LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(colalao_del_Valle)
+//                .title(" Colalao del Valle - 9 De Julio S/N"));
+//        // Concepción 10
+//        LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(concepción)
+//                .title(" Concepción - Sarmiento esq. Moreno"));
+//        // aguilares _ 1
+//        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(aguilares)
+//                .title(" Aguilares - Remedios de Escalada 950"));
+//        // alderetes _ 2
+//        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(alderetes)
+//                .title(" Alderetes - Caseros y Blas Parera"));
+//        // Amaicha del Valle_ 3
+//        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(amaicha_del_valle)
+//                .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
+//        // Banda del Rio Salí 4
+//        LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(banda_del_Rio_Salí)
+//                .title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
+//        // Bella Vista 5
+//        LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(bella_vista)
+//                .title(" Bella vista - García Fernández 199"));
+//        // Burruyacu 6
+//        LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(burruyacu)
+//                .title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
+//        // Cevil Redondo 7
+//        LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(cevil_redondo)
+//                .title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
+//        // Choromoro 8
+//        LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(choromoro)
+//                .title(" Choromoro - Juan Malensek"));
+//        // Colalao del Valle 9
+//        LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(colalao_del_Valle)
+//                .title(" Colalao del Valle - 9 De Julio S/N"));
+//        // Concepción 10
+//        LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(concepción)
+//                .title(" Concepción - Sarmiento esq. Moreno"));
+//        // aguilares _ 1
+//        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(aguilares)
+//                .title(" Aguilares - Remedios de Escalada 950"));
+//        // alderetes _ 2
+//        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(alderetes)
+//                .title(" Alderetes - Caseros y Blas Parera"));
+//        // Amaicha del Valle_ 3
+//        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(amaicha_del_valle)
+//                .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
+//        // Banda del Rio Salí 4
+//        LatLng banda_del_Rio_Salí = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(banda_del_Rio_Salí)
+//                .title(" Banda del Rio Salí - Av. Monseñor Díaz Nº 870"));
+//        // Bella Vista 5
+//        LatLng bella_vista = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(bella_vista)
+//                .title(" Bella vista - García Fernández 199"));
+//        // Burruyacu 6
+//        LatLng burruyacu = new LatLng(-26.8341103, -65.16542049999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(burruyacu)
+//                .title(" Burruyacu - Calle Legislador Alberto Leal 565 (frente a la Municipalidad)"));
+//        // Cevil Redondo 7
+//        LatLng cevil_redondo = new LatLng(-26.7908265, -65.28584569999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(cevil_redondo)
+//                .title(" Cevil Redondo - Barrio 188 Viviendas Mza B Casa 35"));
+//        // Choromoro 8
+//        LatLng choromoro = new LatLng(-26.4113031, -65.31990940000003);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(choromoro)
+//                .title(" Choromoro - Juan Malensek"));
+//        // Colalao del Valle 9
+//        LatLng colalao_del_Valle = new LatLng(-26.3620097, 65.95700310000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(colalao_del_Valle)
+//                .title(" Colalao del Valle - 9 De Julio S/N"));
+//        // Concepción 10
+//        LatLng concepción = new LatLng(-27.3459427, -65.59274440000002);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(concepción)
+//                .title(" Concepción - Sarmiento esq. Moreno"));
+//        // aguilares _ 1
+//        LatLng aguilares = new LatLng(-27.4315089, -65.61471619999998);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(aguilares)
+//                .title(" Aguilares - Remedios de Escalada 950"));
+//        // alderetes _ 2
+//        LatLng alderetes = new LatLng(-26.8166695, -65.13333130000001);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(alderetes)
+//                .title(" Alderetes - Caseros y Blas Parera"));
+//        // Amaicha del Valle_ 3
+//        LatLng amaicha_del_valle = new LatLng(-26.5938655, -65.9228956);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(amaicha_del_valle)
+//                .title(" Amaicha del Valle - Ernesto Padilla e Hipolito Yrigoyen"));
+
+
+}}
