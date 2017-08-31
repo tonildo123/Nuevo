@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo;
+package com.example.sergio.nuevo.dominio;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;

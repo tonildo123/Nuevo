@@ -2,6 +2,7 @@ package com.example.sergio.nuevo.aplicacion.servicios;
 
 import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
+import com.example.sergio.nuevo.dominio.Noticia;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,39 +11,37 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sergio on 27/07/2017.
  */
 
-public class Noticia implements Strategy {
+public class ServicioPagEmpleo implements Strategy {
 
 
     private static final String url = "http://181.14.240.59/Portal/";
-    private List<List<String>> urls = new ArrayList<List<String>>();
-    private List<List> rec = new ArrayList<>();
     private Document doc;
     private Element selectorDiv;
     private Elements urlelements1;
     private Elements urlelements2;
     private String text;
     private boolean terminado = false;
-    private static final Noticia not = new Noticia();
+    private static final ServicioPagEmpleo not = new ServicioPagEmpleo();
     private ArrayList<Thread> hilos = new ArrayList<>();
     private int i = 0;
     private ObtImagen img;
+    private ArrayList<Noticia> noticias = new ArrayList<>();
 
-    public static Noticia getInstance() {
+    public static ServicioPagEmpleo getInstance() {
         return not;
     }
 
-    public Noticia() {
+    public ServicioPagEmpleo() {
         img = img.getInstance();
     }
 
     @Override
-    public synchronized List<List> getNovedades() {
+    public synchronized ArrayList<Noticia> getNovedades() {
 //        si las urls no estan listas entra al bucle y duerme el hilo de ejecución hasta que se notifique que ya
 //        estan disponibles las urls.
         while (terminado == false) {
@@ -52,10 +51,10 @@ public class Noticia implements Strategy {
                 e.printStackTrace();
             }
             getRecursos();
-            return rec;
+            return noticias;
         }
         getRecursos();
-        return rec;
+        return noticias;
     }
 
     @Override
@@ -73,18 +72,18 @@ public class Noticia implements Strategy {
 
 //            recorremos sus elementos y los agregamos al array de urls.
             for (int i = 0; i < urlelements1.size(); i++) {
-                urls.add(new ArrayList<String>());
+                noticias.add(new Noticia());
             }
             int i = 0;
             for (Element cad : urlelements1) {
                 text = cad.attr("href");
-                urls.get(i).add(text);
+                noticias.get(i).setUrlParrafo(text);
                 i++;
             }
             i = 0;
             for (Element cad : urlelements2) {
                 text = cad.attr("src");
-                urls.get(i).add(text);
+                noticias.get(i).setUrlImagen(text);
                 i++;
             }
         } catch (IOException e) {
@@ -98,24 +97,28 @@ public class Noticia implements Strategy {
 
     public void getRecursos() {
 
-        if (rec.size() == 0) {
-            for (int j=0;j<urls.size();j++){
-                rec.add(new ArrayList());
-            }
+        if (noticias.get(0).getFoto() == null) {
             Thread hilopadre = new Thread() {
                 @Override
                 public void run() {
                     try {
-                        for (int k = 0; k < urls.size(); k++) {
+                        for (int k = 0; k < noticias.size(); k++) {
                             Thread hilohijo = new Thread() {
                                 @Override
                                 public void run() {
                                     try {
-                                        ArrayList array = new ArrayList();
-                                        array.add(img.descargarImagen(urls.get(i).get(1), 750, 500));
-                                        array.add(obtenerParrafo(urls.get(i).get(0)));
-                                        array.add(obtenerTitulo());
-                                        rec.set(i, array);
+                                        Thread hilonieto1 = new Thread() {
+                                            @Override
+                                            public void run() {
+                                                noticias.get(i).setFoto(img.descargarImagen(noticias.get(i).getUrlImagen(), 750, 500));
+                                            }};
+                                        Thread hilonieto2 = new Thread() {
+                                            @Override
+                                            public void run() {
+                                                noticias.get(i).setParrafo(obtenerParrafo(noticias.get(i).getUrlParrafo()));
+                                                noticias.get(i).setTitulo(obtenerTitulo());
+                                            }};
+                                        hilonieto1.start();hilonieto2.start();hilonieto1.join();hilonieto2.join();
                                         i++;
                                     } catch (Exception ex) {
                                         ex.printStackTrace();
@@ -124,7 +127,7 @@ public class Noticia implements Strategy {
                             };
                             hilos.add(hilohijo);
                         }
-                        for (int j=0;j<urls.size();j++){
+                        for (int j=0;j<noticias.size();j++){
                             hilos.get(j).start();
                             hilos.get(j).join();
                         }
@@ -144,7 +147,6 @@ public class Noticia implements Strategy {
 
     private String obtenerParrafo(String s) {
         try {
-            //necesitará protocolo http
             //doc trae el html completo de la url que se le agregue
             doc = Jsoup.connect(s).userAgent("Mozilla").get();
 

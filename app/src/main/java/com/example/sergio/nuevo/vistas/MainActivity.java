@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.presentador;
+package com.example.sergio.nuevo.vistas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.CronogramaDePagos;
-import com.example.sergio.nuevo.vistas.Noticias;
-import com.example.sergio.nuevo.vistas.OfertaLaboral;
-import com.example.sergio.nuevo.vistas.ProgresarC;
-import com.example.sergio.nuevo.vistas.Requisitos;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager m =  getSupportFragmentManager();
-        m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();
+        m.beginTransaction().replace(R.id.contenedor, new VistaNoticias()).commit();
 
     }
 
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager m =  getSupportFragmentManager();
 
         if (id == R.id.nav_consulta) {           m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
-        else if (id == R.id.nav_noticias) {      m.beginTransaction().replace(R.id.contenedor, new Noticias()).commit();}
+        else if (id == R.id.nav_noticias) {      m.beginTransaction().replace(R.id.contenedor, new VistaNoticias()).commit();}
         else if (id == R.id.nav_CRONOGRAMAtab) { m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos()).commit();}
         else if (id == R.id.nav_mapas) {
             Intent pasar = new Intent(MainActivity.this, Mapas.class);

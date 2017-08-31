@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.presentador;
+package com.example.sergio.nuevo.vistas;
 
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.example.sergio.nuevo.Marcadores;
+import com.example.sergio.nuevo.dominio.Marcadores;
 import com.example.sergio.nuevo.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

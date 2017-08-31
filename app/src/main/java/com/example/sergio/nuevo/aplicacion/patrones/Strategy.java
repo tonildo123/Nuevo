@@ -1,12 +1,14 @@
 package com.example.sergio.nuevo.aplicacion.patrones;
 
-import java.util.List;
+import com.example.sergio.nuevo.dominio.Noticia;
+
+import java.util.ArrayList;
 
 /**
  * Created by Sergio on 27/07/2017.
  */
 
 public interface Strategy {
-    public List getNovedades();
+    public ArrayList<Noticia> getNovedades();
     public void obtenerUrls();
 }

@@ -1,5 +1,8 @@
 package com.example.sergio.nuevo.aplicacion.patrones;
 
+import com.example.sergio.nuevo.dominio.Noticia;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +11,14 @@ import java.util.List;
 
 public class Servicio {
     Strategy s;
-    public Servicio(Strategy str) {
+    public Servicio() {
+
+    }
+    public void Clase(Strategy str){
         this.s = str;
     }
 
-    public List getNovedades() {
+    public ArrayList<Noticia> getNovedades() {
         return s.getNovedades();
     }
 

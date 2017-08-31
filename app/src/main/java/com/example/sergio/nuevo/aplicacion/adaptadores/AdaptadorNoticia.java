@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.dominio.Noticia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +22,9 @@ import java.util.List;
 
 public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
     private Activity activity;
-    List<List> noticias;
+    ArrayList<Noticia> noticias;
 
-    public AdaptadorNoticia(@NonNull Activity activity, @NonNull List<List> noticias) {
+    public AdaptadorNoticia(@NonNull Activity activity, @NonNull ArrayList<Noticia> noticias) {
         super(activity, R.layout.noticia);
         this.noticias = noticias;
         this.activity = activity;
@@ -56,9 +58,9 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         viewHolder.titulo = (TextView)view.findViewById(R.id.titulo);
 
         // importante!!! establecemos el mensaje
-        viewHolder.titulo.setText(noticias.get(position).get(2).toString());
-        viewHolder.image.setImageBitmap((Bitmap)noticias.get(position).get(0));
-        viewHolder.parrafo.setText(noticias.get(position).get(1).toString());
+        viewHolder.titulo.setText(noticias.get(position).getTitulo());
+        viewHolder.image.setImageBitmap((Bitmap)noticias.get(position).getFoto());
+        viewHolder.parrafo.setText(noticias.get(position).getParrafo());
 
         return view;
     }

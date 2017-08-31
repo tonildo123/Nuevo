@@ -12,15 +12,15 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.aplicacion.servicios.Noticia;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
+import com.example.sergio.nuevo.dominio.Noticia;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class Noticias extends Fragment {
-    private Noticia not;
-    private List<List> noticias = new ArrayList<>();
+public class VistaNoticias extends Fragment {
+    private ServicioPagEmpleo not;
+    private ArrayList<Noticia> noticias = new ArrayList<>();
     private Servicio s;
     private ListView listView;
     private AdaptadorNoticia listAdapter;
@@ -31,7 +31,7 @@ public class Noticias extends Fragment {
         View v = inflater.inflate(R.layout.fragment_noticias, container, false);
         s = new Servicio(not.getInstance());
 
-        noticias = s.getNovedades();
+        noticias = (ArrayList<Noticia>) s.getNovedades();
 
         listView = (ListView) v.findViewById(R.id.list);
         listAdapter = new AdaptadorNoticia(this.getActivity(),noticias);

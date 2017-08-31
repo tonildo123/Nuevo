@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.presentador.Bienvenida">
+    tools:context="com.example.sergio.nuevo.vistas.Bienvenida">
 
     <TextView
         android:id="@+id/textView"
