@@ -88,5 +88,12 @@ public class Bienvenida extends AppCompatActivity {
             File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
             myNewFolder.mkdir(); //creamos la carpeta
         }
+        f = new File(Environment.getExternalStorageDirectory() + "/SSE/images");
+        if(!f.isDirectory()) {
+            String newFolder = "/images"; //cualquierCarpeta es el nombre de la Carpeta que vamos a crear
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
+            myNewFolder.mkdir(); //creamos la carpeta
+        }
     }
 }
