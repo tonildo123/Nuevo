@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.persistencia.DBNoticias;
@@ -16,26 +17,27 @@ import java.io.File;
 public class Bienvenida extends AppCompatActivity {
 
     private Servicio s;
-    private ServicioPagEmpleo servicio;
+    private ServicioNoticias not = new ServicioNoticias(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
 
-        DBNoticias noti = new DBNoticias(this, "DBnoticias",null,1);
-        SQLiteDatabase db = noti.getWritableDatabase();
-        if(db != null){
-            System.out.println("se creo correctamente");
-        }
+        s = new Servicio();
+
+//        DBNoticias noti = new DBNoticias(this, "DBnoticias",null,1);
+//        SQLiteDatabase db = noti.getWritableDatabase();
+//        if(db != null){
+//            System.out.println("se creo correctamente");
+//        }
 
     Thread hilo2 = new Thread(){
         @Override
         public void run() {
             try {
                 iniciar();
-                s = new Servicio();
-                Intent pasar = new Intent(Bienvenida.this, com.example.sergio.nuevo.vistas.MainActivity.class );
+                Intent pasar = new Intent(Bienvenida.this, MainActivity.class );
                 startActivity(pasar);
                 finish();
             }catch (Exception ex){
@@ -52,9 +54,17 @@ public class Bienvenida extends AppCompatActivity {
         obtenerCronogramas();
     }
     private void obtenerNoticias() {
-        s.Clase(servicio.getInstance());
+        s.Clase(ServicioPagEmpleo.getInstance());
         s.obtenerUrls();
-        s.getNovedades();
+        if(not.levantarNoticias() == null){
+            not.guardarNoticias(s.getNovedades());
+            s.setNovedades(not.levantarNoticias());
+        }else{
+            s.setNovedades(not.levantarNoticias());
+        }
+        if(!s.comparar()){
+            not.guardarNoticias(s.getNovedades());
+        }
     }
     private void obtenerCronogramas() {
 

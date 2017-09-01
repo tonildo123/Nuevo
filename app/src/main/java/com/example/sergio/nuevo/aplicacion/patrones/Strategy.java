@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 
 public interface Strategy {
-    public ArrayList<Noticia> getNovedades();
+    public ArrayList getNovedades();
     public void obtenerUrls();
+    public void setNovedades(ArrayList array);
+    public boolean comparar();
 }

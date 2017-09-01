@@ -35,7 +35,6 @@ public class Noticia {
     }
 
     public String getUrlImagen() {
-
         return urlImagen;
     }
 

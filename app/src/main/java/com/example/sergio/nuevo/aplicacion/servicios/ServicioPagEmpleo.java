@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sergio on 27/07/2017.
@@ -31,6 +32,7 @@ public class ServicioPagEmpleo implements Strategy {
     private int i = 0;
     private ObtImagen img;
     private ArrayList<Noticia> noticias = new ArrayList<>();
+    private List<List<String>> urls = new ArrayList<>();
 
     public static ServicioPagEmpleo getInstance() {
         return not;
@@ -70,20 +72,20 @@ public class ServicioPagEmpleo implements Strategy {
             //Buscamos los objetos que posean el la etiqueta a.
             urlelements2 = selectorDiv.getElementsByTag("img");
 
-//            recorremos sus elementos y los agregamos al array de urls.
             for (int i = 0; i < urlelements1.size(); i++) {
+                urls.add(new ArrayList<String>());
                 noticias.add(new Noticia());
             }
             int i = 0;
             for (Element cad : urlelements1) {
-                text = cad.attr("href");
-                noticias.get(i).setUrlParrafo(text);
+                urls.get(i).add(cad.attr("href"));
+                noticias.get(i).setUrlParrafo(cad.attr("href"));
                 i++;
             }
             i = 0;
             for (Element cad : urlelements2) {
-                text = cad.attr("src");
-                noticias.get(i).setUrlImagen(text);
+                urls.get(i).add(cad.attr("src"));
+                noticias.get(i).setUrlImagen(cad.attr("src"));
                 i++;
             }
         } catch (IOException e) {
@@ -93,6 +95,29 @@ public class ServicioPagEmpleo implements Strategy {
         terminado = true;
 //        notificamos a los demas hilos que se termino la operación para que se despierten
         notifyAll();
+    }
+
+    @Override
+    public void setNovedades(ArrayList array) {
+        this.noticias = array;
+    }
+
+    @Override
+    public boolean comparar() {
+        boolean b = true;
+        for(Noticia not: noticias){
+            for (List list: urls){
+                b=false;
+                if(list.get(1).equals(not.getUrlImagen())){
+                    b = true;
+                    break;
+                }
+            }
+            if(b==false){
+                return b;
+            }
+        }
+        return true;
     }
 
     public void getRecursos() {

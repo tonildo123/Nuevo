@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 
 public class VistaNoticias extends Fragment {
-    private ServicioPagEmpleo not;
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private Servicio s;
     private ListView listView;
@@ -29,7 +28,8 @@ public class VistaNoticias extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_noticias, container, false);
-        s = new Servicio(not.getInstance());
+        s = new Servicio();
+        s.Clase(ServicioPagEmpleo.getInstance());
 
         noticias = (ArrayList<Noticia>) s.getNovedades();
 

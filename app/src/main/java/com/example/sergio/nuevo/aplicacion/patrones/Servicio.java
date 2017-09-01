@@ -18,11 +18,17 @@ public class Servicio {
         this.s = str;
     }
 
-    public ArrayList<Noticia> getNovedades() {
+    public ArrayList getNovedades() {
         return s.getNovedades();
     }
 
     public void obtenerUrls() {
         s.obtenerUrls();
+    }
+
+    public void setNovedades(ArrayList array) {
+    }
+
+    public boolean comparar() {return s.comparar();
     }
 }
