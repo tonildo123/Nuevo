@@ -45,7 +45,7 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
                 .position(tucuman)
                 .title("Oficina Centro - laprida 55 - Tucuman")
                 .snippet("Oficina Central")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
         );
 
 
@@ -56,8 +56,8 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
         // permisos y parametros necesario para mostar mi posicion
         if(ActivityCompat.checkSelfPermission(
 
-        this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
-                      PackageManager.PERMISSION_GRANTED){
+                this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
+                PackageManager.PERMISSION_GRANTED){
 
             ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
         }
