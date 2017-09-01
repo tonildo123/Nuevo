@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
 import com.example.sergio.nuevo.dominio.Noticia;
 
@@ -23,6 +24,7 @@ public class VistaNoticias extends Fragment {
     private Servicio s;
     private ListView listView;
     private AdaptadorNoticia listAdapter;
+    private ServicioNoticias not;
     private Button boton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +33,8 @@ public class VistaNoticias extends Fragment {
         s = new Servicio();
         s.Clase(ServicioPagEmpleo.getInstance());
 
-        noticias = (ArrayList<Noticia>) s.getNovedades();
+        not = new ServicioNoticias(this.getActivity());
+        noticias = not.levantarNoticias();
 
         listView = (ListView) v.findViewById(R.id.list);
         listAdapter = new AdaptadorNoticia(this.getActivity(),noticias);

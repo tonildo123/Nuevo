@@ -18,6 +18,15 @@ public class Noticia {
     public Noticia() {
     }
 
+    public Noticia(int id, String titulo, String urlImagen, Bitmap foto, String urlParrafo, String parrafo) {
+        this.id = id;
+        this.titulo = titulo;
+        this.urlImagen = urlImagen;
+        this.foto = foto;
+        this.urlParrafo = urlParrafo;
+        this.parrafo = parrafo;
+    }
+
     public String getTitulo() {
         return titulo;
     }

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.example.sergio.nuevo.dominio.Noticia;
@@ -31,13 +32,21 @@ public class ServicioNoticias {
     public ArrayList levantarNoticias() {
         SQLiteDatabase db = not.getWritableDatabase();
         Cursor fila = db.rawQuery("select * from noticias", null);
+        ArrayList<Noticia> noticias = new ArrayList<>();
 
         if(!fila.moveToFirst()){
             db.close();
             return null;
         }else{
-            ArrayList<Noticia> noticias = new ArrayList<>();
 
+            Bitmap bit;
+            String s = fila.getString(3);
+            bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
+            noticias.add(new Noticia(fila.getInt(0),fila.getString(1),fila.getString(2),bit,fila.getString(4),fila.getString(5)));
+            while (fila.moveToNext()) {
+                bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
+                noticias.add(new Noticia(fila.getInt(0),fila.getString(1),fila.getString(2),bit,fila.getString(4),fila.getString(5)));
+            }
 
 
             return  noticias;
@@ -63,7 +72,7 @@ public class ServicioNoticias {
             }
             registro.put("titulo", novedad.getTitulo());
             registro.put("urlimagen", novedad.getUrlImagen());
-            registro.put("dirImagen", novedad.getId());
+            registro.put("dirImagen", "/SSE/images/"+novedad.getId()+".jpg");
             registro.put("urlparrafo", novedad.getUrlParrafo());
             registro.put("parrafo", novedad.getParrafo());
 
