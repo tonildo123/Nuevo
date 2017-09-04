@@ -23,8 +23,8 @@ public class PagEmpleo implements Strategy {
     private Document doc;
     private Document pagEmpleo;
     private Element selectorDiv;
-    private Elements urlelements1;
-    private Elements urlelements2;
+    private Elements elements1;
+    private Elements elements2;
     private String text;
     private boolean terminado = false;
     private static final PagEmpleo not = new PagEmpleo();
@@ -68,22 +68,22 @@ public class PagEmpleo implements Strategy {
 //                    Utilizar Element para buscar un elemento en especial, en este caso un DIV cuya class es nivoSlider .
             selectorDiv = this.pagEmpleo.select("div.nivoSlider").first();
             //Buscamos los objetos que posean el la etiqueta a.
-            urlelements1 = selectorDiv.getElementsByTag("a");
+            elements1 = selectorDiv.getElementsByTag("a");
             //Buscamos los objetos que posean el la etiqueta a.
-            urlelements2 = selectorDiv.getElementsByTag("img");
+            elements2 = selectorDiv.getElementsByTag("img");
 
-            for (int i = 0; i < urlelements1.size(); i++) {
+            for (int i = 0; i < elements1.size(); i++) {
                 urls.add(new ArrayList<String>());
                 noticias.add(new Noticia());
             }
             int i = 0;
-            for (Element cad : urlelements1) {
+            for (Element cad : elements1) {
                 urls.get(i).add(cad.attr("href"));
                 noticias.get(i).setUrlParrafo(cad.attr("href"));
                 i++;
             }
             i = 0;
-            for (Element cad : urlelements2) {
+            for (Element cad : elements2) {
                 urls.get(i).add(cad.attr("src"));
                 noticias.get(i).setUrlImagen(cad.attr("src"));
                 i++;
@@ -179,11 +179,11 @@ public class PagEmpleo implements Strategy {
 //                    Utilizar Element para buscar un elemento en especial, en este caso un DIV cuya class es postview_content .
             selectorDiv = doc.select("div.postview_content").first();
             //Buscamos los objetos que posean el la etiqueta a.
-            urlelements1 = selectorDiv.getElementsByTag("p");
+            elements1 = selectorDiv.getElementsByTag("p");
 
 //            recorremos sus elementos y los agregamos al array de urls.
             text = "";
-            text = urlelements1.get(1).text() + " " + urlelements1.get(2).text();
+            text = elements1.get(1).text() + " " + elements1.get(2).text();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -195,10 +195,40 @@ public class PagEmpleo implements Strategy {
         return titulo.text();
     }
     public ArrayList<CronogramaProgresar> obtenerCronogramaProg(){
-        return null;
+        ArrayList<CronogramaProgresar> cron = new ArrayList<>();
+        Document doc = Jsoup.parse(this.pagEmpleo.toString());
+
+        selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
+        elements1 = selectorDiv.getElementsByTag("tr");
+
+        for (Element tr: elements1){
+            elements2 = tr.getElementsByTag("td");
+            if(elements2.size()!=0){
+                cron.add(new CronogramaProgresar(elements2.get(0).text(),elements2.get(1).text()));
+            }else{
+                elements2 = tr.getElementsByTag("th");
+                cron.add(new CronogramaProgresar(elements2.get(0).text(),elements2.get(1).text()));
+            }
+        }
+        return cron;
     }
     public ArrayList<CronogramaJoven> obtenerCronogramaJoven(){
-        return  null;
+        ArrayList<CronogramaJoven> cron = new ArrayList<>();
+        Document doc = Jsoup.parse(this.pagEmpleo.toString());
+
+        selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
+        elements1 = selectorDiv.getElementsByTag("tr");
+
+        for (Element tr: elements1){
+            elements2 = tr.getElementsByTag("td");
+            if(elements2.size()!=0){
+                cron.add(new CronogramaJoven(elements2.get(0).text(),elements2.get(1).text()));
+            }else{
+                elements2 = tr.getElementsByTag("th");
+                cron.add(new CronogramaJoven(elements2.get(0).text(),elements2.get(1).text()));
+            }
+        }
+        return cron;
     }
 }
 

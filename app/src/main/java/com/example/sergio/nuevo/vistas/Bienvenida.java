@@ -6,7 +6,8 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
+import com.example.sergio.nuevo.persistencia.ServicioCronProg;
+import com.example.sergio.nuevo.persistencia.ServicioNoticias;
 import com.example.sergio.nuevo.dominio.PagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 
@@ -16,6 +17,7 @@ public class Bienvenida extends AppCompatActivity {
 
     private Servicio s;
     private ServicioNoticias not = new ServicioNoticias(this);
+    private ServicioCronProg cronProg = new ServicioCronProg(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,7 @@ public class Bienvenida extends AppCompatActivity {
 
         s = new Servicio();
 
-//        DBNoticias noti = new DBNoticias(this, "DBnoticias",null,1);
+//        DBTuOficinaDeEmpleo noti = new DBTuOficinaDeEmpleo(this, "DBnoticias",null,1);
 //        SQLiteDatabase db = noti.getWritableDatabase();
 //        if(db != null){
 //            System.out.println("se creo correctamente");
@@ -65,7 +67,11 @@ public class Bienvenida extends AppCompatActivity {
         }
     }
     private void obtenerCronogramas() {
-        s.obtenerCronogramaProg();
+        if(cronProg.levantarNoticias() == null){
+            cronProg.guardarNoticias(s.obtenerCronogramaProg());
+        }
+
+        s.obtenerCronogramaJoven();
     }
 
     private void crearCarpetas() {

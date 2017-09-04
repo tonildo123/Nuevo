@@ -32,7 +32,7 @@ public class CronogramaDePagos extends Fragment {
             // crea un acceso a la vista
         View contenedor = (View)container.getParent();
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
-        // returna la vista del fragmento asociado
+        // retorna la vista del fragmento asociado
         tabs= new TabLayout(getActivity());
         tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
         // inserta el tab en el appbar
@@ -44,7 +44,7 @@ public class CronogramaDePagos extends Fragment {
         ViewPagerAdapter paginaAdapter = new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(paginaAdapter);
         tabs.setupWithViewPager(viewPager);
-    // retornamos la viosta cargada
+    // retornamos la vista cargada
         return view;
     }
 

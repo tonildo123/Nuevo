@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.aplicacion.servicios;
+package com.example.sergio.nuevo.persistencia;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.persistencia.DBNoticias;
+import com.example.sergio.nuevo.persistencia.DBTuOficinaDeEmpleo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,11 +22,11 @@ import java.util.ArrayList;
  */
 
 public class ServicioNoticias {
-    private DBNoticias not;
+    private DBTuOficinaDeEmpleo not;
 
 
     public ServicioNoticias(Activity activity) {
-        not = new DBNoticias(activity,"DBTuOficinaDeEmpleo",null,1);
+        not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
     public ArrayList levantarNoticias() {

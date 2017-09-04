@@ -7,14 +7,19 @@ import java.util.Date;
  */
 
 public class CronogramaJoven {
-    private int terminacionDni;
+    private String terminacionDni;
     private String fecha;
 
-    public int getTerminacionDni() {
+    public CronogramaJoven(String terminacionDni, String fecha) {
+        this.terminacionDni = terminacionDni;
+        this.fecha = fecha;
+    }
+
+    public String getTerminacionDni() {
         return terminacionDni;
     }
 
-    public void setTerminacionDni(int terminacionDni) {
+    public void setTerminacionDni(String terminacionDni) {
         this.terminacionDni = terminacionDni;
     }
 

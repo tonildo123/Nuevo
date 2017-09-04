@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
+import com.example.sergio.nuevo.persistencia.ServicioNoticias;
 import com.example.sergio.nuevo.dominio.PagEmpleo;
 import com.example.sergio.nuevo.dominio.Noticia;
 
