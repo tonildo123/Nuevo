@@ -7,6 +7,7 @@ package com.example.sergio.nuevo.dominio;
 public class CronogramaProgresar {
     private int terminacionDni;
     private String fecha;
+    //hola
 
     public int getTerminacionDni() {
         return terminacionDni;
