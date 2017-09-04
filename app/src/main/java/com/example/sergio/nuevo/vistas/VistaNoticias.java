@@ -13,7 +13,7 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
+import com.example.sergio.nuevo.dominio.PagEmpleo;
 import com.example.sergio.nuevo.dominio.Noticia;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class VistaNoticias extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_noticias, container, false);
         s = new Servicio();
-        s.Clase(ServicioPagEmpleo.getInstance());
+        s.Clase(PagEmpleo.getInstance());
 
         not = new ServicioNoticias(this.getActivity());
         noticias = not.levantarNoticias();

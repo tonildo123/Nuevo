@@ -1,16 +1,14 @@
 package com.example.sergio.nuevo.vistas;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioNoticias;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
+import com.example.sergio.nuevo.dominio.PagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.persistencia.DBNoticias;
 
 import java.io.File;
 
@@ -54,7 +52,7 @@ public class Bienvenida extends AppCompatActivity {
         obtenerCronogramas();
     }
     private void obtenerNoticias() {
-        s.Clase(ServicioPagEmpleo.getInstance());
+        s.Clase(PagEmpleo.getInstance());
         s.obtenerUrls();
         if(not.levantarNoticias() == null){
             not.guardarNoticias(s.getNovedades());
@@ -67,7 +65,7 @@ public class Bienvenida extends AppCompatActivity {
         }
     }
     private void obtenerCronogramas() {
-
+        s.obtenerCronogramaProg();
     }
 
     private void crearCarpetas() {

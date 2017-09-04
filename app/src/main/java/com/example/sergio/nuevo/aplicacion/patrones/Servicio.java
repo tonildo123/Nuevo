@@ -1,5 +1,7 @@
 package com.example.sergio.nuevo.aplicacion.patrones;
 
+import com.example.sergio.nuevo.dominio.CronogramaJoven;
+import com.example.sergio.nuevo.dominio.CronogramaProgresar;
 import com.example.sergio.nuevo.dominio.Noticia;
 
 import java.util.ArrayList;
@@ -30,5 +32,11 @@ public class Servicio {
     }
 
     public boolean comparar() {return s.comparar();
+    }
+    public ArrayList<CronogramaProgresar> obtenerCronogramaProg(){
+        return s.obtenerCronogramaProg();
+    }
+    public ArrayList<CronogramaJoven> obtenerCronogramaJoven(){
+        return s.obtenerCronogramaJoven();
     }
 }

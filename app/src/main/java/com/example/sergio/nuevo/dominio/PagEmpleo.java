@@ -1,8 +1,7 @@
-package com.example.sergio.nuevo.aplicacion.servicios;
+package com.example.sergio.nuevo.dominio;
 
 import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
-import com.example.sergio.nuevo.dominio.Noticia;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,28 +16,29 @@ import java.util.List;
  * Created by Sergio on 27/07/2017.
  */
 
-public class ServicioPagEmpleo implements Strategy {
+public class PagEmpleo implements Strategy {
 
 
     private static final String url = "http://181.14.240.59/Portal/";
     private Document doc;
+    private Document pagEmpleo;
     private Element selectorDiv;
     private Elements urlelements1;
     private Elements urlelements2;
     private String text;
     private boolean terminado = false;
-    private static final ServicioPagEmpleo not = new ServicioPagEmpleo();
+    private static final PagEmpleo not = new PagEmpleo();
     private ArrayList<Thread> hilos = new ArrayList<>();
     private int i = 0;
     private ObtImagen img;
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private List<List<String>> urls = new ArrayList<>();
 
-    public static ServicioPagEmpleo getInstance() {
+    public static PagEmpleo getInstance() {
         return not;
     }
 
-    public ServicioPagEmpleo() {
+    public PagEmpleo() {
         img = img.getInstance();
     }
 
@@ -52,10 +52,10 @@ public class ServicioPagEmpleo implements Strategy {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            getRecursos();
+            getNoticias();
             return noticias;
         }
-        getRecursos();
+        getNoticias();
         return noticias;
     }
 
@@ -64,9 +64,9 @@ public class ServicioPagEmpleo implements Strategy {
         try {
             //necesitará protocolo http
             //doc trae el html completo de la url que se le agregue
-            this.doc = Jsoup.connect(url).userAgent("Mozilla").get();
+            this.pagEmpleo = Jsoup.connect(url).userAgent("Mozilla").get();
 //                    Utilizar Element para buscar un elemento en especial, en este caso un DIV cuya class es nivoSlider .
-            selectorDiv = this.doc.select("div.nivoSlider").first();
+            selectorDiv = this.pagEmpleo.select("div.nivoSlider").first();
             //Buscamos los objetos que posean el la etiqueta a.
             urlelements1 = selectorDiv.getElementsByTag("a");
             //Buscamos los objetos que posean el la etiqueta a.
@@ -120,7 +120,7 @@ public class ServicioPagEmpleo implements Strategy {
         return true;
     }
 
-    public void getRecursos() {
+    public void getNoticias() {
 
         if (noticias.get(0).getFoto() == null) {
             Thread hilopadre = new Thread() {
@@ -194,6 +194,11 @@ public class ServicioPagEmpleo implements Strategy {
         Element titulo = doc.getElementsByTag("h1").first();
         return titulo.text();
     }
-
+    public ArrayList<CronogramaProgresar> obtenerCronogramaProg(){
+        return null;
+    }
+    public ArrayList<CronogramaJoven> obtenerCronogramaJoven(){
+        return  null;
+    }
 }
 

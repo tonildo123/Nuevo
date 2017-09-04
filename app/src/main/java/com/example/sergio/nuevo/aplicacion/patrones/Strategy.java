@@ -13,4 +13,6 @@ public interface Strategy {
     public void obtenerUrls();
     public void setNovedades(ArrayList array);
     public boolean comparar();
+    public ArrayList obtenerCronogramaProg();
+    public ArrayList obtenerCronogramaJoven();
 }
