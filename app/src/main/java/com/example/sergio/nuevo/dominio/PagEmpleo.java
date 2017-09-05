@@ -216,7 +216,7 @@ public class PagEmpleo implements Strategy {
         ArrayList<CronogramaJoven> cron = new ArrayList<>();
         Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
-        selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
+        selectorDiv = doc.getElementById("sse-cronogramas-pago-6");
         elements1 = selectorDiv.getElementsByTag("tr");
 
         for (Element tr: elements1){

@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.persistencia.ServicioCronJoven;
 import com.example.sergio.nuevo.persistencia.ServicioCronProg;
 import com.example.sergio.nuevo.persistencia.ServicioNoticias;
 import com.example.sergio.nuevo.dominio.PagEmpleo;
@@ -18,6 +19,7 @@ public class Bienvenida extends AppCompatActivity {
     private Servicio s;
     private ServicioNoticias not = new ServicioNoticias(this);
     private ServicioCronProg cronProg = new ServicioCronProg(this);
+    private ServicioCronJoven cronJoven = new ServicioCronJoven(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +72,9 @@ public class Bienvenida extends AppCompatActivity {
         if(cronProg.levantarNoticias() == null){
             cronProg.guardarNoticias(s.obtenerCronogramaProg());
         }
-
-        s.obtenerCronogramaJoven();
+        if(cronJoven.levantarNoticias() == null){
+            cronJoven.guardarNoticias(s.obtenerCronogramaJoven());
+        }
     }
 
     private void crearCarpetas() {

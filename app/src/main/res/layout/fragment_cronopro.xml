@@ -4,10 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.vistas.tabs.TabDosProcro">
+    android:weightSum="1"
+    tools:context="com.example.sergio.nuevo.vistas.tabs.TabCronProgresar">
 
     <!-- TODO: Update blank fragment layout -->
 
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
     <ListView
         android:id="@+id/listCronProg"

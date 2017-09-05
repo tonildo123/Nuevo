@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.dominio.CronogramaProgresar;
+import com.example.sergio.nuevo.dominio.CronogramaJoven;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,13 @@ import java.util.List;
  * Created by Operador1 on 25/08/2017.
  */
 
-public class AdaptadorCronProg extends ArrayAdapter<List<List>> {
+public class AdaptadorCronJoven extends ArrayAdapter<List<List>> {
     private Activity activity;
-    ArrayList<CronogramaProgresar> cronProg;
+    ArrayList<CronogramaJoven> cronJoven;
 
-    public AdaptadorCronProg(@NonNull Activity activity, @NonNull ArrayList<CronogramaProgresar> cronProg) {
+    public AdaptadorCronJoven(@NonNull Activity activity, @NonNull ArrayList<CronogramaJoven> cronJoven) {
         super(activity, R.layout.noticia);
-        this.cronProg = cronProg;
+        this.cronJoven = cronJoven;
         this.activity = activity;
     }
     static class ViewHolder {
@@ -35,7 +35,7 @@ public class AdaptadorCronProg extends ArrayAdapter<List<List>> {
     }
 
     public int getCount() {
-        return cronProg.size();
+        return cronJoven.size();
     }
 
     public long getItemId(int position) {
@@ -52,16 +52,15 @@ public class AdaptadorCronProg extends ArrayAdapter<List<List>> {
         final ViewHolder viewHolder = new ViewHolder();
 
         // *** instanciamos a los recursos
-        viewHolder.dni = (TextView) view
-                .findViewById(R.id.dnicronprog);
+        viewHolder.dni = (TextView) view.findViewById(R.id.dnicronprog);
         viewHolder.fecha = (TextView)view.findViewById(R.id.fechacronprog);
 
         viewHolder.dni.setTextSize(16);
         viewHolder.fecha.setTextSize(16);
 
         // importante!!! establecemos el mensaje
-        viewHolder.dni.setText(cronProg.get(position).getTerminacionDni());
-        viewHolder.fecha.setText(cronProg.get(position).getFecha());
+        viewHolder.dni.setText(cronJoven.get(position).getTerminacionDni());
+        viewHolder.fecha.setText(cronJoven.get(position).getFecha());
 
         return view;
     }

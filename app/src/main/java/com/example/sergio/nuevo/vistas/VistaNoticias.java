@@ -20,12 +20,15 @@ import java.util.ArrayList;
 
 
 public class VistaNoticias extends Fragment {
+    private static final VistaNoticias vnoticia = new VistaNoticias();
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private Servicio s;
     private ListView listView;
     private AdaptadorNoticia listAdapter;
     private ServicioNoticias not;
     private Button boton;
+
+    public static VistaNoticias getInstance(){return vnoticia;}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class VistaNoticias extends Fragment {
         noticias = not.levantarNoticias();
 
         listView = (ListView) v.findViewById(R.id.list);
-        listAdapter = new AdaptadorNoticia(this.getActivity(),noticias);
+        listAdapter = new AdaptadorNoticia(getActivity(),noticias);
         listView.setAdapter(listAdapter);
         boton = (Button)getActivity().findViewById(R.id.btnLeerMas);
 
@@ -45,10 +48,11 @@ public class VistaNoticias extends Fragment {
         return v;
     }
 
+
     public void llamarNoticia(){
-        FragmentWebView fweb = new FragmentWebView();
-        FragmentManager m = getActivity().getSupportFragmentManager();
-        m.beginTransaction().replace(R.id.contenedor, fweb).commit();
+//        FragmentWebView fweb = new FragmentWebView();
+//        FragmentManager m = getActivity().getSupportFragmentManager();
+//        m.beginTransaction().replace(R.id.contenedor, fweb).commit();
 
     }
 

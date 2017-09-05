@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager m =  getSupportFragmentManager();
 
-        if (id == R.id.nav_consulta) {           m.beginTransaction().replace(R.id.contenedor, new ProgresarC()).commit(); }
-        else if (id == R.id.nav_noticias) {      m.beginTransaction().replace(R.id.contenedor, new VistaNoticias()).commit();}
+        if (id == R.id.nav_consulta) {           m.beginTransaction().replace(R.id.contenedor, new ConsultaLiquidacion()).commit(); }
+        else if (id == R.id.nav_noticias) {      m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();}
         else if (id == R.id.nav_CRONOGRAMAtab) { m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos()).commit();}
         else if (id == R.id.nav_mapas) {
             Intent pasar = new Intent(MainActivity.this, Mapas.class);

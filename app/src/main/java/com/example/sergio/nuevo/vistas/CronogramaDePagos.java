@@ -8,21 +8,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.tabs.TabDosProcro;
-import com.example.sergio.nuevo.vistas.tabs.TabUnoJovcro;
+import com.example.sergio.nuevo.vistas.tabs.TabCronProgresar;
+import com.example.sergio.nuevo.vistas.tabs.TabCronJoven;
 
 
 public class CronogramaDePagos extends Fragment {
     private AppBarLayout appBar;
     private TabLayout tabs;
     private ViewPager viewPager;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,9 +36,6 @@ public class CronogramaDePagos extends Fragment {
         tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
         // inserta el tab en el appbar
         appBar.addView(tabs);
-
-
-
         viewPager = (ViewPager)view.findViewById(R.id.pager);
         ViewPagerAdapter paginaAdapter = new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(paginaAdapter);
@@ -52,7 +48,6 @@ public class CronogramaDePagos extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         appBar.removeView(tabs);
-
     }
     public class ViewPagerAdapter extends FragmentStatePagerAdapter{
             public ViewPagerAdapter(FragmentManager fragmentManager){
@@ -67,13 +62,11 @@ public class CronogramaDePagos extends Fragment {
             switch (position){
 
                 case 0:
-                    TabUnoJovcro tuno = new TabUnoJovcro();
+                    TabCronJoven tuno = new TabCronJoven();
                     return tuno;
                 case 1:
-                    TabDosProcro tdos = new TabDosProcro();
+                    TabCronProgresar tdos = new TabCronProgresar();
                     return tdos;
-
-
             }
             return null;
         }
@@ -88,7 +81,25 @@ public class CronogramaDePagos extends Fragment {
             return titulo[position];
         }
     }
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK){
+                    // handle back button's click listener
+                    FragmentManager m = getActivity().getSupportFragmentManager();
+                    m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 }

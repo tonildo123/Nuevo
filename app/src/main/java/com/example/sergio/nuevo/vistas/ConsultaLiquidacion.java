@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProgresarC extends Fragment implements OnClickListener {
+public class ConsultaLiquidacion extends Fragment implements OnClickListener {
 
     private Button consultar;
     private ImageView img;
@@ -88,5 +89,26 @@ public class ProgresarC extends Fragment implements OnClickListener {
             FragmentManager m = getActivity().getSupportFragmentManager();
             m.beginTransaction().replace(R.id.contenedor, res).commit();
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK){
+                    // handle back button's click listener
+                    FragmentManager m = getActivity().getSupportFragmentManager();
+                    m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }

@@ -21,7 +21,7 @@ import com.example.sergio.nuevo.persistencia.ServicioNoticias;
 import java.util.ArrayList;
 
 
-public class TabDosProcro extends Fragment {
+public class TabCronProgresar extends Fragment {
     private ArrayList<CronogramaProgresar> cronProg = new ArrayList<>();
     private Servicio s;
     private ListView listView;
