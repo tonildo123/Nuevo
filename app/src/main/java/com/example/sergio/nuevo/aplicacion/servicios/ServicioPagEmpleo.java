@@ -1,7 +1,10 @@
-package com.example.sergio.nuevo.dominio;
+package com.example.sergio.nuevo.aplicacion.servicios;
 
 import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
+import com.example.sergio.nuevo.dominio.CronogramaJoven;
+import com.example.sergio.nuevo.dominio.CronogramaProgresar;
+import com.example.sergio.nuevo.dominio.Noticia;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +19,7 @@ import java.util.List;
  * Created by Sergio on 27/07/2017.
  */
 
-public class PagEmpleo implements Strategy {
+public class ServicioPagEmpleo implements Strategy {
 
 
     private static final String url = "http://181.14.240.59/Portal/";
@@ -27,18 +30,18 @@ public class PagEmpleo implements Strategy {
     private Elements elements2;
     private String text;
     private boolean terminado = false;
-    private static final PagEmpleo not = new PagEmpleo();
+    private static final ServicioPagEmpleo not = new ServicioPagEmpleo();
     private ArrayList<Thread> hilos = new ArrayList<>();
     private int i = 0;
     private ObtImagen img;
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private List<List<String>> urls = new ArrayList<>();
 
-    public static PagEmpleo getInstance() {
+    public static ServicioPagEmpleo getInstance() {
         return not;
     }
 
-    public PagEmpleo() {
+    public ServicioPagEmpleo() {
         img = img.getInstance();
     }
 

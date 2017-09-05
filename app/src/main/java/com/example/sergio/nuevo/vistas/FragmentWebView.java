@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.sergio.nuevo.R;
 
@@ -14,7 +15,7 @@ import com.example.sergio.nuevo.R;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentWebView extends Fragment {
-    private String url;
+    private String url = "http://181.14.240.59/Portal/";
 
 
     public FragmentWebView() {
@@ -35,8 +36,9 @@ public class FragmentWebView extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_webview, container, false);
         WebView pagina = (WebView)v.findViewById(R.id.paginaWeb);
+        pagina.setWebViewClient(new WebViewClient());
         pagina.getSettings().setJavaScriptEnabled(true);
-        pagina.loadUrl("http://181.14.240.59/Portal/");
+        pagina.loadUrl(url);
 
         return v;
     }

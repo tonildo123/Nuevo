@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.tabs.TabDosReqPro2;
-import com.example.sergio.nuevo.vistas.tabs.TabTresReqJov3;
-import com.example.sergio.nuevo.vistas.tabs.TabUnoReqPro1;
+import com.example.sergio.nuevo.vistas.tabs.TabReqJoven;
+import com.example.sergio.nuevo.vistas.tabs.TabReqProg;
 
 
 public class Requisitos extends Fragment {
@@ -58,7 +57,7 @@ public class Requisitos extends Fragment {
             super(fragmentManager);
 
         }
-        String[] titulo ={"Requisitos progresar 1 ","Riquisitos PROGRESAR 2", "Requisitos jovenes 3"};
+        String[] titulo ={"Requisitos progresar","Riquisitos PROGRESAR"};
 
         @Override
         public Fragment getItem(int position) {
@@ -66,22 +65,18 @@ public class Requisitos extends Fragment {
             switch (position){
 
                 case 0:
-                    TabUnoReqPro1 tuno = new TabUnoReqPro1();
+                    TabReqJoven tuno = new TabReqJoven();
                     return tuno;
                 case 1:
-                    TabDosReqPro2 tdos = new TabDosReqPro2();
+                    TabReqProg tdos = new TabReqProg();
                     return tdos;
-                case 2:
-                    TabTresReqJov3 tdo3 = new TabTresReqJov3();
-                    return tdo3;
-
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override

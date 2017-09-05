@@ -10,13 +10,10 @@ import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronProg;
-import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.dominio.CronogramaProgresar;
-import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.dominio.PagEmpleo;
-import com.example.sergio.nuevo.persistencia.ServicioCronProg;
-import com.example.sergio.nuevo.persistencia.ServicioNoticias;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
+import com.example.sergio.nuevo.persistencia.PersisCronProg;
 
 import java.util.ArrayList;
 
@@ -26,7 +23,7 @@ public class TabCronProgresar extends Fragment {
     private Servicio s;
     private ListView listView;
     private AdaptadorCronProg listAdapter;
-    private ServicioCronProg prog;
+    private PersisCronProg prog;
     private Button boton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +31,9 @@ public class TabCronProgresar extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cronopro, container, false);
         s = new Servicio();
-        s.Clase(PagEmpleo.getInstance());
+        s.Clase(ServicioPagEmpleo.getInstance());
 
-        prog = new ServicioCronProg(this.getActivity());
+        prog = new PersisCronProg(this.getActivity());
         cronProg = prog.levantarNoticias();
 
         listView = (ListView) v.findViewById(R.id.listCronProg);

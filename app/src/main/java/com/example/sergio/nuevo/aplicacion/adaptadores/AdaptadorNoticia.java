@@ -70,6 +70,7 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
             @Override
             public void onClick(View view) {
                 FragmentWebView fweb = new FragmentWebView();
+                fweb.setUrl(noticias.get(position).getUrlParrafo());
                 android.app.FragmentManager m = activity.getFragmentManager();
                 m.beginTransaction().replace(R.id.contenedor, fweb).commit();
             }

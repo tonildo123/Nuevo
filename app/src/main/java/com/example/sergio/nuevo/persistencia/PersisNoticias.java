@@ -21,11 +21,11 @@ import java.util.ArrayList;
  * Created by Operador1 on 31/08/2017.
  */
 
-public class ServicioNoticias {
+public class PersisNoticias {
     private DBTuOficinaDeEmpleo not;
 
 
-    public ServicioNoticias(Activity activity) {
+    public PersisNoticias(Activity activity) {
         not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 

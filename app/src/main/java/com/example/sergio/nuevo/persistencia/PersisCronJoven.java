@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * Created by Operador1 on 04/09/2017.
  */
 
-public class ServicioCronJoven {
+public class PersisCronJoven {
     private DBTuOficinaDeEmpleo cronProg;
 
 
-    public ServicioCronJoven(Activity activity) {
+    public PersisCronJoven(Activity activity) {
         cronProg = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 

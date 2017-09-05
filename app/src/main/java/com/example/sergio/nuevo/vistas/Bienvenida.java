@@ -6,10 +6,11 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.persistencia.ServicioCronJoven;
-import com.example.sergio.nuevo.persistencia.ServicioCronProg;
-import com.example.sergio.nuevo.persistencia.ServicioNoticias;
-import com.example.sergio.nuevo.dominio.PagEmpleo;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioReqJoven;
+import com.example.sergio.nuevo.persistencia.PersisCronJoven;
+import com.example.sergio.nuevo.persistencia.PersisCronProg;
+import com.example.sergio.nuevo.persistencia.PersisNoticias;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 
 import java.io.File;
@@ -17,9 +18,9 @@ import java.io.File;
 public class Bienvenida extends AppCompatActivity {
 
     private Servicio s;
-    private ServicioNoticias not = new ServicioNoticias(this);
-    private ServicioCronProg cronProg = new ServicioCronProg(this);
-    private ServicioCronJoven cronJoven = new ServicioCronJoven(this);
+    private PersisNoticias not = new PersisNoticias(this);
+    private PersisCronProg cronProg = new PersisCronProg(this);
+    private PersisCronJoven cronJoven = new PersisCronJoven(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +55,15 @@ public class Bienvenida extends AppCompatActivity {
         crearCarpetas();
         obtenerNoticias();
         obtenerCronogramas();
+        obtenerRequisitos();
     }
+
+    private void obtenerRequisitos() {
+        ServicioReqJoven.getInstance().getNovedades();
+    }
+
     private void obtenerNoticias() {
-        s.Clase(PagEmpleo.getInstance());
+        s.Clase(ServicioPagEmpleo.getInstance());
         s.obtenerUrls();
         if(not.levantarNoticias() == null){
             not.guardarNoticias(s.getNovedades());

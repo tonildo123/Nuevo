@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import com.example.sergio.nuevo.R;
 
 
-public class TabUnoReqPro1 extends Fragment {
+public class TabReqJoven extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progresar_requisitos1, container, false);
+        return inflater.inflate(R.layout.fragment_jovenes_requisitos, container, false);
     }
 }
