@@ -24,7 +24,6 @@ public class ServicioReqJoven {
     private Element selectorDiv;
     private Elements elements1;
     private Elements elements2;
-    private String text;
     private ProgramaJoven joven;
     private String url = "http://181.14.240.59/Portal/programas-de-empleo/programa-jovenes-con-mas-y-mejor-trabajo/";
     private static final ServicioReqJoven req = new ServicioReqJoven();
@@ -58,7 +57,8 @@ public class ServicioReqJoven {
                 h3.add(new h3(li,j,cad.text()));
                 j++;
             }
-            joven = new ProgramaJoven(urlimg.attr("src"),titulo.text(),objetivo.text(),h3);
+            Bitmap imagen = ObtImagen.getInstance().descargarImagen(urlimg.attr("src"),500,200);
+            joven = new ProgramaJoven(urlimg.attr("src"),titulo.text(),objetivo.text(),h3,imagen);
 
         } catch (IOException e) {
             e.printStackTrace();

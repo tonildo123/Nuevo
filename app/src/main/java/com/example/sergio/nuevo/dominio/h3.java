@@ -32,4 +32,12 @@ public class h3 {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getSubtitulo() {
+        return subtitulo;
+    }
+
+    public void setSubtitulo(String subtitulo) {
+        this.subtitulo = subtitulo;
+    }
 }

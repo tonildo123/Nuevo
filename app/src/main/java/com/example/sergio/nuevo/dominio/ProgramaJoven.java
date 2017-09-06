@@ -1,5 +1,7 @@
 package com.example.sergio.nuevo.dominio;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 /**
@@ -11,12 +13,31 @@ public class ProgramaJoven {
     private String titulo;
     private String objetivo;
     private ArrayList<h3> h3 = new ArrayList<>();
+    private Bitmap img;
+    private String dirimagen;
 
-    public ProgramaJoven(String urlimagen, String titulo, String objetivo, ArrayList<com.example.sergio.nuevo.dominio.h3> h3) {
+    public ProgramaJoven(String urlimagen, String titulo, String objetivo, ArrayList<com.example.sergio.nuevo.dominio.h3> h3, Bitmap img) {
         this.urlimagen = urlimagen;
         this.titulo = titulo;
         this.objetivo = objetivo;
         this.h3 = h3;
+        this.img = img;
+    }
+
+    public String getDirimagen() {
+        return dirimagen;
+    }
+
+    public void setDirimagen(String dirimagen) {
+        this.dirimagen = dirimagen;
+    }
+
+    public Bitmap getImg() {
+        return img;
+    }
+
+    public void setImg(Bitmap img) {
+        this.img = img;
     }
 
     public String getUrlimagen() {

@@ -12,6 +12,7 @@ import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
+import com.example.sergio.nuevo.persistencia.PersisReqJoven;
 
 import java.io.File;
 
@@ -21,6 +22,7 @@ public class Bienvenida extends AppCompatActivity {
     private PersisNoticias not = new PersisNoticias(this);
     private PersisCronProg cronProg = new PersisCronProg(this);
     private PersisCronJoven cronJoven = new PersisCronJoven(this);
+    private PersisReqJoven reqJoven = new PersisReqJoven(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-        ServicioReqJoven.getInstance().getNovedades();
+        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
     }
 
     private void obtenerNoticias() {
