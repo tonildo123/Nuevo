@@ -1,10 +1,13 @@
 package com.example.sergio.nuevo.vistas;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -25,13 +28,14 @@ public class VistaNoticias extends Fragment {
     private ListView listView;
     private AdaptadorNoticia listAdapter;
     private PersisNoticias not;
-    private Button boton;
+    private Activity activityMain;
 
     public static VistaNoticias getInstance(){return vnoticia;}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_noticias, container, false);
+//        Intent intent = new Intent(getActivity(), );
         s = new Servicio();
         s.Clase(ServicioPagEmpleo.getInstance());
 
@@ -39,17 +43,23 @@ public class VistaNoticias extends Fragment {
         noticias = not.levantarNoticias();
 
         listView = (ListView) v.findViewById(R.id.list);
-        listAdapter = new AdaptadorNoticia(getActivity(),noticias);
+        listAdapter = new AdaptadorNoticia(getActivity(),noticias,this.getContext());
         listView.setAdapter(listAdapter);
-        boton = (Button)getActivity().findViewById(R.id.btnLeerMas);
 
         // Inflate the layout for this fragment
         return v;
     }
 
+    public Activity getActivityMain() {
+        return activityMain;
+    }
+
+    public void setActivityMain(Activity activityMain) {
+        this.activityMain = activityMain;
+    }
 
     public void llamarNoticia(){
-//        FragmentWebView fweb = new FragmentWebView();
+//        NoticiaWebView fweb = new NoticiaWebView();
 //        FragmentManager m = getActivity().getSupportFragmentManager();
 //        m.beginTransaction().replace(R.id.contenedor, fweb).commit();
 

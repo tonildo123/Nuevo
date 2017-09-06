@@ -3,10 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.vistas.FragmentWebView">
+    tools:context="com.example.sergio.nuevo.vistas.NoticiaWebView">
 
     <!-- TODO: Update blank fragment layout -->
 
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <WebView
         android:id="@+id/paginaWeb"

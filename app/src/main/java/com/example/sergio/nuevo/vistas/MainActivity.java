@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        VistaNoticias.getInstance().setActivityMain(this);
         FragmentManager m =  getSupportFragmentManager();
-        m.beginTransaction().replace(R.id.contenedor, new VistaNoticias()).commit();
+        m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
 
     }
 

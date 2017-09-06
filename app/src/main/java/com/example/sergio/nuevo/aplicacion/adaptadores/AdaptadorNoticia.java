@@ -1,9 +1,10 @@
 package com.example.sergio.nuevo.aplicacion.adaptadores;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.vistas.FragmentWebView;
+import com.example.sergio.nuevo.vistas.NoticiaWebView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,14 @@ import java.util.List;
 
 public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
     private Activity activity;
+    private Context mainactivity;
     ArrayList<Noticia> noticias;
 
-    public AdaptadorNoticia(@NonNull Activity activity, @NonNull ArrayList<Noticia> noticias) {
+    public AdaptadorNoticia(@NonNull Activity activity, @NonNull ArrayList<Noticia> noticias,Context mainActivity) {
         super(activity, R.layout.noticia);
         this.noticias = noticias;
         this.activity = activity;
+        this.mainactivity = mainActivity;
     }
     static class ViewHolder {
         protected ImageView image;
@@ -69,10 +72,11 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         viewHolder.vermas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentWebView fweb = new FragmentWebView();
+                NoticiaWebView fweb = new NoticiaWebView();
                 fweb.setUrl(noticias.get(position).getUrlParrafo());
-                android.app.FragmentManager m = activity.getFragmentManager();
-                m.beginTransaction().replace(R.id.contenedor, fweb).commit();
+                Intent pasar = new Intent(mainactivity.getApplicationContext(), fweb.getClass());
+                pasar.putExtra("url", noticias.get(position).getUrlParrafo());
+                mainactivity.startActivity(pasar);
             }
         });
 
