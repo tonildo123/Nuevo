@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Operador1 on 05/09/2017.
@@ -31,32 +32,41 @@ public class PersisReqJoven {
         not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
-    public ArrayList levantarNoticias() {
+    public ProgramaJoven levantarNoticias() {
         SQLiteDatabase db = not.getWritableDatabase();
-        Cursor fila = db.rawQuery("select r.objetivo as Objetivo,r.titulo as Titulo,r.urlimagen as url,r.dirImagen as dir,h3.subtitulo as Subtitulo,li.item as Item" +
-                                  "from requisitos_joven AS r" +
-                                  "INNER JOIN h3 ON h3.id_requisitos_joven=r._id" +
-                                  "INNER JOIN li IN li.id_h3=h3._id", null);
-
-        ArrayList<Noticia> noticias = new ArrayList<>();
-
+        Cursor fila = db.rawQuery("select r.objetivo as Objetivo,r.titulo as Titulo,r.urlimagen as url,r.dirImagen as dir,h3.subtitulo as Subtitulo,li.item as Item " +
+                                  "from requisitos_joven AS r " +
+                                  "INNER JOIN h3 ON h3.id_requisitos_joven=r._id " +
+                                  "INNER JOIN li ON li.id_h3=h3._id", null);
+        int i = 1;
+        int j = 1;
+        ArrayList<h3> subtitulo = new ArrayList<>();
         if(!fila.moveToFirst()){
             db.close();
             return null;
         }else{
-
-            Bitmap bit;
-            String s = fila.getString(0);
-            bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
-            noticias.add(new Noticia(fila.getInt(0),fila.getString(1),fila.getString(2),bit,fila.getString(4),fila.getString(5)));
-            while (fila.moveToNext()) {
-                bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
-                noticias.add(new Noticia(fila.getInt(0),fila.getString(1),fila.getString(2),bit,fila.getString(4),fila.getString(5)));
-            }
-
-
-            return  noticias;
+            Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
+            ProgramaJoven joven = new ProgramaJoven(fila.getString(2),fila.getString(1),fila.getString(0),bitmap);
+            joven.setDirimagen(fila.getString(3));
+            String s = fila.getString(4);
+            subtitulo.add(new h3(j,s));
+            do{
+                if (s.equals(fila.getString(4))){
+                    subtitulo.get(subtitulo.size()-1).getItem().add(new li(i,fila.getString(5)));
+                    i++;
+                }else {
+                    j++;
+                    s = fila.getString(4);
+                    subtitulo.add(new h3(j,s));
+                    subtitulo.get(subtitulo.size()-1).getItem().add(new li(i,fila.getString(5)));
+                    i=1;
+                }
+            }while (fila.moveToNext());
+            joven.setH3(subtitulo);
+            System.out.println("");
+            return joven;
         }
+
     }
 
     public void guardarNoticias(ProgramaJoven novedad) {
@@ -96,6 +106,7 @@ public class PersisReqJoven {
         registro.put("urlimagen",novedad.getUrlimagen());
         registro.put("dirImagen","/SSE/tmp/"+novedad.getTitulo()+".jpg");
         db.insert("requisitos_joven", null, registro);
+        db.update("requisitos_joven",registro,"where",new String[]{"id =1"});
         db.close();
     }
 }

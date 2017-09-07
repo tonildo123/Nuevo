@@ -16,11 +16,10 @@ public class ProgramaJoven {
     private Bitmap img;
     private String dirimagen;
 
-    public ProgramaJoven(String urlimagen, String titulo, String objetivo, ArrayList<com.example.sergio.nuevo.dominio.h3> h3, Bitmap img) {
+    public ProgramaJoven(String urlimagen, String titulo, String objetivo, Bitmap img) {
         this.urlimagen = urlimagen;
         this.titulo = titulo;
         this.objetivo = objetivo;
-        this.h3 = h3;
         this.img = img;
     }
 

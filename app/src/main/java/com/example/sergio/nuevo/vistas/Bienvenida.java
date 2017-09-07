@@ -31,12 +31,6 @@ public class Bienvenida extends AppCompatActivity {
 
         s = new Servicio();
 
-//        DBTuOficinaDeEmpleo noti = new DBTuOficinaDeEmpleo(this, "DBnoticias",null,1);
-//        SQLiteDatabase db = noti.getWritableDatabase();
-//        if(db != null){
-//            System.out.println("se creo correctamente");
-//        }
-
     Thread hilo2 = new Thread(){
         @Override
         public void run() {
@@ -61,7 +55,8 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
+//        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
+        reqJoven.levantarNoticias();
     }
 
     private void obtenerNoticias() {

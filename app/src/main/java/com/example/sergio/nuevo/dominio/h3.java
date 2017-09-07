@@ -11,8 +11,7 @@ public class h3 {
     private int id;
     private String subtitulo;
 
-    public h3(ArrayList<li> item, int id, String subtitulo) {
-        this.item = item;
+    public h3(int id, String subtitulo) {
         this.id = id;
         this.subtitulo = subtitulo;
     }

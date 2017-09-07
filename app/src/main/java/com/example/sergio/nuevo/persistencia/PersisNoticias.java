@@ -55,6 +55,7 @@ public class PersisNoticias {
 
     public void guardarNoticias(ArrayList<Noticia> novedades) {
         SQLiteDatabase db = not.getWritableDatabase();
+
         ContentValues registro = new ContentValues();
 
         for (Noticia novedad : novedades){

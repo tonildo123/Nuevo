@@ -54,11 +54,13 @@ public class ServicioReqJoven {
                     li.add(new li(1,cad1.text()));
                     i++;
                 }
-                h3.add(new h3(li,j,cad.text()));
+                h3.add(new h3(j,cad.text()));
+                h3.get(j-1).setItem(li);
                 j++;
             }
             Bitmap imagen = ObtImagen.getInstance().descargarImagen(urlimg.attr("src"),500,200);
-            joven = new ProgramaJoven(urlimg.attr("src"),titulo.text(),objetivo.text(),h3,imagen);
+            joven = new ProgramaJoven(urlimg.attr("src"),titulo.text(),objetivo.text(),imagen);
+            joven.setH3(h3);
 
         } catch (IOException e) {
             e.printStackTrace();
