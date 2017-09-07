@@ -64,6 +64,7 @@ public class PersisReqJoven {
             }while (fila.moveToNext());
             joven.setH3(subtitulo);
             System.out.println("");
+            db.close();
             return joven;
         }
 
@@ -72,7 +73,17 @@ public class PersisReqJoven {
     public void guardarNoticias(ProgramaJoven novedad) {
         SQLiteDatabase db = not.getWritableDatabase();
         ContentValues registro = new ContentValues();
-        int i = 1;
+        Cursor fila = db.rawQuery("select r.objetivo as Objetivo,r.titulo as Titulo,r.urlimagen as url,r.dirImagen as dir,h3.subtitulo as Subtitulo,li.item as Item " +
+                "from requisitos_joven AS r " +
+                "INNER JOIN h3 ON h3.id_requisitos_joven=r._id " +
+                "INNER JOIN li ON li.id_h3=h3._id", null);
+
+        boolean b;
+        if(!fila.moveToFirst()){
+            b=false;
+        }else{
+            b=true;
+        }
 
         File myPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/SSE/tmp/"+novedad.getTitulo()+".jpg");
 
@@ -87,26 +98,34 @@ public class PersisReqJoven {
             ex.printStackTrace();
         }
         for (h3 h3:novedad.getH3()) {
-            registro.put("_id",i);
             registro.put("subtitulo",h3.getSubtitulo());
             registro.put("id_requisitos_joven", 1);
-            db.insert("h3", null, registro);
+            if (b){
+                db.update("h3",registro,"_id ="+h3.getId(),null);
+            }else {
+                db.insert("h3", null, registro);
+            }
             for (li list:h3.getItem()) {
                 registro.clear();
                 registro.put("item",list.getItem());
-                registro.put("id_h3",i);
-                db.insert("li", null, registro);
+                registro.put("id_h3",h3.getId());
+                if (b){
+                    db.update("li",registro,"_id="+list.getId(),null);
+                }else {
+                    db.insert("li", null, registro);
+                }
             }
-            i++;
             registro.clear();
         }
-        registro.put("_id",1);
         registro.put("objetivo",novedad.getObjetivo());
         registro.put("titulo",novedad.getTitulo());
         registro.put("urlimagen",novedad.getUrlimagen());
         registro.put("dirImagen","/SSE/tmp/"+novedad.getTitulo()+".jpg");
-        db.insert("requisitos_joven", null, registro);
-        db.update("requisitos_joven",registro,"where",new String[]{"id =1"});
+        if(b){
+            db.update("requisitos_joven",registro,"_id=1",null);
+        }else{
+            db.insert("requisitos_joven", null, registro);
+        }
         db.close();
     }
 }

@@ -46,12 +46,12 @@ public class ServicioReqJoven {
             elements1 = selectorDiv.getElementsByTag("h3");
             elements2 = selectorDiv.getElementsByTag("ul");
             int j = 1;
+            int i=1;
             for (Element cad: elements1) {
                 ArrayList<li> li = new ArrayList<>();
-                int i=1;
                 Elements el = elements2.get(j-1).getElementsByTag("li");
                 for (Element cad1:el) {
-                    li.add(new li(1,cad1.text()));
+                    li.add(new li(i,cad1.text()));
                     i++;
                 }
                 h3.add(new h3(j,cad.text()));

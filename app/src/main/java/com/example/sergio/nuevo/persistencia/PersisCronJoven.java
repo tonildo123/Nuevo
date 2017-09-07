@@ -35,6 +35,7 @@ public class PersisCronJoven {
             while (fila.moveToNext()) {
                 cron.add(new CronogramaJoven(fila.getString(1),fila.getString(2)));
             }
+            db.close();
             return  cron;
         }
     }

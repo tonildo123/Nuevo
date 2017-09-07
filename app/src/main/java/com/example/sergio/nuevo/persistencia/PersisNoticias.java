@@ -47,8 +47,7 @@ public class PersisNoticias {
                 bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
                 noticias.add(new Noticia(fila.getInt(0),fila.getString(1),fila.getString(2),bit,fila.getString(4),fila.getString(5)));
             }
-
-
+            db.close();
             return  noticias;
         }
     }
@@ -81,8 +80,6 @@ public class PersisNoticias {
             db.insert("noticias", null, registro);
 
         }
-
-
         db.close();
     }
 }

@@ -49,20 +49,8 @@ public class VistaNoticias extends Fragment {
         // Inflate the layout for this fragment
         return v;
     }
-
-    public Activity getActivityMain() {
-        return activityMain;
-    }
-
     public void setActivityMain(Activity activityMain) {
         this.activityMain = activityMain;
-    }
-
-    public void llamarNoticia(){
-//        NoticiaWebView fweb = new NoticiaWebView();
-//        FragmentManager m = getActivity().getSupportFragmentManager();
-//        m.beginTransaction().replace(R.id.contenedor, fweb).commit();
-
     }
 
     }

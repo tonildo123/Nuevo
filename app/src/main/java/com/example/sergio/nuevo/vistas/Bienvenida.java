@@ -55,7 +55,7 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-//        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
+        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
         reqJoven.levantarNoticias();
     }
 
