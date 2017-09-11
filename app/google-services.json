@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "221145120529",
+    "firebase_url": "https://mi-oficina-de-empleo-1d38e.firebaseio.com",
+    "project_id": "mi-oficina-de-empleo-1d38e",
+    "storage_bucket": "mi-oficina-de-empleo-1d38e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221145120529:android:1e19796c734907ef",
+        "android_client_info": {
+          "package_name": "com.example.sergio.nuevo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221145120529-he8r924egm6ba18aeai352jbistuk53e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sergio.nuevo",
+            "certificate_hash": "975182f65b5b6d81c68f686524d212eddc5f461c"
+          }
+        },
+        {
+          "client_id": "221145120529-lfk5pr5ciuv19e508oe3tpp9jcpr5g91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRWmMpf6vpaj0bfyAprd0Lu5GwA1PdDLA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221145120529-lfk5pr5ciuv19e508oe3tpp9jcpr5g91.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
