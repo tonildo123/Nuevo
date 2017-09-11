@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
@@ -19,12 +18,11 @@ import java.util.ArrayList;
 
 
 public class TabCronProgresar extends Fragment {
-    private ArrayList<CronogramaProgresar> cronProg = new ArrayList<>();
+//    private ArrayList<CronogramaProgresar> cronProg = new ArrayList<>();
     private Servicio s;
     private ListView listView;
     private AdaptadorCronProg listAdapter;
     private PersisCronProg prog;
-    private Button boton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,12 +32,11 @@ public class TabCronProgresar extends Fragment {
         s.Clase(ServicioPagEmpleo.getInstance());
 
         prog = new PersisCronProg(this.getActivity());
-        cronProg = prog.levantarNoticias();
+//        cronProg = ;
 
         listView = (ListView) v.findViewById(R.id.listCronProg);
-        listAdapter = new AdaptadorCronProg(this.getActivity(),cronProg);
+        listAdapter = new AdaptadorCronProg(this.getActivity(),prog.levantarNoticias());
         listView.setAdapter(listAdapter);
-        boton = (Button)getActivity().findViewById(R.id.btnLeerMas);
 
         // Inflate the layout for this fragment
         return v;

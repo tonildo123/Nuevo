@@ -57,7 +57,7 @@ public class Requisitos extends Fragment {
             super(fragmentManager);
 
         }
-        String[] titulo ={"Requisitos progresar","Riquisitos PROGRESAR"};
+        String[] titulo ={"Requisitos JOVENES","Riquisitos PROGRESAR"};
 
         @Override
         public Fragment getItem(int position) {
