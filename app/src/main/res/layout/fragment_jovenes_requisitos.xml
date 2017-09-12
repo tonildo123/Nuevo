@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.vistas.tabfragements.TabUnoReqPro1">
+    tools:context="com.example.sergio.nuevo.vistas.tabs.TabReqJoven">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -35,8 +35,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ListView
-        android:id="@+id/listrequisitos"
+    <WebView
+        android:id="@+id/webProgJov"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"></LinearLayout>
+
 </LinearLayout>

@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         VistaNoticias.getInstance().setActivityMain(this);
         FragmentManager m =  getSupportFragmentManager();
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
-
     }
 
     @Override
