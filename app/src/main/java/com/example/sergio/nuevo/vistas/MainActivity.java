@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.dominio.NumerosUtiles;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(pasar);
         }
         else if (id == R.id.nav_reqtab) {  m.beginTransaction().replace(R.id.contenedor, new Requisitos()).commit();    }
-//        else if (id == R.id.nav_tres)   {  m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles()).commit(); }
+
         else if (id == R.id.nav_laboral){  m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit(); }
         else if (id == R.id.nav_exit)   {  System.exit(0);}
 
