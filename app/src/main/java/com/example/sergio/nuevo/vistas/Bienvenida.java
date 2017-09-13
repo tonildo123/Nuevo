@@ -15,6 +15,7 @@ import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.persistencia.PersisReqJoven;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 
 public class Bienvenida extends AppCompatActivity {
 

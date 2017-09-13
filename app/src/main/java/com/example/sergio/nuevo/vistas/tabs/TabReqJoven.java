@@ -15,6 +15,12 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.ProgramaJoven;
 import com.example.sergio.nuevo.persistencia.PersisReqJoven;
 
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 
 public class TabReqJoven extends Fragment {
     private PersisReqJoven reqJoven;
@@ -23,6 +29,8 @@ public class TabReqJoven extends Fragment {
     private TextView objetivo;
     private ImageView imagen;
     private WebView pagina;
+    private Elements elements1 = new Elements();
+    private Elements elements2 = new Elements();
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -36,41 +44,39 @@ public class TabReqJoven extends Fragment {
 //        list = (ListView) v.findViewById(R.id.listrequisitos);
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisReqJoven(this.getActivity());
-        joven = reqJoven.levantarNoticias();
+            joven = reqJoven.levantarNoticias();
         titulo.setText(joven.getTitulo());
-        objetivo.setText("OBJETIVO: " +
-                ""+joven.getObjetivo());
+        objetivo.setText("OBJETIVO: " +joven.getObjetivo());
         imagen.setImageBitmap(joven.getImg());
-        pagina = (WebView)v.findViewById(R.id.webProgJov) ;
-        String html = "<body><div class=\"postview_content\">\n" +
-                "<h3 align=\"left\">Destinatarios</h3>\n" +
-                "<ul>\n" +
-                "<li>Jóvenes en situación de vulnerabilidad entre 18 y 24 años.</li>\n" +
-                "<li>Jóvenes sin terminalidad educativa.</li>\n" +
-                "<li>Jóvenes desocupados.</li>\n" +
-                "</ul>\n" +
-                "<h3 align=\"left\">Beneficios</h3>\n" +
-                "<ul>\n" +
-                "<li>Acceso a la información sobre el mercado laboral.</li>\n" +
-                "<li>Actividades de orientación profesional.</li>\n" +
-                "<li>Asistencia y tutorías para completar sus estudios primarios y/o secundarios con modalidades especiales.</li>\n" +
-                "<li>Acceso a prácticas laborales en empresas del medio.</li>\n" +
-                "<li>Desarrollo de micro-emprendimientos o experiencias de autoempleo.</li>\n" +
-                "<li>Acceso a conocimientos informáticos y formación en diferentes oficios.</li>\n" +
-                "<li>Asignación por contraprestación mensual no remunerativa de $1050, según prestaciones que el participante realiza.</li>\n" +
-                "<li>Cobertura del programa por un lapso de 36 meses.</li>\n" +
-                "</ul>\n" +
-                "<h3 align=\"left\">Modalidad</h3>\n" +
-                "<ul>\n" +
-                "<li>Se&nbsp; vinculan los intereses del beneficiario con las necesidades contextuales.</li>\n" +
-                "<li>Se promueve el desarrollo de capacidades tanto profesionales como emprendedoras.</li>\n" +
-                "<li>Se asiste al beneficiario para que pueda concluir sus estudios primarios y secundarios.</li>\n" +
-                "</ul>\n" +
-                "\t\t\t</div></body>";
-        String mime = "text/html";
-        String encoding = "utf-8";
-        pagina.loadData(html, mime, encoding);
+        int k=0;
+        for (int i=0; i<joven.getH3().size();i++){
+            elements2.add(i,new Element("h3"));
+            elements2.append(joven.getH3().get(i).getSubtitulo());
+            elements1.add(i,new Element("ul"));
+            for (int j=0; j<joven.getH3().get(i).getItem().size();j++){
+                elements1.get(i).append("<li>"+joven.getH3().get(i).getItem().get(j).getItem()+"</li>");
+                k++;
 
+            }
+            elements2.get(i).append(elements1.get(i).toString());
+        }
+        pagina = (WebView)v.findViewById(R.id.webProgJov);
+        byte[] s = new byte[0];
+        try {
+            s = elements2.toString().getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String html = null;
+        try {
+            html = new String(s,"ISO-8859-1");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String mime = "text/html";
+        String encoding = "ISO-8859-1";
+        pagina.loadData(elements2.toString(), mime, encoding);
         return v;
     }
 }
