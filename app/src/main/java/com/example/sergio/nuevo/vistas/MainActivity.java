@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(pasar);
         }
         else if (id == R.id.nav_reqtab) {  m.beginTransaction().replace(R.id.contenedor, new Requisitos()).commit();    }
-
+        else if (id == R.id.nav_tres)   {  m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles()).commit();    }
         else if (id == R.id.nav_laboral){  m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit(); }
         else if (id == R.id.nav_exit)   {  System.exit(0);}
 
