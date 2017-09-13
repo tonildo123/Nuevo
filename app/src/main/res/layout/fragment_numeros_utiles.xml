@@ -16,7 +16,6 @@
             android:id="@+id/buttonPolicia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            <!--android:drawableLeft="@drawable/poli"-->
             android:onClick="llamarPolicias"
             android:text=" POLICIA "
             android:textSize="30sp" />
@@ -32,7 +31,6 @@
             android:id="@+id/buttonAmbulancia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            <!--android:drawableLeft="@drawable/ambuu"-->
             android:onClick="llamarAmbulancia"
             android:text="AMBULANCIA"
             android:textSize="30sp" />
@@ -48,7 +46,6 @@
             android:id="@+id/buttonBomberos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            <!--android:drawableLeft="@drawable/bomerosapp"-->
             android:onClick="llamarBomberos"
             android:text="BOMBEROS"
             android:textSize="30sp" />
