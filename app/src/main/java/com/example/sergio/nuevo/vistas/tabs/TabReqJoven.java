@@ -2,11 +2,12 @@ package com.example.sergio.nuevo.vistas.tabs;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,13 +27,11 @@ public class TabReqJoven extends Fragment {
     private PersisReqJoven reqJoven;
     private ProgramaJoven joven;
     private TextView titulo;
-    private TextView objetivo;
     private ImageView imagen;
     private WebView pagina;
     private Elements elements1 = new Elements();
     private Elements elements2 = new Elements();
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,43 +39,41 @@ public class TabReqJoven extends Fragment {
         View v = inflater.inflate(R.layout.fragment_jovenes_requisitos, container, false);
 
         titulo = v.findViewById(R.id.tituloReqJoven);
-        objetivo = v.findViewById(R.id.objetivoReqJoven);
-//        list = (ListView) v.findViewById(R.id.listrequisitos);
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisReqJoven(this.getActivity());
             joven = reqJoven.levantarNoticias();
         titulo.setText(joven.getTitulo());
-        objetivo.setText("OBJETIVO: " +joven.getObjetivo());
+//        objetivo.setText("OBJETIVO: " +joven.getObjetivo());
         imagen.setImageBitmap(joven.getImg());
         int k=0;
-        for (int i=0; i<joven.getH3().size();i++){
+        int i=0;
+        elements2.add(i, new Element("h2"));
+        elements2.get(i).append("Objetivos: ");
+        i++;
+        elements2.add(i, new Element("p"));
+        elements2.get(i).append(joven.getObjetivo());
+        i++;
+        for (; (i-2)<joven.getH3().size();i++){
             elements2.add(i,new Element("h3"));
-            elements2.append(joven.getH3().get(i).getSubtitulo());
-            elements1.add(i,new Element("ul"));
-            for (int j=0; j<joven.getH3().get(i).getItem().size();j++){
-                elements1.get(i).append("<li>"+joven.getH3().get(i).getItem().get(j).getItem()+"</li>");
+            elements1.add(i-2,new Element("ul"));
+            for (int j=0; j<joven.getH3().get(i-2).getItem().size();j++){
+                elements1.get(i-2).append("<li>"+joven.getH3().get(i-2).getItem().get(j).getItem()+"</li>");
                 k++;
-
             }
-            elements2.get(i).append(elements1.get(i).toString());
+            elements2.get(i).append(joven.getH3().get(i-2).getSubtitulo());
+            elements2.get(i).append(elements1.get(i-2).toString());
         }
         pagina = (WebView)v.findViewById(R.id.webProgJov);
-        byte[] s = new byte[0];
-        try {
-            s = elements2.toString().getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        WebSettings settings = pagina.getSettings();
+        settings.setDefaultTextEncodingName("utf-8");
+        settings.setDefaultFontSize(14);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+            String base64 = Base64.encodeToString(elements2.toString().getBytes(), Base64.DEFAULT);
+            pagina.loadData(base64, "text/html; charset=utf-8", "base64");
+        } else {
+            String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+            pagina.loadData(header + elements2.toString(), "text/html; charset=UTF-8", null);
         }
-        String html = null;
-        try {
-            html = new String(s,"ISO-8859-1");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        String mime = "text/html";
-        String encoding = "ISO-8859-1";
-        pagina.loadData(elements2.toString(), mime, encoding);
         return v;
     }
 }

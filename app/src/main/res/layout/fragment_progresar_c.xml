@@ -15,7 +15,6 @@
         android:text="CONSULTA PROGRESAR" />
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ingrese cuil sin espacios ni barras" />
@@ -28,7 +27,6 @@
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="captcha" />

@@ -9,7 +9,6 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_gravity="center_vertical|center_horizontal" />
@@ -23,13 +22,6 @@
         android:text="TextView"
         android:textSize="22sp" />
 
-    <TextView
-        android:id="@+id/objetivoReqJoven"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp" />
-
     <ImageView
         android:id="@+id/imgRequisitos"
         android:layout_width="match_parent"
@@ -38,12 +30,6 @@
     <WebView
         android:id="@+id/webProgJov"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"></LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
