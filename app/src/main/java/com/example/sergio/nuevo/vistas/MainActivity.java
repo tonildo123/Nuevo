@@ -9,10 +9,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.sergio.nuevo.R;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity
         VistaNoticias.getInstance().setActivityMain(this);
         FragmentManager m =  getSupportFragmentManager();
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Log.i("FCM",token);
     }
 
     @Override
