@@ -21,7 +21,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 public class NumerosUtiles extends Fragment {
 
 
-    private Button b1, b2, b3;
+    private Button b1, b2, b3, b4;
    String numero;
 
     public NumerosUtiles() {
@@ -37,6 +37,7 @@ public class NumerosUtiles extends Fragment {
         b1 = (Button)vista.findViewById(R.id.buttonPolicia);
         b2 = (Button)vista.findViewById(R.id.buttonAmbulancia);
         b3 = (Button)vista.findViewById(R.id.buttonBomberos);
+        b4 = (Button)vista.findViewById(R.id.buttonSecretaria);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +73,17 @@ public class NumerosUtiles extends Fragment {
             }
         });
 
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 911 "));
+                    startActivity(llamar);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         // Inflate the layout for this fragment
         return vista;
