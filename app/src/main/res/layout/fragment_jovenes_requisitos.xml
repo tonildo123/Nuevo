@@ -10,17 +10,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical|center_horizontal" />
-
-    <TextView
-        android:id="@+id/tituloReqJoven"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:gravity="center_vertical|center_horizontal|center"
-        android:text="TextView"
-        android:textSize="22sp" />
 
     <ImageView
         android:id="@+id/imgRequisitos"

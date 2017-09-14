@@ -139,7 +139,7 @@ public class ServicioPagEmpleo implements Strategy {
                                             @Override
                                             public void run() {
                                                 noticias.get(i).setId(i);
-                                                noticias.get(i).setFoto(img.descargarImagen(noticias.get(i).getUrlImagen(), 1000, 650));
+                                                noticias.get(i).setFoto(img.descargarImagen(noticias.get(i).getUrlImagen(), 650, 350));
                                             }};
                                         Thread hilonieto2 = new Thread() {
                                             @Override

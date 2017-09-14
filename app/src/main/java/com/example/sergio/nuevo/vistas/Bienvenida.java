@@ -6,16 +6,15 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioReqJoven;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioRequisitos;
 import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.persistencia.PersisReqJoven;
+import com.example.sergio.nuevo.persistencia.PersisRequisitos;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 
 public class Bienvenida extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class Bienvenida extends AppCompatActivity {
     private PersisNoticias not = new PersisNoticias(this);
     private PersisCronProg cronProg = new PersisCronProg(this);
     private PersisCronJoven cronJoven = new PersisCronJoven(this);
-    private PersisReqJoven reqJoven = new PersisReqJoven(this);
+    private PersisRequisitos reqJoven = new PersisRequisitos(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +55,10 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-        reqJoven.guardarNoticias(ServicioReqJoven.getInstance().getNovedades());
-        reqJoven.levantarNoticias();
+        reqJoven.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
+        reqJoven.levantarNoticias("requisitos_joven");
+        reqJoven.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
+        reqJoven.levantarNoticias("requisitos_progresar");
     }
 
     private void obtenerNoticias() {

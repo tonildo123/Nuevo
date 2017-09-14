@@ -8,19 +8,18 @@ import java.util.ArrayList;
  * Created by Operador1 on 05/09/2017.
  */
 
-public class ProgramaJoven {
+public class Programa {
     private String urlimagen;
     private String titulo;
-    private String objetivo;
-    private ArrayList<h3> h3 = new ArrayList<>();
     private Bitmap img;
     private String dirimagen;
+    private String contenido;
 
-    public ProgramaJoven(String urlimagen, String titulo, String objetivo, Bitmap img) {
+    public Programa(String urlimagen, String titulo, Bitmap img, String contenido) {
         this.urlimagen = urlimagen;
         this.titulo = titulo;
-        this.objetivo = objetivo;
         this.img = img;
+        this.contenido = contenido;
     }
 
     public String getDirimagen() {
@@ -55,19 +54,11 @@ public class ProgramaJoven {
         this.titulo = titulo;
     }
 
-    public String getObjetivo() {
-        return objetivo;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
-    }
-
-    public ArrayList<com.example.sergio.nuevo.dominio.h3> getH3() {
-        return h3;
-    }
-
-    public void setH3(ArrayList<com.example.sergio.nuevo.dominio.h3> h3) {
-        this.h3 = h3;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 }
