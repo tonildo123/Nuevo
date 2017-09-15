@@ -12,7 +12,7 @@
         <!--android:icon="@drawable/ic_menu_camera" -->
         <item
             android:id="@+id/nav_reqtab"
-            android:title="REQUISITOS JOVENES - PROGRESAR" />
+            android:title="REQUISITOS " />
         <!--android:icon="@drawable/ic_menu_gallery" -->
         <item
             android:id="@+id/nav_CRONOGRAMAtab"

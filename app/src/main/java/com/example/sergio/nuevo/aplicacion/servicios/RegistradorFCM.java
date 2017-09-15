@@ -9,6 +9,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
 public class RegistradorFCM extends FirebaseInstanceIdService {
+
     public RegistradorFCM() {
     }
 
@@ -22,9 +23,6 @@ public class RegistradorFCM extends FirebaseInstanceIdService {
 
     public void registrartoken(String token){
         // registra el token en la base de datos del servidor  de app firebase
-
-
-
 
     }
 }
