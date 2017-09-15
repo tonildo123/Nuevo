@@ -44,7 +44,27 @@
         <WebView
             android:id="@+id/webProgProg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+        </WebView>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/abc_ic_menu_share_mtrl_alpha"
+                app:borderWidth="0dp"
+                app:fabSize="normal"
+                tools:layout_editor_absoluteY="401dp"
+                tools:layout_editor_absoluteX="326dp" />
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 

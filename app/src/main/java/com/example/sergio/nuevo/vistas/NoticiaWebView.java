@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -20,6 +21,7 @@ public class NoticiaWebView extends Activity {
     private String url = "http://181.14.240.59/Portal/";
     private ProgressBar progressBar;
     private WebView pagina;
+    private FloatingActionButton fab;
 
 
     public NoticiaWebView() {
