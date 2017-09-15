@@ -1,6 +1,9 @@
 package com.example.sergio.nuevo.vistas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -48,10 +51,35 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void iniciar() {
+
         crearCarpetas();
-        obtenerNoticias();
-        obtenerCronogramas();
-        obtenerRequisitos();
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
+        if(actNetInfo != null && actNetInfo.isConnected()){
+            Thread hilo1 = new Thread(){
+                @Override
+                public void run() {
+                    obtenerNoticias();
+                    obtenerCronogramas();
+                }
+            };
+            Thread hilo2 = new Thread(){
+                @Override
+                public void run() {
+                    obtenerRequisitos();
+                }
+            };
+            hilo1.start();hilo2.start();
+
+            try {
+                hilo1.join();
+                hilo2.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void obtenerRequisitos() {

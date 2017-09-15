@@ -108,15 +108,15 @@ public class ServicioPagEmpleo implements Strategy {
     @Override
     public boolean comparar() {
         boolean b = true;
-        for(Noticia not: noticias){
-            for (List list: urls){
-                b=false;
-                if(list.get(1).equals(not.getUrlImagen())){
+        for (Noticia not : noticias) {
+            for (List list : urls) {
+                b = false;
+                if (list.get(1).equals(not.getUrlImagen())) {
                     b = true;
                     break;
                 }
             }
-            if(b==false){
+            if (b == false) {
                 return b;
             }
         }
@@ -140,14 +140,19 @@ public class ServicioPagEmpleo implements Strategy {
                                             public void run() {
                                                 noticias.get(i).setId(i);
                                                 noticias.get(i).setFoto(img.descargarImagen(noticias.get(i).getUrlImagen(), 650, 350));
-                                            }};
+                                            }
+                                        };
                                         Thread hilonieto2 = new Thread() {
                                             @Override
                                             public void run() {
                                                 noticias.get(i).setParrafo(obtenerParrafo(noticias.get(i).getUrlParrafo()));
                                                 noticias.get(i).setTitulo(obtenerTitulo());
-                                            }};
-                                        hilonieto1.start();hilonieto2.start();hilonieto1.join();hilonieto2.join();
+                                            }
+                                        };
+                                        hilonieto1.start();
+                                        hilonieto2.start();
+                                        hilonieto1.join();
+                                        hilonieto2.join();
                                         i++;
                                     } catch (Exception ex) {
                                         ex.printStackTrace();
@@ -156,7 +161,7 @@ public class ServicioPagEmpleo implements Strategy {
                             };
                             hilos.add(hilohijo);
                         }
-                        for (int j=0;j<noticias.size();j++){
+                        for (int j = 0; j < noticias.size(); j++) {
                             hilos.get(j).start();
                             hilos.get(j).join();
                         }
@@ -193,42 +198,45 @@ public class ServicioPagEmpleo implements Strategy {
         }
         return text;
     }
-    private String obtenerTitulo(){
+
+    private String obtenerTitulo() {
         Element titulo = doc.getElementsByTag("h1").first();
         return titulo.text();
     }
-    public ArrayList<CronogramaProgresar> obtenerCronogramaProg(){
+
+    public ArrayList<CronogramaProgresar> obtenerCronogramaProg() {
         ArrayList<CronogramaProgresar> cron = new ArrayList<>();
         Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
         selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
         elements1 = selectorDiv.getElementsByTag("tr");
 
-        for (Element tr: elements1){
+        for (Element tr : elements1) {
             elements2 = tr.getElementsByTag("td");
-            if(elements2.size()!=0){
-                cron.add(new CronogramaProgresar(elements2.get(0).text(),elements2.get(1).text()));
-            }else{
+            if (elements2.size() != 0) {
+                cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
+            } else {
                 elements2 = tr.getElementsByTag("th");
-                cron.add(new CronogramaProgresar(elements2.get(0).text(),elements2.get(1).text()));
+                cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
             }
         }
         return cron;
     }
-    public ArrayList<CronogramaJoven> obtenerCronogramaJoven(){
+
+    public ArrayList<CronogramaJoven> obtenerCronogramaJoven() {
         ArrayList<CronogramaJoven> cron = new ArrayList<>();
         Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
         selectorDiv = doc.getElementById("sse-cronogramas-pago-6");
         elements1 = selectorDiv.getElementsByTag("tr");
 
-        for (Element tr: elements1){
+        for (Element tr : elements1) {
             elements2 = tr.getElementsByTag("td");
-            if(elements2.size()!=0){
-                cron.add(new CronogramaJoven(elements2.get(0).text(),elements2.get(1).text()));
-            }else{
+            if (elements2.size() != 0) {
+                cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
+            } else {
                 elements2 = tr.getElementsByTag("th");
-                cron.add(new CronogramaJoven(elements2.get(0).text(),elements2.get(1).text()));
+                cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
             }
         }
         return cron;
