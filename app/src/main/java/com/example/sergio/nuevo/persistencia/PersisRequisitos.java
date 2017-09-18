@@ -44,38 +44,40 @@ public class PersisRequisitos {
     }
 
     public void guardarNoticias(Programa programa,String nombre) {
-        SQLiteDatabase db = not.getWritableDatabase();
-        ContentValues registro = new ContentValues();
-        Cursor fila = db.rawQuery("select * from "+nombre, null);
+        if(programa != null){
+            SQLiteDatabase db = not.getWritableDatabase();
+            ContentValues registro = new ContentValues();
+            Cursor fila = db.rawQuery("select * from "+nombre, null);
 
-        boolean b;
-        if(!fila.moveToFirst()){
-            b=false;
-        }else{
-            b=true;
-        }
+            boolean b;
+            if(!fila.moveToFirst()){
+                b=false;
+            }else{
+                b=true;
+            }
 
-        File myPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/SSE/tmp/"+programa.getTitulo()+".jpg");
+            File myPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/SSE/tmp/"+programa.getTitulo()+".jpg");
 
-        FileOutputStream fos = null;
-        try{
-            fos = new FileOutputStream(myPath);
-            programa.getImg().compress(Bitmap.CompressFormat.JPEG, 10, fos);
-            fos.flush();
-        }catch (FileNotFoundException ex){
-            ex.printStackTrace();
-        }catch (IOException ex){
-            ex.printStackTrace();
+            FileOutputStream fos = null;
+            try{
+                fos = new FileOutputStream(myPath);
+                programa.getImg().compress(Bitmap.CompressFormat.JPEG, 10, fos);
+                fos.flush();
+            }catch (FileNotFoundException ex){
+                ex.printStackTrace();
+            }catch (IOException ex){
+                ex.printStackTrace();
+            }
+            registro.put("contenido",programa.getContenido());
+            registro.put("titulo",programa.getTitulo());
+            registro.put("urlimagen",programa.getUrlimagen());
+            registro.put("dirImagen","/SSE/tmp/"+programa.getTitulo()+".jpg");
+            if(b){
+                db.update(nombre,registro,"_id=1",null);
+            }else{
+                db.insert(nombre, null, registro);
+            }
+            db.close();
         }
-        registro.put("contenido",programa.getContenido());
-        registro.put("titulo",programa.getTitulo());
-        registro.put("urlimagen",programa.getUrlimagen());
-        registro.put("dirImagen","/SSE/tmp/"+programa.getTitulo()+".jpg");
-        if(b){
-            db.update(nombre,registro,"_id=1",null);
-        }else{
-            db.insert(nombre, null, registro);
-        }
-        db.close();
     }
 }

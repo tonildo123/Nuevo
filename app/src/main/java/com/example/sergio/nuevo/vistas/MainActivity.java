@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
 
         String token = FirebaseInstanceId.getInstance().getToken();
-        Log.i("FCM",token);
+//        Log.i("FCM",token);
     }
 
     @Override

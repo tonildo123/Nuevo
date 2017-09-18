@@ -20,20 +20,15 @@ import com.example.sergio.nuevo.persistencia.PersisRequisitos;
 import java.io.File;
 
 public class Bienvenida extends AppCompatActivity {
-
-    private Servicio s;
     private PersisNoticias not = new PersisNoticias(this);
     private PersisCronProg cronProg = new PersisCronProg(this);
     private PersisCronJoven cronJoven = new PersisCronJoven(this);
-    private PersisRequisitos reqJoven = new PersisRequisitos(this);
+    private PersisRequisitos requisitos = new PersisRequisitos(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
-
-        s = new Servicio();
-
     Thread hilo2 = new Thread(){
         @Override
         public void run() {
@@ -58,10 +53,10 @@ public class Bienvenida extends AppCompatActivity {
 
         NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
         if(actNetInfo != null && actNetInfo.isConnected()){
+            obtenerNoticias();
             Thread hilo1 = new Thread(){
                 @Override
                 public void run() {
-                    obtenerNoticias();
                     obtenerCronogramas();
                 }
             };
@@ -83,31 +78,32 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-        reqJoven.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
-        reqJoven.levantarNoticias("requisitos_joven");
-        reqJoven.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
-        reqJoven.levantarNoticias("requisitos_progresar");
+        requisitos.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
+        requisitos.levantarNoticias("requisitos_joven");
+        requisitos.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
+        requisitos.levantarNoticias("requisitos_progresar");
     }
 
     private void obtenerNoticias() {
-        s.Clase(ServicioPagEmpleo.getInstance());
-        s.obtenerUrls();
-        if(not.levantarNoticias() == null){
-            not.guardarNoticias(s.getNovedades());
-            s.setNovedades(not.levantarNoticias());
-        }else{
-            s.setNovedades(not.levantarNoticias());
-        }
-        if(!s.comparar()){
-            not.guardarNoticias(s.getNovedades());
+        ServicioPagEmpleo.getInstance().obtenerUrls();
+
+        if(ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+            if(not.levantarNoticias() == null){
+                not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
+            }else{
+                ServicioPagEmpleo.getInstance().setNovedades(not.levantarNoticias());
+                if(!ServicioPagEmpleo.getInstance().comparar()){
+                    not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
+                }
+            }
         }
     }
     private void obtenerCronogramas() {
         if(cronProg.levantarNoticias() == null){
-            cronProg.guardarNoticias(s.obtenerCronogramaProg());
+            cronProg.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaProg());
         }
         if(cronJoven.levantarNoticias() == null){
-            cronJoven.guardarNoticias(s.obtenerCronogramaJoven());
+            cronJoven.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaJoven());
         }
     }
 

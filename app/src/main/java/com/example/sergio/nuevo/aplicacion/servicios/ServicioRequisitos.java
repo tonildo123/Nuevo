@@ -30,6 +30,9 @@ public class ServicioRequisitos {
     public Programa getNovedades(String url){
         try {
             doc = Jsoup.connect(url).userAgent("Mozilla").get();
+            if(doc == null){
+                return null;
+            }
             selectorDiv = doc.getElementsByClass("text-content").first();
             Element titulo = selectorDiv.getElementsByTag("h1").first();
             Element urlimg = selectorDiv.getElementsByTag("img").first();

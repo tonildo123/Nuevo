@@ -2,17 +2,21 @@ package com.example.sergio.nuevo.vistas;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +46,7 @@ public class NoticiaWebView extends Activity {
         setUrl(getIntent().getExtras().getString("url"));
         setContentView(R.layout.noticiawebview);
         pagina = (WebView)findViewById(R.id.paginaWeb);
+
         pagina.setWebViewClient(new WebViewClient());
         //habilitamos javascript y el zoom
         pagina.getSettings().setJavaScriptEnabled(true);
@@ -79,4 +84,29 @@ public class NoticiaWebView extends Activity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fab = (FloatingActionButton)findViewById(R.id.accion_whatsapp);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PackageManager packageManager =getPackageManager();
+                try {
+
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    String text = url;
+
+                    PackageInfo info=getPackageManager().getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+                    intent.setPackage("com.whatsapp");
+
+                    intent.putExtra(Intent.EXTRA_TEXT, text);
+                    startActivity(Intent.createChooser(intent, "Compartir con"));
+                } catch (PackageManager.NameNotFoundException e) {
+                    Toast.makeText(NoticiaWebView.super.getApplicationContext(), "WhatsApp no esta instalado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }

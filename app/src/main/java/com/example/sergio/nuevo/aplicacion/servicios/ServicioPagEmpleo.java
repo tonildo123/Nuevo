@@ -241,5 +241,9 @@ public class ServicioPagEmpleo implements Strategy {
         }
         return cron;
     }
+
+    public List<List<String>> getUrls() {
+        return urls;
+    }
 }
 
