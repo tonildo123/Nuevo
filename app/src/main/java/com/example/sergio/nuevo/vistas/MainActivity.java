@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.example.sergio.nuevo.R;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         Mapas mp = new Mapas();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

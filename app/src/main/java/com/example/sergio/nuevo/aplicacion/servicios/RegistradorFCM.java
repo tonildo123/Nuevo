@@ -16,7 +16,7 @@ public class RegistradorFCM extends FirebaseInstanceIdService {
     @Override
     public void onTokenRefresh() {
         String token = FirebaseInstanceId.getInstance().getToken();
-        Log.i("FCM",token);
+        Log.i("FCM",token); // me muestra el token por consola
         registrartoken(token);
 
     }

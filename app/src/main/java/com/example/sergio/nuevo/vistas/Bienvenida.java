@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioRequisitos;
@@ -29,6 +30,7 @@ public class Bienvenida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
     Thread hilo2 = new Thread(){
         @Override
         public void run() {
