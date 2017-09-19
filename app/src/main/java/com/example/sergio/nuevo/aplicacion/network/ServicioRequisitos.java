@@ -1,8 +1,7 @@
-package com.example.sergio.nuevo.aplicacion.servicios;
+package com.example.sergio.nuevo.aplicacion.network;
 
 import android.graphics.Bitmap;
 
-import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.dominio.Programa;
 
 import org.jsoup.Jsoup;

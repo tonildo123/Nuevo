@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.servicios.Progresarm;
+import com.example.sergio.nuevo.aplicacion.network.Progresarm;
 
 import java.util.ArrayList;
 import java.util.List;
