@@ -7,14 +7,14 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioRequisitos;
+import com.example.sergio.nuevo.aplicacion.network.ServicioRequisitos;
 import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
+import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
 
 import java.io.File;
@@ -29,6 +29,8 @@ public class Bienvenida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
+//        setSupportActionBar(toolbar);
     Thread hilo2 = new Thread(){
         @Override
         public void run() {

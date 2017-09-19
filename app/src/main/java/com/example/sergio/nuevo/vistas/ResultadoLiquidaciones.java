@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
-import com.example.sergio.nuevo.aplicacion.servicios.Progresarm;
+import com.example.sergio.nuevo.aplicacion.network.Progresarm;
 
 /**
  * A simple {@link Fragment} subclass.

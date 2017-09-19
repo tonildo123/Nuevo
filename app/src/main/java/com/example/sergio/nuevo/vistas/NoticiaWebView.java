@@ -16,16 +16,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class NoticiaWebView extends Activity {
     private String url = "http://181.14.240.59/Portal/";
     private ProgressBar progressBar;
     private WebView pagina;
     private FloatingActionButton fab;
+    private Activity activity = this;
 
 
     public NoticiaWebView() {
@@ -91,21 +91,7 @@ public class NoticiaWebView extends Activity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PackageManager packageManager =getPackageManager();
-                try {
-
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    String text = url;
-
-                    PackageInfo info=getPackageManager().getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                    intent.setPackage("com.whatsapp");
-
-                    intent.putExtra(Intent.EXTRA_TEXT, text);
-                    startActivity(Intent.createChooser(intent, "Compartir con"));
-                } catch (PackageManager.NameNotFoundException e) {
-                    Toast.makeText(NoticiaWebView.super.getApplicationContext(), "WhatsApp no esta instalado", Toast.LENGTH_SHORT).show();
-                }
+                ServicioCompartir.compartirWhatsapp(activity,url,view);
             }
         });
     }

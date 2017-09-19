@@ -1,6 +1,5 @@
-package com.example.sergio.nuevo.aplicacion.servicios;
+package com.example.sergio.nuevo.aplicacion.network;
 
-import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
 import com.example.sergio.nuevo.dominio.CronogramaProgresar;

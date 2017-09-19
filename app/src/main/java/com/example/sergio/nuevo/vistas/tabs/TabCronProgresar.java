@@ -10,11 +10,8 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronProg;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.dominio.CronogramaProgresar;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioPagEmpleo;
+import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
-
-import java.util.ArrayList;
 
 
 public class TabCronProgresar extends Fragment {

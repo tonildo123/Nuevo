@@ -7,6 +7,19 @@
     <color name="negro_semitransparente">#B2000000</color>
     <color name="blanco">#fafafa</color>
 
-    <!--paleta cyan-->
-    <color name="cyan1">#00bcd4</color>
+    <!--paleta blue-->
+    <color name="blue50">#E3F2FD</color>
+    <color name="blue100">#BBDEFB</color>
+    <color name="blue200">#90caf9</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue400">#42A5F5</color>
+    <color name="blue500">#2196F3</color>
+    <color name="blue600">#1E88E5</color>
+    <color name="blue700">#1976D2</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+    <color name="blueA100">#82B1FF</color>
+    <color name="blueA200">#448AFF</color>
+    <color name="blueA400">#2979FF</color>
+    <color name="blueA700">#2962FF</color>
 </resources>
