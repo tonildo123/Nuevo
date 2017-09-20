@@ -52,21 +52,21 @@
         fab:fab_labelsPosition="left">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/accion_whatsapp"
+            android:id="@+id/fb_whatsapp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/whatsapp"
-            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorNormal="@color/blue700"
             fab:fab_size="mini"
             fab:fab_title="Compartir Whatsapp" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/accion_buscar"
+            android:id="@+id/fb_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorNormal="@color/blue700"
             fab:fab_size="mini"
-            fab:fab_title="Buscar" />
+            fab:fab_title="Compartir Facebook" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </android.support.design.widget.CoordinatorLayout>

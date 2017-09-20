@@ -20,11 +20,12 @@ import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
-public class NoticiaWebView extends Activity {
+public class NoticiaWebView extends Activity implements View.OnClickListener{
     private String url = "http://181.14.240.59/Portal/";
     private ProgressBar progressBar;
     private WebView pagina;
-    private FloatingActionButton fab;
+    private FloatingActionButton fbwhatsapp;
+    private FloatingActionButton fbfacebook;
     private Activity activity = this;
 
 
@@ -87,12 +88,19 @@ public class NoticiaWebView extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        fab = (FloatingActionButton)findViewById(R.id.accion_whatsapp);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fbwhatsapp = (FloatingActionButton)findViewById(R.id.fb_whatsapp);
+        fbwhatsapp.setOnClickListener(this);
+        fbfacebook = (FloatingActionButton)findViewById(R.id.fb_facebook);
+        fbfacebook.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.fb_whatsapp:
                 ServicioCompartir.compartirWhatsapp(activity,url,view);
-            }
-        });
+                break;
+        }
+
     }
 }
