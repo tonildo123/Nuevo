@@ -16,8 +16,12 @@
             android:id="@+id/buttonSecretaria"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/blue500"
+            android:drawableLeft="@android:drawable/stat_sys_phone_call"
+            android:isScrollContainer="false"
             android:text="Secretaria de Empleo"
-            android:textSize="30sp"/>
+            android:textColor="@color/blanco"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -30,6 +34,8 @@
             android:id="@+id/buttonPolicia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/holo_green_dark"
+            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
             android:onClick="llamarPolicias"
             android:text=" POLICIA "
             android:textSize="30sp" />
@@ -45,8 +51,11 @@
             android:id="@+id/buttonAmbulancia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="?android:attr/colorFocusedHighlight"
+            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
             android:onClick="llamarAmbulancia"
             android:text="AMBULANCIA"
+            android:textColor="@color/blanco"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -60,6 +69,8 @@
             android:id="@+id/buttonBomberos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
             android:onClick="llamarBomberos"
             android:text="BOMBEROS"
             android:textSize="30sp" />
