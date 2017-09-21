@@ -55,7 +55,7 @@
             android:id="@+id/fb_whatsapp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/whatsapp"
+            app:fab_icon="@drawable/share_variant"
             fab:fab_colorNormal="@color/blue700"
             fab:fab_size="mini"
             fab:fab_title="Compartir Whatsapp" />
