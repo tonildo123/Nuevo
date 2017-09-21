@@ -5,15 +5,13 @@
     android:id="@+id/animado"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:orientation="vertical"
-    android:padding="5dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_margin="5dp"
         android:layout_marginBottom="0dp"
         android:layout_marginEnd="0dp"
         android:layout_marginLeft="0dp"
@@ -21,7 +19,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:gravity="center_vertical|center"
-        android:padding="0dp"
+        android:padding="5dp"
         android:paddingBottom="0dp"
         android:paddingEnd="0dp"
         android:paddingLeft="0dp"
@@ -54,6 +52,7 @@
         android:id="@+id/parrafo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:elevation="0dp"
         android:text="TextView" />
 
@@ -62,6 +61,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.30"
-        android:background="@color/blanco"
-        android:text="leer màs" />
+        android:background="@color/blue100"
+        android:text="Leer más" />
 </LinearLayout>

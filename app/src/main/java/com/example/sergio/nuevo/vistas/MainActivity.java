@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        VistaNoticias.getInstance().setActivityMain(this);
         FragmentManager m =  getSupportFragmentManager();
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
 
@@ -83,16 +83,47 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager m =  getSupportFragmentManager();
 
-        if (id == R.id.nav_consulta) {           m.beginTransaction().replace(R.id.contenedor, new ConsultaLiquidacion()).commit(); }
-        else if (id == R.id.nav_noticias) {      m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();}
-        else if (id == R.id.nav_CRONOGRAMAtab) { m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos()).commit();}
+        if (id == R.id.nav_consulta) {
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, ConsultaLiquidacion.getInstance());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
+        else if (id == R.id.nav_noticias) {
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
+        else if (id == R.id.nav_CRONOGRAMAtab) {
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
         else if (id == R.id.nav_mapas) {
             Intent pasar = new Intent(MainActivity.this, Mapas.class);
             startActivity(pasar);
+            overridePendingTransition(R.anim.zoom_back_in,R.anim.zoom_back_out);
         }
-        else if (id == R.id.nav_reqtab) {  m.beginTransaction().replace(R.id.contenedor, new Requisitos()).commit();    }
-        else if (id == R.id.nav_tres)   {  m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles()).commit();    }
-        else if (id == R.id.nav_laboral){  m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit(); }
+        else if (id == R.id.nav_reqtab) {
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new Requisitos());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
+        else if (id == R.id.nav_tres)   {
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
+        else if (id == R.id.nav_laboral){
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral());
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
+        }
         else if (id == R.id.nav_exit)   {  System.exit(0);}
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

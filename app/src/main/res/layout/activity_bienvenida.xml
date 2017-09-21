@@ -8,7 +8,7 @@
     tools:context="com.example.sergio.nuevo.vistas.Bienvenida">
 
     <!--<include-->
-        <!--layout="@layout/app_bar_bienvenida"-->
+        <!--layout="@layout/app_bar_noticiawebview"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content" />-->
 

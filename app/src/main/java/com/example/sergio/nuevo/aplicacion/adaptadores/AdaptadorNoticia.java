@@ -33,14 +33,12 @@ import java.util.List;
 
 public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
     private Activity activity;
-    private Context mainactivity;
     ArrayList<Noticia> noticias;
 
-    public AdaptadorNoticia(@NonNull Activity activity, @NonNull ArrayList<Noticia> noticias,Context mainActivity) {
+    public AdaptadorNoticia(@NonNull Activity activity, @NonNull ArrayList<Noticia> noticias) {
         super(activity, R.layout.noticia);
         this.noticias = noticias;
         this.activity = activity;
-        this.mainactivity = mainActivity;
     }
     static class ViewHolder {
         protected ImageView image;
@@ -83,9 +81,10 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
             public void onClick(View view) {
                 NoticiaWebView fweb = new NoticiaWebView();
                 fweb.setUrl(noticias.get(position).getUrlParrafo());
-                Intent pasar = new Intent(mainactivity.getApplicationContext(), fweb.getClass());
+                Intent pasar = new Intent(activity.getApplicationContext(), fweb.getClass());
                 pasar.putExtra("url", noticias.get(position).getUrlParrafo());
-                mainactivity.startActivity(pasar);
+                activity.startActivity(pasar);
+                activity.overridePendingTransition(R.anim.zoom_back_in,R.anim.zoom_back_out);
             }
         });
         if(view.getScrollY() == 0){

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,29 +25,22 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
 
     private Button consultar;
     private ImageView img;
-    private Progresarm prog;
     private Bitmap bit;
     private EditText etCuil;
     private EditText etCaptcha;
     private List<List<String>> resultado = new ArrayList<>();
+    private static final ConsultaLiquidacion consulta = new ConsultaLiquidacion();
 
+    public static ConsultaLiquidacion getInstance(){
+        return consulta;
+    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_progresar_c,container,false);
-        img = (ImageView)view.findViewById(R.id.ivCaptcha);
-        etCuil = (EditText)view.findViewById(R.id.etCuil);
-        etCaptcha = (EditText)view.findViewById(R.id.etCaptcha);
-
-
+    public void cargarCaptcha(){
         Thread hilo1 = new Thread(){
             @Override
             public void run() {
                 try {
-                    prog = Progresarm.getInstance();
-                    bit = prog.getCaptcha();
+                    bit = Progresarm.getInstance().getCaptcha(getActivity().findViewById(android.R.id.content));
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
@@ -59,6 +53,18 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
             e.printStackTrace();
         }
         img.setImageBitmap(bit);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_progresar_c,container,false);
+        img = (ImageView)view.findViewById(R.id.ivCaptcha);
+        etCuil = (EditText)view.findViewById(R.id.etCuil);
+        etCaptcha = (EditText)view.findViewById(R.id.etCaptcha);
+
         consultar = (Button) view.findViewById(R.id.bConsulta);
         consultar.setOnClickListener(this);
         // Inflate the layout for this fragment
@@ -71,8 +77,8 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
             @Override
             public void run() {
                 try {
-                    prog.enviarDatos(etCaptcha.getText().toString(),etCuil.getText().toString());
-                    resultado = prog.obtenerDatos();
+                    Progresarm.getInstance().enviarDatos(etCaptcha.getText().toString(),etCuil.getText().toString());
+                    resultado = Progresarm.getInstance().obtenerDatos();
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
@@ -87,7 +93,10 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
         if(resultado.size() > 0){
             ResultadoLiquidaciones res = new ResultadoLiquidaciones();
             FragmentManager m = getActivity().getSupportFragmentManager();
-            m.beginTransaction().replace(R.id.contenedor, res).commit();
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, res);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+// Start the animated transition.
+            ft.commit();
         }
     }
     @Override

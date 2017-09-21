@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -20,7 +21,7 @@ import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
-public class NoticiaWebView extends Activity implements View.OnClickListener{
+public class NoticiaWebView extends AppCompatActivity implements View.OnClickListener{
     private String url = "http://181.14.240.59/Portal/";
     private ProgressBar progressBar;
     private WebView pagina;

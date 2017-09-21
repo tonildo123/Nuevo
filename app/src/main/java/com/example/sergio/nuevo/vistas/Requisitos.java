@@ -34,7 +34,8 @@ public class Requisitos extends Fragment {
         // returna la vista del fragmento asociado
         tabsRequisitos= new TabLayout(getActivity());
         tabsRequisitos.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
-        tabsRequisitos.setBackgroundColor(Color.parseColor("#1976D2"));
+        tabsRequisitos.setBackgroundColor(Color.parseColor("#42a5f5"));
+        tabsRequisitos.setSelectedTabIndicatorColor(Color.parseColor("#bbdefb"));
         // inserta el tab en el appbar
         appBar.addView(tabsRequisitos);
 

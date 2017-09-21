@@ -34,7 +34,8 @@ public class CronogramaDePagos extends Fragment {
         // retorna la vista del fragmento asociado
         tabs= new TabLayout(getActivity());
         tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
-        tabs.setBackgroundColor(Color.parseColor("#1976D2"));
+        tabs.setBackgroundColor(Color.parseColor("#42a5f5"));
+        tabs.setSelectedTabIndicatorColor(Color.parseColor("#bbdefb"));
         // inserta el tab en el appbar
         appBar.addView(tabs);
         viewPager = (ViewPager)view.findViewById(R.id.pager);

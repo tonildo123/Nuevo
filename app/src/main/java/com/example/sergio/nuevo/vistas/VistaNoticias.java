@@ -25,7 +25,6 @@ public class VistaNoticias extends Fragment {
     private ListView listView;
     private AdaptadorNoticia listAdapter;
     private PersisNoticias not;
-    private Activity activityMain;
 
     public static VistaNoticias getInstance(){return vnoticia;}
     @Override
@@ -40,14 +39,10 @@ public class VistaNoticias extends Fragment {
         noticias = not.levantarNoticias();
 
         listView = (ListView) v.findViewById(R.id.list);
-        listAdapter = new AdaptadorNoticia(getActivity(),noticias,this.getContext());
+        listAdapter = new AdaptadorNoticia(getActivity(),noticias);
         listView.setAdapter(listAdapter);
 
         // Inflate the layout for this fragment
         return v;
     }
-    public void setActivityMain(Activity activityMain) {
-        this.activityMain = activityMain;
-    }
-
-    }
+}

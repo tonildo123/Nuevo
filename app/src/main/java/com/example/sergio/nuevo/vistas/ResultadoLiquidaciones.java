@@ -3,6 +3,8 @@ package com.example.sergio.nuevo.vistas;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,5 +35,25 @@ public class ResultadoLiquidaciones extends Fragment {
         // Inflate the layout for this fragment
         return v;
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK){
+                    // handle back button's click listener
+                    FragmentManager m = getActivity().getSupportFragmentManager();
+                    m.beginTransaction().replace(R.id.contenedor, new ConsultaLiquidacion()).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 }

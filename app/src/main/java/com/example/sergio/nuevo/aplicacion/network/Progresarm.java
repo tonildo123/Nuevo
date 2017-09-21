@@ -3,6 +3,8 @@ package com.example.sergio.nuevo.aplicacion.network;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,16 +46,12 @@ public class Progresarm {
     private String cuil;
     private ObtImagen img;
     private StringBuffer response;
+    private View view;
 
     private Progresarm() {
         manager = new CookieManager();
         manager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
         CookieHandler.setDefault(manager);
-        try {
-            pagLog = sendGet(this.url);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static Progresarm getInstance() {
@@ -121,7 +119,13 @@ public class Progresarm {
         return datos;
     }
 
-    public Bitmap getCaptcha() {
+    public Bitmap getCaptcha(View view) {
+        try {
+            pagLog = sendGet(this.url);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Snackbar.make(view,"No se pudo establecer conexion, vuelva a intentarlo",Snackbar.LENGTH_LONG).show();
+        }
         doc = Jsoup.parse(pagLog.toString());
         Bitmap bit = null;
         Element srccaptcha = doc.select("#id_captcha_img").first();
