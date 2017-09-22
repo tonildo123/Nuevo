@@ -1,5 +1,6 @@
 package com.example.sergio.nuevo.vistas.caracteristicas;
 
+import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
@@ -59,5 +60,22 @@ public class Transicion {
                 return false;
             }
         });
+    }
+
+    public void transicionActivity(Activity activity,int i) {
+        switch (i){
+            case 0:
+                activity.overridePendingTransition(R.anim.zoom_back_in,R.anim.zoom_back_out);
+                break;
+            case 1:
+                activity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+            case 2:
+                activity.overridePendingTransition(R.anim.left_in,R.anim.left_out);
+                break;
+            case 3:
+                activity.overridePendingTransition(R.anim.right_in,R.anim.right_out);
+                break;
+        }
     }
 }

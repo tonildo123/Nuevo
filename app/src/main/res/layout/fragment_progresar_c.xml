@@ -1,6 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,61 +9,89 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="CONSULTA PROGRESAR"
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ingrese cuil sin espacios ni barras" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="CONSULTA PROGRESAR"
+            android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/etCuil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ingrese cuil sin espacios ni barras" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="captcha" />
+        <EditText
+            android:id="@+id/etCuil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
 
-    <ImageView
-        android:id="@+id/ivCaptcha"
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
-        android:layout_weight="0.09" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="captcha" />
 
-    <Button
-        android:id="@+id/btnactcaptcha"
-        android:layout_width="199dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:drawableRight="@drawable/icons8_synchronize__1_"
-        android:text="Actualizar Captcha" />
+        <ImageView
+            android:id="@+id/ivCaptcha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.36"
+            android:src="@drawable/home" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ingrese el Captcha" />
+        <Button
+            android:id="@+id/btnactcaptcha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:drawableRight="@drawable/icons8_synchronize__1_"
+            android:text="Actualizar Captcha"
+            android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/etCaptcha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-    <Button
-        android:id="@+id/bConsulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CUANDO Y DONDE COBRO" />
+        </LinearLayout>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingrese el Captcha" />
+
+        <EditText
+            android:id="@+id/etCaptcha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/bConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CUANDO Y DONDE COBRO" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="135dp"
+        android:layout_height="102dp"
+        android:layout_gravity="center_vertical|center_horizontal" />
+
+</android.support.design.widget.CoordinatorLayout>

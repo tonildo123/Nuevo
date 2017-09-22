@@ -16,13 +16,11 @@ public abstract class ServicioCompartir {
 //        return servicio;
 //    }
 
-    public static void compartirWhatsapp(Activity activity, String url, View v){
+    public static void compartir(Activity activity, String url, View v){
         PackageManager packageManager = activity.getPackageManager();
-
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         String text = url;
-
         intent.putExtra(Intent.EXTRA_TEXT, text);
         activity.startActivity(Intent.createChooser(intent, "Compartir con"));
     }

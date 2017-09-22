@@ -72,12 +72,15 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         viewHolder.vermas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NoticiaWebView fweb = new NoticiaWebView();
-                fweb.setUrl(noticias.get(position).getUrlParrafo());
-                Intent pasar = new Intent(activity.getApplicationContext(), fweb.getClass());
-                pasar.putExtra("url", noticias.get(position).getUrlParrafo());
+                Intent pasar = new Intent(activity.getApplicationContext(), NoticiaWebView.class);
+                ArrayList<String> array = new ArrayList<>();
+                for(Noticia not: noticias){
+                    array.add(not.getUrlParrafo());
+                }
+                pasar.putStringArrayListExtra("url",array);
+                pasar.putExtra("posicion",position);
+                Transicion.getInstance().transicionActivity(activity,0);
                 activity.startActivity(pasar);
-                activity.overridePendingTransition(R.anim.zoom_back_in,R.anim.zoom_back_out);
             }
         });
         if(view.getScrollY() == 0){

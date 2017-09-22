@@ -45,7 +45,6 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
                     bit = Progresarm.getInstance().getCaptcha(getActivity().findViewById(android.R.id.content));
                 }catch (Exception ex){
                     ex.printStackTrace();
-
                 }
             }
         };

@@ -2,6 +2,7 @@ package com.example.sergio.nuevo.vistas;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,34 +14,37 @@ import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 
 public class NoticiaWebView extends AppCompatActivity implements View.OnClickListener{
-    private String url = "http://181.14.240.59/Portal/";
+    private ArrayList<String> urls = new ArrayList<>();
     private ProgressBar progressBar;
     private WebView pagina;
     private FloatingActionButton fbwhatsapp;
-    private FloatingActionButton fbfacebook;
+    private FloatingActionButton btnsiguiente;
+    private FloatingActionButton btnanterior;
+    private FloatingActionButton btnsalir;
     private Activity activity = this;
+    private int position;
 
 
     public NoticiaWebView() {
         // Required empty public constructor
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(ArrayList url) {
+        this.urls = url;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUrl(getIntent().getExtras().getString("url"));
+        setUrl(getIntent().getExtras().getStringArrayList("url"));
+        this.position = getIntent().getExtras().getInt("posicion");
         setContentView(R.layout.noticiawebview);
         pagina = (WebView)findViewById(R.id.paginaWeb);
 
@@ -49,7 +53,7 @@ public class NoticiaWebView extends AppCompatActivity implements View.OnClickLis
         pagina.getSettings().setJavaScriptEnabled(true);
         pagina.getSettings().setBuiltInZoomControls(true);
 
-        pagina.loadUrl(url);
+        pagina.loadUrl(urls.get(this.position));
 
         pagina.setWebViewClient(new WebViewClient()
         {
@@ -70,9 +74,7 @@ public class NoticiaWebView extends AppCompatActivity implements View.OnClickLis
                 progressBar.setProgress(0);
                 progressBar.setVisibility(View.VISIBLE);
                 NoticiaWebView.this.setProgress(progress * 1000);
-
                 progressBar.incrementProgressBy(progress);
-
                 if(progress == 100)
                 {
                     progressBar.setVisibility(View.GONE);
@@ -86,17 +88,38 @@ public class NoticiaWebView extends AppCompatActivity implements View.OnClickLis
         super.onStart();
         fbwhatsapp = (FloatingActionButton)findViewById(R.id.fb_whatsapp);
         fbwhatsapp.setOnClickListener(this);
-        fbfacebook = (FloatingActionButton)findViewById(R.id.fb_facebook);
-        fbfacebook.setOnClickListener(this);
+        btnsiguiente = (FloatingActionButton)findViewById(R.id.btnsiguiente);
+        btnsiguiente.setOnClickListener(this);
+        btnanterior = (FloatingActionButton)findViewById(R.id.btnanterior);
+        btnanterior.setOnClickListener(this);
+        btnsalir = (FloatingActionButton)findViewById(R.id.salir);
+        btnsalir.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fb_whatsapp:
-                ServicioCompartir.compartirWhatsapp(activity,url,view);
+                ServicioCompartir.compartir(activity,urls.get(position),view);
+                break;
+            case R.id.btnsiguiente:
+                position++;
+                if(position==urls.size()){
+                    position=0;
+                }
+                pagina.loadUrl(urls.get(this.position));
+                break;
+            case R.id.btnanterior:
+                position--;
+                if(position==0){
+                    position=(urls.size()-1);
+                }
+                pagina.loadUrl(urls.get(this.position));
+                break;
+            case R.id.salir:
+                Intent pasar = new Intent(activity.getApplicationContext(), MainActivity.class);
+                Transicion.getInstance().transicionActivity(activity,1);
+                activity.startActivity(pasar);
                 break;
         }
-
     }
 }
