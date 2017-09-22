@@ -5,7 +5,6 @@
     android:orientation="vertical"
     tools:context="com.example.sergio.nuevo.vistas.NumerosUtiles">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,6 +74,4 @@
             android:text="BOMBEROS"
             android:textSize="30sp" />
     </LinearLayout>
-
-
 </LinearLayout>

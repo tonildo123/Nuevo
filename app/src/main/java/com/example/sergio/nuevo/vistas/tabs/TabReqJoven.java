@@ -3,17 +3,23 @@ package com.example.sergio.nuevo.vistas.tabs;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Base64;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Programa;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
+import com.example.sergio.nuevo.vistas.VistaNoticias;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
+
 import java.io.UnsupportedEncodingException;
 
 
@@ -33,7 +39,11 @@ public class TabReqJoven extends Fragment {
         reqJoven = new PersisRequisitos(this.getActivity());
         joven = reqJoven.levantarNoticias("requisitos_joven");
         imagen.setImageBitmap(joven.getImg());
-        pagina = (WebView)v.findViewById(R.id.webProgJov);
+        pagina = (WebView) v.findViewById(R.id.webProgJov);
+
+        LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linearlayout);
+        Transicion.getInstance().animarLinearLayout(linearLayout, 0);
+
         WebSettings settings = pagina.getSettings();
         settings.setDefaultTextEncodingName("UTF-8");
         settings.setDefaultFontSize(14);
@@ -50,5 +60,10 @@ public class TabReqJoven extends Fragment {
             pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
         }
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }

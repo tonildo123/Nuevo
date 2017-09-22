@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
-import com.example.sergio.nuevo.dominio.CronogramaProgresar;
 
 import java.util.ArrayList;
 

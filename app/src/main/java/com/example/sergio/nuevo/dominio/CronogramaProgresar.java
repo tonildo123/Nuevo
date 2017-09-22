@@ -17,15 +17,7 @@ public class CronogramaProgresar {
         return terminacionDni;
     }
 
-    public void setTerminacionDni(String terminacionDni) {
-        this.terminacionDni = terminacionDni;
-    }
-
     public String getFecha() {
         return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 }

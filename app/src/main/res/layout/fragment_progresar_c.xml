@@ -1,19 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context="com.example.sergio.nuevo.vistas.tabfragements.TabUnoReqPro1">
+    tools:context="com.example.sergio.nuevo.vistas.MainActivity">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONSULTA PROGRESAR" />
+        android:gravity="center_vertical|center_horizontal"
+        android:text="CONSULTA PROGRESAR"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -38,25 +39,13 @@
         android:layout_height="78dp"
         android:layout_weight="0.09" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnactcaptcha"
+        android:layout_width="199dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Actualizar Captcha" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            app:srcCompat="@android:drawable/ic_popup_sync" />
-    </LinearLayout>
+        android:layout_gravity="right"
+        android:drawableRight="@drawable/icons8_synchronize__1_"
+        android:text="Actualizar Captcha" />
 
     <TextView
         android:id="@+id/textView"
@@ -76,6 +65,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CUANDO Y DONDE COBRO" />
-
 
 </LinearLayout>

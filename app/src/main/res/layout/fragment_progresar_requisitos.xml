@@ -8,7 +8,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,8 +61,8 @@
                 android:src="@drawable/abc_ic_menu_share_mtrl_alpha"
                 app:borderWidth="0dp"
                 app:fabSize="normal"
-                tools:layout_editor_absoluteY="401dp"
-                tools:layout_editor_absoluteX="326dp" />
+                tools:layout_editor_absoluteX="326dp"
+                tools:layout_editor_absoluteY="401dp" />
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>

@@ -3,18 +3,21 @@ package com.example.sergio.nuevo.vistas.tabs;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Base64;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Programa;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
+import com.example.sergio.nuevo.vistas.VistaNoticias;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
 import java.io.UnsupportedEncodingException;
 
@@ -51,5 +54,10 @@ public class TabReqProg extends Fragment {
             pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
         }
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }

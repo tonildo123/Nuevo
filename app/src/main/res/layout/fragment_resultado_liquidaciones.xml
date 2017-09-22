@@ -5,7 +5,6 @@
     android:orientation="vertical"
     tools:context="com.example.sergio.nuevo.vistas.ResultadoLiquidaciones">
 
-
     <!-- TODO: Update blank fragment layout -->
 
     <ListView

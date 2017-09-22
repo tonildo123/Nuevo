@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.dominio.Marcadores;
-
-import static android.support.v4.content.ContextCompat.startActivity;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,5 +87,9 @@ public class NumerosUtiles extends Fragment {
         return vista;
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
+    }
 }

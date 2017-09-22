@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.sergio.nuevo.vistas.Bienvenida">
-
-    <!--<include-->
-        <!--layout="@layout/app_bar_noticiawebview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/logob" />
-
 </LinearLayout>

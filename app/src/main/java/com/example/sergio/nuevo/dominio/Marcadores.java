@@ -1,14 +1,8 @@
 package com.example.sergio.nuevo.dominio;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.widget.Button;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by Sergio on 25/08/2017.

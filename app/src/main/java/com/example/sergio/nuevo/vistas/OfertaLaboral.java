@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
 
 public class OfertaLaboral extends Fragment {
@@ -15,5 +16,11 @@ public class OfertaLaboral extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_oferta_laboral, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }

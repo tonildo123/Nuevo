@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.persistencia.DBTuOficinaDeEmpleo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +37,6 @@ public class PersisNoticias {
             db.close();
             return null;
         }else{
-
             Bitmap bit;
             String s = fila.getString(3);
             bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + fila.getString(3));
@@ -54,8 +52,15 @@ public class PersisNoticias {
 
     public void guardarNoticias(ArrayList<Noticia> novedades) {
         SQLiteDatabase db = not.getWritableDatabase();
-
         ContentValues registro = new ContentValues();
+        Cursor fila = db.rawQuery("select * from noticias", null);
+
+        boolean b;
+        if(!fila.moveToFirst()){
+            b=false;
+        }else{
+            b=true;
+        }
 
         for (Noticia novedad : novedades){
             File myPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/SSE/images/"+novedad.getId()+".jpg");
@@ -75,10 +80,12 @@ public class PersisNoticias {
             registro.put("dirImagen", "/SSE/images/"+novedad.getId()+".jpg");
             registro.put("urlparrafo", novedad.getUrlParrafo());
             registro.put("parrafo", novedad.getParrafo());
-
-            // los inserto en la base de datos
-            db.insert("noticias", null, registro);
-
+            if(b){
+                db.update("noticias",registro,"_id="+novedad.getId(),null);
+            }else {
+                // los inserto en la base de datos
+                db.insert("noticias", null, registro);
+            }
         }
         db.close();
     }

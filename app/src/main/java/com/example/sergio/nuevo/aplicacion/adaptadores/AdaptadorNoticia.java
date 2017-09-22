@@ -1,19 +1,12 @@
 package com.example.sergio.nuevo.aplicacion.adaptadores;
 
-import android.animation.Animator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.LayoutAnimationController;
-import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +16,7 @@ import android.widget.TextView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Noticia;
 import com.example.sergio.nuevo.vistas.NoticiaWebView;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +65,7 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         viewHolder.titulo = (TextView)view.findViewById(R.id.titulo);
         viewHolder.vermas = (Button)view.findViewById(R.id.btnLeerMas);
         viewHolder.layoutAnimado = (LinearLayout)view.findViewById(R.id.animado);
-
-        // importante!!! establecemos el mensaje
+//agregamos contenido a los elementos de la vista
         viewHolder.titulo.setText(noticias.get(position).getTitulo());
         viewHolder.image.setImageBitmap((Bitmap)noticias.get(position).getFoto());
         viewHolder.parrafo.setText(noticias.get(position).getParrafo());
@@ -89,30 +82,11 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         });
         if(view.getScrollY() == 0){
             if (position % 2 == 0) {
-                animar(true,viewHolder,(float)-1.0);
+                Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,0);
             }else{
-                animar(true,viewHolder,(float)1.0);
+                Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,1);
             }
-
         }
         return view;
     }
-
-    private void animar(boolean mostrar,ViewHolder viewHolder,float i) {
-        AnimationSet set = new AnimationSet(true);
-        Animation animation = null;
-        if (mostrar)
-        {
-            //desde la esquina inferior derecha a la superior izquierda
-            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, i, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-        }
-        //duración en milisegundos
-        animation.setDuration(400);
-        set.addAnimation(animation);
-        LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
-
-        viewHolder.layoutAnimado.setLayoutAnimation(controller);
-        viewHolder.layoutAnimado.startAnimation(animation);
-    }
-
 }

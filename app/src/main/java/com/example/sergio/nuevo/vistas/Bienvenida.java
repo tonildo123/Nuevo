@@ -28,7 +28,6 @@ public class Bienvenida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
     Thread hilo2 = new Thread(){
         @Override
         public void run() {

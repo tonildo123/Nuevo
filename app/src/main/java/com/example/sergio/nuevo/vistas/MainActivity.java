@@ -10,10 +10,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 
 import com.example.sergio.nuevo.R;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager m =  getSupportFragmentManager();
+        FragmentManager m = getSupportFragmentManager();
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
 
         String token = FirebaseInstanceId.getInstance().getToken();
@@ -51,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
         } else {
             super.onBackPressed();
         }
@@ -79,55 +78,41 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        FragmentManager m =  getSupportFragmentManager();
-
-        if (id == R.id.nav_consulta) {
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, ConsultaLiquidacion.getInstance());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
+        FragmentManager m = getSupportFragmentManager();
+        switch (item.getItemId()){
+            case R.id.nav_consulta:
+                m.beginTransaction().replace(R.id.contenedor, ConsultaLiquidacion.getInstance()).commit();
+                break;
+            case R.id.nav_noticias:
+                m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+                break;
+            case R.id.nav_CRONOGRAMAtab:
+                m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos()).commit();
+                break;
+            case R.id.nav_mapas:
+                Intent pasar = new Intent(MainActivity.this, Mapas.class);
+                startActivity(pasar);
+                overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+                break;
+            case R.id.nav_reqtab:
+                m.beginTransaction().replace(R.id.contenedor, new Requisitos()).commit();
+                break;
+            case R.id.nav_tres:
+                FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles());
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                // Start the animated transition.
+                ft.commit();
+                break;
+            case R.id.nav_laboral:
+                m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
+                break;
+            case R.id.nav_exit:
+                System.exit(0);
+                break;
         }
-        else if (id == R.id.nav_noticias) {
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
-        }
-        else if (id == R.id.nav_CRONOGRAMAtab) {
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new CronogramaDePagos());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
-        }
-        else if (id == R.id.nav_mapas) {
-            Intent pasar = new Intent(MainActivity.this, Mapas.class);
-            startActivity(pasar);
-            overridePendingTransition(R.anim.zoom_back_in,R.anim.zoom_back_out);
-        }
-        else if (id == R.id.nav_reqtab) {
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new Requisitos());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
-        }
-        else if (id == R.id.nav_tres)   {
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new NumerosUtiles());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
-        }
-        else if (id == R.id.nav_laboral){
-            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-// Start the animated transition.
-            ft.commit();
-        }
-        else if (id == R.id.nav_exit)   {  System.exit(0);}
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
+        drawer.closeDrawer(GravityCompat.START,true);
         return true;
     }
 

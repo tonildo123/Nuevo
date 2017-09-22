@@ -20,17 +20,4 @@
         android:background="@color/blue100"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/logocolor" />
-
-
-    <!--android:paddingTop="@dimen/nav_header_vertical_spacing"-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingTop="@dimen/nav_header_vertical_spacing"-->
-    <!--android:text="Secretaria de Estado de Mi Pyme y Empleo"-->
-    <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
-    <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
-    <!--android:textSize="14sp" />-->
-
-
 </LinearLayout>

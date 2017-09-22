@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +53,10 @@ public class Requisitos extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         appBar.removeView(tabsRequisitos);
-
     }
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         public ViewPagerAdapter(FragmentManager fragmentManager){
             super(fragmentManager);
-
         }
         String[] titulo ={" JOVENES "," PROGRESAR "};
 
@@ -86,5 +85,4 @@ public class Requisitos extends Fragment {
             return titulo[position];
         }
     }
-
 }

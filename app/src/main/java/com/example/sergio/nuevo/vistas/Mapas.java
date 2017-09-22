@@ -1,6 +1,5 @@
 package com.example.sergio.nuevo.vistas;
 
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
 import com.example.sergio.nuevo.aplicacion.network.Progresarm;
+import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,22 +39,6 @@ public class ResultadoLiquidaciones extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(getView() == null){
-            return;
-        }
-        getView().setFocusableInTouchMode(true);
-        getView().requestFocus();
-        getView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK){
-                    // handle back button's click listener
-                    FragmentManager m = getActivity().getSupportFragmentManager();
-                    m.beginTransaction().replace(R.id.contenedor, new ConsultaLiquidacion()).commit();
-                    return true;
-                }
-                return false;
-            }
-        });
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }

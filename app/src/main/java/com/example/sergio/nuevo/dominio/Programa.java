@@ -2,8 +2,6 @@ package com.example.sergio.nuevo.dominio;
 
 import android.graphics.Bitmap;
 
-import java.util.ArrayList;
-
 /**
  * Created by Operador1 on 05/09/2017.
  */
@@ -34,16 +32,8 @@ public class Programa {
         return img;
     }
 
-    public void setImg(Bitmap img) {
-        this.img = img;
-    }
-
     public String getUrlimagen() {
         return urlimagen;
-    }
-
-    public void setUrlimagen(String urlimagen) {
-        this.urlimagen = urlimagen;
     }
 
     public String getTitulo() {
@@ -56,9 +46,5 @@ public class Programa {
 
     public String getContenido() {
         return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
     }
 }
