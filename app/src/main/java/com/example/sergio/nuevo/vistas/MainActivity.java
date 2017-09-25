@@ -1,6 +1,9 @@
 package com.example.sergio.nuevo.vistas;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -69,8 +73,60 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
 
+        Uri numero = Uri.parse("smsto:+3815442347");
+        String[] email = {"empleo@empleotucuman.gob.ar"}; //Direcciones email  a enviar.
+
+
+        if (id == R.id.action_email) {
+
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Tu Asunto...");
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, "Enviar email."));
+            }
+            catch (android.content.ActivityNotFoundException e) {
+                Toast.makeText(this, "NO existe ningún cliente de email instalado!.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (id == R.id.action_wathsapp) { // codigo para enviar wathsapp a un ususario especifico
+            PackageManager pm=getPackageManager();
+
+            try {
+
+                Intent waIntent = new Intent(Intent.ACTION_SENDTO, numero);
+                waIntent.setType("text/plain");
+                String text = "Tu texto aquí";
+
+                PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+                waIntent.setPackage("com.whatsapp");
+
+                waIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(waIntent, "Compartir con"));
+
+            } catch (PackageManager.NameNotFoundException e) {
+                Toast.makeText(this, "WhatsApp no está instalado", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+        if (id == R.id.action_facebook) {
+            String uri = "https://www.facebook.com/messages/t/MiPyMEyEmpleo";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri)); // intent para abrir el chat de face
+            startActivity(intent);
+        }
+        if (id == R.id.action_telefonouno) {
+            Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228408 "));
+            startActivity(llamar);
+        }
+        if (id == R.id.action_telefonodos) {
+            Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228420 "));
+            startActivity(llamar);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -106,6 +162,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_laboral:
                 m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
                 break;
+//            case R.id.nac_cursos:
+//                m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
+//                break;
             case R.id.nav_exit:
                 System.exit(0);
                 break;

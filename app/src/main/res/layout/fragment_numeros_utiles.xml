@@ -12,24 +12,6 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonSecretaria"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/blue500"
-            android:drawableLeft="@android:drawable/stat_sys_phone_call"
-            android:isScrollContainer="false"
-            android:text="Secretaria de Empleo"
-            android:textColor="@color/blanco"
-            android:textSize="30sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.75"
-        android:orientation="vertical">
-
-        <Button
             android:id="@+id/buttonPolicia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +32,7 @@
             android:id="@+id/buttonAmbulancia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?android:attr/colorFocusedHighlight"
+            android:background="@color/blue400"
             android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
             android:onClick="llamarAmbulancia"
             android:text="AMBULANCIA"

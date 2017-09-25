@@ -2,23 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        app:showAsAction="never"
-        android:title="Settings"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        ></item>
+        android:title="CONTACTOS : "
+        app:showAsAction="never" />
     <item
-        app:showAsAction="never"
-        android:title="Settings"
+        android:id="@+id/action_email"
         android:orderInCategory="100"
-        ></item>
+        android:title="EMAIL  "
+
+        app:showAsAction="never" />
     <item
-        app:showAsAction="never"
-        android:title="Settings"
+        android:id="@+id/action_wathsapp"
+        android:icon="@android:drawable/sym_action_chat"
         android:orderInCategory="100"
-        ></item>
+        android:title="WATHSAPP  "
+        app:showAsAction="never" />
     <item
-        app:showAsAction="never"
-        android:title="Settings"
+        android:id="@+id/action_facebook"
+        android:icon="@drawable/facebook_messenger"
         android:orderInCategory="100"
-        ></item>
+        android:title="FACEBOOK  "
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_telefonouno"
+        android:orderInCategory="100"
+        android:title="TELEFONO 1 "
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_telefonodos"
+        android:orderInCategory="100"
+        android:title="TELEFONO 2 "
+        app:showAsAction="never" />
 </menu>

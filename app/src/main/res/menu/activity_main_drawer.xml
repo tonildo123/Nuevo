@@ -20,14 +20,17 @@
             android:title="CRONOGRAMA DE PAGO" />
         <item
             android:id="@+id/nav_mapas"
-
             android:icon="@android:drawable/ic_menu_mapmode"
             android:title="TU OFICINA CERCA" />
         <item
             android:id="@+id/nav_laboral"
-
             android:icon="@drawable/perfecto"
             android:title="OFERTA DE TRABAJO" />
+        <item
+            android:id="@+id/nav_cursos"
+
+            android:icon="@drawable/laptop_mac"
+            android:title="CURSOS/CAPACITACION" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@android:drawable/ic_lock_power_off"
@@ -42,7 +45,7 @@
             android:id="@+id/nav_tres"
 
             android:icon="@android:drawable/stat_sys_speakerphone"
-            android:title="NUMEROS UTILES" />
+            android:title="LLAMADAS DE EMERGENCIA" />
 
     </group>
 
