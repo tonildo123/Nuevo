@@ -87,7 +87,7 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
             if (position % 2 == 0) {
                 Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,0);
             }else{
-                Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,1);
+                Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,0);
             }
         }
         return view;

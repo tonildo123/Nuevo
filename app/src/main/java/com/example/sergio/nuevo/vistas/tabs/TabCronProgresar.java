@@ -17,6 +17,8 @@ import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.vistas.VistaNoticias;
 import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
+import java.util.ArrayList;
+
 
 public class TabCronProgresar extends Fragment {
 //    private ArrayList<CronogramaProgresar> cronProg = new ArrayList<>();
@@ -33,12 +35,13 @@ public class TabCronProgresar extends Fragment {
         s.Clase(ServicioPagEmpleo.getInstance());
 
         prog = new PersisCronProg(this.getActivity());
-//        cronProg = ;
+        ArrayList progresar = prog.levantarNoticias();
 
-        listView = (ListView) v.findViewById(R.id.listCronProg);
-        listAdapter = new AdaptadorCronProg(this.getActivity(),prog.levantarNoticias());
-        listView.setAdapter(listAdapter);
-
+        if(progresar != null){
+            listView = (ListView) v.findViewById(R.id.listCronProg);
+            listAdapter = new AdaptadorCronProg(this.getActivity(),progresar);
+            listView.setAdapter(listAdapter);
+        }
         // Inflate the layout for this fragment
         return v;
     }

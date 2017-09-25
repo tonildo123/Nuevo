@@ -36,6 +36,15 @@ public class TabReqProg extends Fragment {
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisRequisitos(this.getActivity());
         joven = reqJoven.levantarNoticias("requisitos_progresar");
+
+        if(joven != null){
+            cargarVista(v);
+        }
+
+        return v;
+    }
+
+    private void cargarVista(View v) {
         imagen.setImageBitmap(joven.getImg());
         pagina = (WebView)v.findViewById(R.id.webProgProg);
         WebSettings settings = pagina.getSettings();
@@ -53,8 +62,8 @@ public class TabReqProg extends Fragment {
             String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
             pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
         }
-        return v;
     }
+
     @Override
     public void onResume() {
         super.onResume();

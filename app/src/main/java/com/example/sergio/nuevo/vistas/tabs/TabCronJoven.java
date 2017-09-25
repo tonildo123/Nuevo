@@ -43,9 +43,11 @@ public class TabCronJoven extends Fragment {
         joven = new PersisCronJoven(this.getActivity());
         cronJoven = joven.levantarNoticias();
 
-        listView = (ListView) v.findViewById(R.id.listCronJov);
-        listAdapter = new AdaptadorCronJoven(this.getActivity(), cronJoven);
-        listView.setAdapter(listAdapter);
+        if(cronJoven != null){
+            listView = (ListView) v.findViewById(R.id.listCronJov);
+            listAdapter = new AdaptadorCronJoven(this.getActivity(), cronJoven);
+            listView.setAdapter(listAdapter);
+        }
         // Inflate the layout for this fragment
         return v;
     }

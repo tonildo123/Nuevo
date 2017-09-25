@@ -38,26 +38,28 @@ public class TabReqJoven extends Fragment {
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisRequisitos(this.getActivity());
         joven = reqJoven.levantarNoticias("requisitos_joven");
-        imagen.setImageBitmap(joven.getImg());
-        pagina = (WebView) v.findViewById(R.id.webProgJov);
 
-        LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linearlayout);
-        Transicion.getInstance().animarLinearLayout(linearLayout, 0);
+        if(joven != null){
+            imagen.setImageBitmap(joven.getImg());
+            pagina = (WebView) v.findViewById(R.id.webProgJov);
+            LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linearlayout);
+            Transicion.getInstance().animarLinearLayout(linearLayout, 0);
 
-        WebSettings settings = pagina.getSettings();
-        settings.setDefaultTextEncodingName("UTF-8");
-        settings.setDefaultFontSize(14);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-            String base64 = null;
-            try {
-                base64 = Base64.encodeToString(joven.getContenido().getBytes("UTF-8"), Base64.DEFAULT);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+            WebSettings settings = pagina.getSettings();
+            settings.setDefaultTextEncodingName("UTF-8");
+            settings.setDefaultFontSize(14);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+                String base64 = null;
+                try {
+                    base64 = Base64.encodeToString(joven.getContenido().getBytes("UTF-8"), Base64.DEFAULT);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                pagina.loadData(base64, "text/html; charset=UTF-8", "base64");
+            } else {
+                String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+                pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
             }
-            pagina.loadData(base64, "text/html; charset=UTF-8", "base64");
-        } else {
-            String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
-            pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
         }
         return v;
     }

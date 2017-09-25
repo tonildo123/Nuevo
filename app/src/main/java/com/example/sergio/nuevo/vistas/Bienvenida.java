@@ -98,10 +98,10 @@ public class Bienvenida extends AppCompatActivity {
         }
     }
     private void obtenerCronogramas() {
-        if(cronProg.levantarNoticias() == null){
+        if(cronProg.levantarNoticias() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
             cronProg.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaProg());
         }
-        if(cronJoven.levantarNoticias() == null){
+        if(cronJoven.levantarNoticias() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
             cronJoven.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaJoven());
         }
     }

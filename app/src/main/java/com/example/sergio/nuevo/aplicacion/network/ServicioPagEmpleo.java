@@ -21,7 +21,7 @@ import java.util.List;
 public class ServicioPagEmpleo implements Strategy {
 
 
-    private static final String url = "http://181.14.240.59/Portal/";
+    private static final String url = "http://181.14.240.59/Portal";
     private Document doc;
     private Document pagEmpleo;
     private Element selectorDiv;
@@ -35,6 +35,7 @@ public class ServicioPagEmpleo implements Strategy {
     private ObtImagen img;
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private List<List<String>> urls = new ArrayList<>();
+    private String AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 UBrowser/7.0.6.1618 Safari/537.36";
 
     public static ServicioPagEmpleo getInstance() {
         return not;
@@ -66,7 +67,7 @@ public class ServicioPagEmpleo implements Strategy {
         try {
             //necesitará protocolo http
             //doc trae el html completo de la url que se le agregue
-            this.pagEmpleo = Jsoup.connect(url).userAgent("Mozilla").get();
+            this.pagEmpleo = Jsoup.connect(url).userAgent(AGENT).get();
 //                    Utilizar Element para buscar un elemento en especial, en este caso un DIV cuya class es nivoSlider .
             selectorDiv = this.pagEmpleo.select("div.nivoSlider").first();
             //Buscamos los objetos que posean el la etiqueta a.
@@ -205,40 +206,49 @@ public class ServicioPagEmpleo implements Strategy {
 
     public ArrayList<CronogramaProgresar> obtenerCronogramaProg() {
         ArrayList<CronogramaProgresar> cron = new ArrayList<>();
-        Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
-        selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
-        elements1 = selectorDiv.getElementsByTag("tr");
+        if(pagEmpleo != null){
+            Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
-        for (Element tr : elements1) {
-            elements2 = tr.getElementsByTag("td");
-            if (elements2.size() != 0) {
-                cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
-            } else {
-                elements2 = tr.getElementsByTag("th");
-                cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
+            selectorDiv = doc.getElementById("sse-cronogramas-pago-8");
+            elements1 = selectorDiv.getElementsByTag("tr");
+
+            for (Element tr : elements1) {
+                elements2 = tr.getElementsByTag("td");
+                if (elements2.size() != 0) {
+                    cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
+                } else {
+                    elements2 = tr.getElementsByTag("th");
+                    cron.add(new CronogramaProgresar(elements2.get(0).text(), elements2.get(1).text()));
+                }
             }
+            return cron;
+        }else {
+            return null;
         }
-        return cron;
     }
 
     public ArrayList<CronogramaJoven> obtenerCronogramaJoven() {
         ArrayList<CronogramaJoven> cron = new ArrayList<>();
-        Document doc = Jsoup.parse(this.pagEmpleo.toString());
+        if(pagEmpleo != null) {
+            Document doc = Jsoup.parse(this.pagEmpleo.toString());
 
-        selectorDiv = doc.getElementById("sse-cronogramas-pago-6");
-        elements1 = selectorDiv.getElementsByTag("tr");
+            selectorDiv = doc.getElementById("sse-cronogramas-pago-6");
+            elements1 = selectorDiv.getElementsByTag("tr");
 
-        for (Element tr : elements1) {
-            elements2 = tr.getElementsByTag("td");
-            if (elements2.size() != 0) {
-                cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
-            } else {
-                elements2 = tr.getElementsByTag("th");
-                cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
+            for (Element tr : elements1) {
+                elements2 = tr.getElementsByTag("td");
+                if (elements2.size() != 0) {
+                    cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
+                } else {
+                    elements2 = tr.getElementsByTag("th");
+                    cron.add(new CronogramaJoven(elements2.get(0).text(), elements2.get(1).text()));
+                }
             }
+            return cron;
+        }else {
+            return null;
         }
-        return cron;
     }
 
     public List<List<String>> getUrls() {
