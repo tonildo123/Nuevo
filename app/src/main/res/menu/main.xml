@@ -3,35 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="CONTACTOS : "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_email"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:title="EMAIL  "
-
         app:showAsAction="never" />
     <item
         android:id="@+id/action_wathsapp"
-        android:icon="@android:drawable/sym_action_chat"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="WATHSAPP  "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_facebook"
-        android:icon="@drawable/facebook_messenger"
-        android:orderInCategory="100"
+        android:orderInCategory="4"
         android:title="FACEBOOK  "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_telefonouno"
-        android:orderInCategory="100"
+        android:orderInCategory="5"
         android:title="TELEFONO 1 "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_telefonodos"
-        android:orderInCategory="100"
+        android:orderInCategory="6"
         android:title="TELEFONO 2 "
         app:showAsAction="never" />
 </menu>

@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_laboral:
                 m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
                 break;
-//            case R.id.nac_cursos:
-//                m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
-//                break;
+            case R.id.nav_cursos:
+                m.beginTransaction().replace(R.id.contenedor, new OfertaCursos()).commit();
+                break;
             case R.id.nav_exit:
                 System.exit(0);
                 break;

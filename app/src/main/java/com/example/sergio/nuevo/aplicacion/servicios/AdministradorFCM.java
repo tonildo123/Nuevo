@@ -22,9 +22,10 @@ public void onMessageReceived(RemoteMessage remoteMessage) {
 
     String titulo = remoteMessage.getNotification().getTitle();
     String texto = remoteMessage.getNotification().getBody();
+
     Log.i("Notification Recibida", ":");
-    Log.i("Título: ", titulo);
-    Log.i("Texto: " , texto);
+    Log.i("Título :   ", titulo       );
+    Log.i("Texto  :   ", texto        );
 
 }
     private void showNotification(String title, String text) {
