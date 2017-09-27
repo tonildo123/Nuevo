@@ -1,10 +1,6 @@
 package com.example.sergio.nuevo.aplicacion.network;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.os.AsyncTask;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,118 +20,42 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by Sergio on 08/08/2017.
+ * Created by Operador1 on 26/09/2017.
  */
 
-public class Progresarm {
-    private static final Progresarm instancia = new Progresarm();
-    private List<String> cookies;
+public class SendGetPost extends AsyncTask{
+    private static List<String> cookies;
     private HttpURLConnection conn;
     private static CookieManager manager;
-    private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 UBrowser/6.1.2909.1213 Safari/537.36";
-    private String url = "http://181.14.240.59:12223/sistema/sec_Login/sec_Login.php";
-    private String urlConsulta = "http://181.14.240.59:12223/sistema/progresaractdetall_gd/progresaractdetall_gd.php";
-    private Document doc;
-    private StringBuffer pagLog;
-    private StringBuffer pagConsulta;
+    private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 UBrowser/6.1.2909.1213 Safari/537.36";
     private String usuario = "usuario";
     private String contraseña = "12345";
     private String captcha;
     private String cuil;
-    private ObtImagen img;
+    private Document doc;
+    private static final SendGetPost sendGetPost = new SendGetPost();
     private StringBuffer response;
-    private View view;
 
-    private Progresarm() {
+    private SendGetPost() {
         manager = new CookieManager();
         manager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
         CookieHandler.setDefault(manager);
     }
-
-    public static Progresarm getInstance() {
-        return instancia;
+    public static SendGetPost getInstance(){
+        return sendGetPost;
     }
 
-    public void enviarDatos(String captcha, String cuil) {
-        this.captcha = captcha;
-        this.cuil = cuil;
-        try {
-            StringBuilder postParams = getFormParams(pagLog);
-            sendPost(postParams.toString(), this.url);
-            pagConsulta = sendGet(urlConsulta);
-
-            postParams = getFormParams(pagConsulta);
-            sendPost(postParams.toString(), urlConsulta);
-            postParams = getFormParams(response);
-            sendPost(postParams.toString(), urlConsulta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public StringBuffer getResponse() {
+        return response;
     }
 
-    public List<List<String>> obtenerDatos() {
-        List<List<String>> datos = new ArrayList<>();
-        doc = Jsoup.parse(response.toString());
-        Element tabla = doc.getElementById("apl_progresaractdetall_gd#?#1");
-        Elements filasimpares = tabla.getElementsByClass("scGridFieldOdd");
-        Elements primerafila = filasimpares.get(0).getElementsByTag("span");
-        boolean b = true;
-
-        for (int i = 0; i < 8; i++) {
-            List<String> lista = new ArrayList();
-            switch (i) {
-                case 0:
-                    lista.add("Cuil");
-                    break;
-                case 1:
-                    lista.add("Nombre Completo");
-                    break;
-                case 2:
-                    lista.add("Localidad");
-                    break;
-                case 3:
-                    lista.add("Provincia");
-                    break;
-                case 4:
-                    lista.add("Email");
-                    break;
-                case 5:
-                    lista.add("Situacion");
-                    break;
-                case 6:
-                    lista.add("Fecha de Cobro");
-                    break;
-                case 7:
-                    lista.add("Boca de Pago");
-                    break;
-            }
-            if (!primerafila.get(i).text().equals("")) {
-                lista.add(primerafila.get(i).text());
-                datos.add(lista);
-            }
-        }
-        return datos;
+    @Override
+    protected Object doInBackground(Object[] objects) {
+        return null;
     }
 
-    public Bitmap getCaptcha(View view) {
-        try {
-            pagLog = sendGet(this.url);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Snackbar.make(view,"No se pudo establecer conexion, vuelva a intentarlo",Snackbar.LENGTH_LONG).show();
-        }
-        doc = Jsoup.parse(pagLog.toString());
-        Bitmap bit = null;
-        Element srccaptcha = doc.select("#id_captcha_img").first();
-        img = img.getInstance();
-        img.descargarCaptcha("http://181.14.240.59:12223/sistema/sec_Login/" + srccaptcha.attr("src"));
-        bit = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().getAbsolutePath() + "/SSE/tmp/captcha.jpg");
-        return bit;
-    }
-
-    private void sendPost(String postParams, String url) throws Exception {
+    public void sendPost(String postParams, String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 //        conn.setReadTimeout(10000);
@@ -186,10 +106,10 @@ public class Progresarm {
         this.response = response;
     }
 
-    private StringBuffer sendGet(String url) throws Exception {
+    public StringBuffer sendGet(String url) throws Exception {
         URL obj = new URL(url);
 
-        conn = (HttpURLConnection) obj.openConnection();
+        HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 
         // default is GET
         conn.setRequestMethod("GET");
@@ -232,12 +152,11 @@ public class Progresarm {
 
         return response;
     }
-
-    private StringBuilder getFormParams(StringBuffer pag) throws UnsupportedEncodingException {
+    public static StringBuilder getFormParams(String pag,String usuario, String contraseña, String cuil, String captcha) throws UnsupportedEncodingException {
         int init = 0;
         int sesion = 0;
         int nm = 0;
-        doc = Jsoup.parse(pag.toString());
+        Document doc = Jsoup.parse(pag);
         Elements inputElements = doc.getElementsByTag("input");
         List<String> paramList = new ArrayList<String>();
         for (Element inputElement : inputElements) {
@@ -274,8 +193,10 @@ public class Progresarm {
                     }
                 }
             }
-            if (!value.equals("") && !key.equals("") && !key.equals("script_case_session") && !key.equals("nm_form_submit") && !key.equals("script_case_init")) {
-                paramList.add(key + "=" + URLEncoder.encode(value, "UTF-8"));
+            if(value != null && key != null){
+                if (!value.equals("") && !key.equals("") && !key.equals("script_case_session") && !key.equals("nm_form_submit") && !key.equals("script_case_init")) {
+                    paramList.add(key + "=" + URLEncoder.encode(value, "UTF-8"));
+                }
             }
         }
         // build parameters list
