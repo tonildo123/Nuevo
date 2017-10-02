@@ -48,20 +48,20 @@ public class Bienvenida extends AppCompatActivity {
                 }
             }
         }
-    Thread hilo2 = new Thread(){
-        @Override
-        public void run() {
-            try {
-                iniciar();
-                Intent pasar = new Intent(Bienvenida.this, MainActivity.class );
-                startActivity(pasar);
-                finish();
-            }catch (Exception ex){
-                ex.printStackTrace();
+        Thread hilo2 = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    iniciar();
+                    Intent pasar = new Intent(Bienvenida.this, MainActivity.class );
+                    startActivity(pasar);
+                    finish();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
-        }
-    };
-    hilo2.start();
+        };
+        hilo2.start();
 
     }
     @Override
