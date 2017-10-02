@@ -59,7 +59,6 @@ public class ObtImagen {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.connect();
-            InputStream input = connection.getInputStream();
             byte[] buffer = new byte[1024];
             int bytesRead =0;
             FileOutputStream fileOutput = new FileOutputStream(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/SSE/tmp/captcha.jpg"));

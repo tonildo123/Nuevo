@@ -135,9 +135,7 @@ public class Bienvenida extends AppCompatActivity {
                 not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
             }else{
                 ServicioPagEmpleo.getInstance().setNovedades(not.levantarNoticias());
-                if(!ServicioPagEmpleo.getInstance().comparar()){
-                    not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
-                }
+                not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
             }
         }
     }

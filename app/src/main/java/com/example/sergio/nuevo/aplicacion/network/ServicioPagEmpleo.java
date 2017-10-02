@@ -46,18 +46,7 @@ public class ServicioPagEmpleo implements Strategy {
     }
 
     @Override
-    public synchronized ArrayList<Noticia> getNovedades() {
-//        si las urls no estan listas entra al bucle y duerme el hilo de ejecución hasta que se notifique que ya
-//        estan disponibles las urls.
-        while (terminado == false) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            getNoticias();
-            return noticias;
-        }
+    public ArrayList<Noticia> getNovedades() {
         getNoticias();
         return noticias;
     }
@@ -117,15 +106,19 @@ public class ServicioPagEmpleo implements Strategy {
                 }
             }
             if (b == false) {
-                return b;
+                break;
+            }
+            if(not.getParrafo() == null || not.getTitulo() == null){
+                b = false;
+                break;
             }
         }
-        return true;
+        return b;
     }
 
     public void getNoticias() {
 
-        if (noticias.get(0).getFoto() == null) {
+        if (!comparar()) {
             Thread hilopadre = new Thread() {
                 @Override
                 public void run() {
@@ -139,13 +132,15 @@ public class ServicioPagEmpleo implements Strategy {
                                             @Override
                                             public void run() {
                                                 noticias.get(i).setId(i);
-                                                noticias.get(i).setFoto(img.descargarImagen(noticias.get(i).getUrlImagen(), 650, 350));
+                                                noticias.get(i).setUrlImagen(urls.get(i).get(1));
+                                                noticias.get(i).setFoto(img.descargarImagen(urls.get(i).get(1), 650, 350));
                                             }
                                         };
                                         Thread hilonieto2 = new Thread() {
                                             @Override
                                             public void run() {
-                                                noticias.get(i).setParrafo(obtenerParrafo(noticias.get(i).getUrlParrafo()));
+                                                noticias.get(i).setUrlParrafo(urls.get(i).get(0));
+                                                noticias.get(i).setParrafo(obtenerParrafo(urls.get(i).get(0)));
                                                 noticias.get(i).setTitulo(obtenerTitulo());
                                             }
                                         };
