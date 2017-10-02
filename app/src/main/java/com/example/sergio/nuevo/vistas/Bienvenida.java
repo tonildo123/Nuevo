@@ -1,11 +1,16 @@
 package com.example.sergio.nuevo.vistas;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
@@ -23,11 +28,26 @@ public class Bienvenida extends AppCompatActivity {
     private PersisCronProg cronProg = new PersisCronProg(this);
     private PersisCronJoven cronJoven = new PersisCronJoven(this);
     private PersisRequisitos requisitos = new PersisRequisitos(this);
+    final int codigo_de_repuesta_escritura = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            codigo_de_repuesta_escritura);
+                }
+            }
+        }
     Thread hilo2 = new Thread(){
         @Override
         public void run() {
@@ -42,6 +62,30 @@ public class Bienvenida extends AppCompatActivity {
         }
     };
     hilo2.start();
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case codigo_de_repuesta_escritura: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    permisoEscritura();
+                } else {
+                    System.out.println("El usuario ha rechazado el permiso");
+                }
+                return;
+            }
+        }
+    }
+    public void permisoEscritura(){
+        Intent permisos = new Intent(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        Intent permisos2 = new Intent(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        startActivity(permisos);
+        startActivity(permisos2);
+
     }
 
     private void iniciar() {
