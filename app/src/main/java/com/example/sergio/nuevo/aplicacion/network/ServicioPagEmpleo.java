@@ -47,7 +47,60 @@ public class ServicioPagEmpleo implements Strategy {
 
     @Override
     public ArrayList<Noticia> getNovedades() {
-        getNoticias();
+        if (!comparar()) {
+            Thread hilopadre = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        for (int k = 0; k < noticias.size(); k++) {
+                            Thread hilohijo = new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Thread hilonieto1 = new Thread() {
+                                            @Override
+                                            public void run() {
+                                                noticias.get(i).setId(i+1);
+                                                noticias.get(i).setUrlImagen(urls.get(i).get(1));
+                                                noticias.get(i).setFoto(img.descargarImagen(urls.get(i).get(1), 650, 350));
+                                            }
+                                        };
+                                        Thread hilonieto2 = new Thread() {
+                                            @Override
+                                            public void run() {
+                                                noticias.get(i).setUrlParrafo(urls.get(i).get(0));
+                                                noticias.get(i).setParrafo(obtenerParrafo(urls.get(i).get(0)));
+                                                noticias.get(i).setTitulo(obtenerTitulo());
+                                            }
+                                        };
+                                        hilonieto1.start();
+                                        hilonieto2.start();
+                                        hilonieto1.join();
+                                        hilonieto2.join();
+                                        i++;
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
+                                }
+                            };
+                            hilos.add(hilohijo);
+                        }
+                        for (int j = 0; j < noticias.size(); j++) {
+                            hilos.get(j).start();
+                            hilos.get(j).join();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            };
+            hilopadre.start();
+            try {
+                hilopadre.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return noticias;
     }
 
@@ -108,70 +161,12 @@ public class ServicioPagEmpleo implements Strategy {
             if (b == false) {
                 break;
             }
-            if(not.getParrafo() == null || not.getTitulo() == null){
+            if(not.getParrafo() == null || not.getTitulo() == null || not.getFoto() == null){
                 b = false;
                 break;
             }
         }
         return b;
-    }
-
-    public void getNoticias() {
-
-        if (!comparar()) {
-            Thread hilopadre = new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        for (int k = 0; k < noticias.size(); k++) {
-                            Thread hilohijo = new Thread() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Thread hilonieto1 = new Thread() {
-                                            @Override
-                                            public void run() {
-                                                noticias.get(i).setId(i);
-                                                noticias.get(i).setUrlImagen(urls.get(i).get(1));
-                                                noticias.get(i).setFoto(img.descargarImagen(urls.get(i).get(1), 650, 350));
-                                            }
-                                        };
-                                        Thread hilonieto2 = new Thread() {
-                                            @Override
-                                            public void run() {
-                                                noticias.get(i).setUrlParrafo(urls.get(i).get(0));
-                                                noticias.get(i).setParrafo(obtenerParrafo(urls.get(i).get(0)));
-                                                noticias.get(i).setTitulo(obtenerTitulo());
-                                            }
-                                        };
-                                        hilonieto1.start();
-                                        hilonieto2.start();
-                                        hilonieto1.join();
-                                        hilonieto2.join();
-                                        i++;
-                                    } catch (Exception ex) {
-                                        ex.printStackTrace();
-                                    }
-                                }
-                            };
-                            hilos.add(hilohijo);
-                        }
-                        for (int j = 0; j < noticias.size(); j++) {
-                            hilos.get(j).start();
-                            hilos.get(j).join();
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            };
-            hilopadre.start();
-            try {
-                hilopadre.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private String obtenerParrafo(String s) {
@@ -245,7 +240,6 @@ public class ServicioPagEmpleo implements Strategy {
             return null;
         }
     }
-
     public List<List<String>> getUrls() {
         return urls;
     }
