@@ -69,15 +69,17 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
-        Uri numero = Uri.parse("smsto:+3815442347");
+        FragmentManager m = getSupportFragmentManager();
         String[] email = {"empleo@empleotucuman.gob.ar"}; //Direcciones email  a enviar.
 
 
+        if (id == R.id.action_settings) {
+            m.beginTransaction().replace(R.id.contenedor, new ContactosPagina()).commit();
+        }
+
         if (id == R.id.action_email) {
 
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
 
             emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.setType("text/plain");
@@ -91,31 +93,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "NO existe ningún cliente de email instalado!.", Toast.LENGTH_SHORT).show();
             }
         }
-        if (id == R.id.action_wathsapp) { // codigo para enviar wathsapp a un ususario especifico
-            PackageManager pm=getPackageManager();
 
-            try {
-
-                Intent waIntent = new Intent(Intent.ACTION_SENDTO, numero);
-                waIntent.setType("text/plain");
-                String text = "Tu texto aquí";
-
-                PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                waIntent.setPackage("com.whatsapp");
-
-                waIntent.putExtra(Intent.EXTRA_TEXT, text);
-                startActivity(Intent.createChooser(waIntent, "Compartir con"));
-
-            } catch (PackageManager.NameNotFoundException e) {
-                Toast.makeText(this, "WhatsApp no está instalado", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-        if (id == R.id.action_facebook) {
-            String uri = "https://www.facebook.com/messages/t/MiPyMEyEmpleo";
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri)); // intent para abrir el chat de face
-            startActivity(intent);
-        }
         if (id == R.id.action_telefonouno) {
             Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228408 "));
             startActivity(llamar);
@@ -158,6 +136,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_laboral:
                 m.beginTransaction().replace(R.id.contenedor, new OfertaLaboral()).commit();
+                break;
+            case R.id.nav_mipyme:
+                m.beginTransaction().replace(R.id.contenedor, new ModuloMIPyme()).commit();
                 break;
             case R.id.nav_cursos:
                 m.beginTransaction().replace(R.id.contenedor, new OfertaCursos()).commit();
