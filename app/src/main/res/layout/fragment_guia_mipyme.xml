@@ -3,6 +3,7 @@
     android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue100"
     android:orientation="vertical"
     tools:context="com.example.sergio.nuevo.vistas.tabs.TabReqJoven">
     <!-- TODO: Update blank fragment layout -->
@@ -10,7 +11,6 @@
         android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="0.90"
         android:background="@color/blue100"
         android:textColor="@color/blue900" />

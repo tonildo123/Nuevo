@@ -25,6 +25,9 @@ public class TabGuiaMiPyme extends Fragment {
         titulo = (TextView)v.findViewById(R.id.tvTitulo);
         titulo.setText(titul);
         web = (WebView)v.findViewById(R.id.webGuiaMipyme);
+
+
+
         // Inlate the layout for this fragment
         return v;
     }

@@ -9,12 +9,17 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DBTuOficinaDeEmpleo extends SQLiteOpenHelper {
-    private String sqlCreateNoticias = "CREATE TABLE noticias(_id INTEGER PRIMARY KEY, titulo TEXT,urlimagen TEXT, dirImagen TEXT, urlparrafo TEXT, parrafo TEXT)";
-    private String sqlCreateCronProg = "CREATE TABLE cronograma_progresar(_id INTEGER PRIMARY KEY,terminacionDni TEXT,fecha TEXT)";
-    private String sqlCreateCronJoven = "CREATE TABLE cronograma_joven(_id INTEGER PRIMARY KEY, terminacionDni TEXT,fecha TEXT)";
-    private String sqlCreateReqJoven = "CREATE TABLE requisitos_joven(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
-    private String sqlCreateReqProg = "CREATE TABLE requisitos_progresar(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
-    private String sqlCreateContacto = "CREATE TABLE contactos_syme(_id INTEGER PRIMARY KEY, contenido TEXT)";
+    private String sqlCreateNoticias   = "CREATE TABLE noticias(_id INTEGER PRIMARY KEY, titulo TEXT,urlimagen TEXT, dirImagen TEXT, urlparrafo TEXT, parrafo TEXT)";
+    private String sqlCreateCronProg   = "CREATE TABLE cronograma_progresar(_id INTEGER PRIMARY KEY,terminacionDni TEXT,fecha TEXT)";
+    private String sqlCreateCronJoven  = "CREATE TABLE cronograma_joven(_id INTEGER PRIMARY KEY, terminacionDni TEXT,fecha TEXT)";
+    private String sqlCreateReqJoven   = "CREATE TABLE requisitos_joven(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+    private String sqlCreateReqProg    = "CREATE TABLE requisitos_progresar(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+    private String sqlCreateContacto   = "CREATE TABLE contactos_syme(_id INTEGER PRIMARY KEY, contenido TEXT)";
+   // private String sqlCreateGuiaMipyme = "CREATE TABLE guiamipyme_syme(_id INTEGER PRIMARY KEY, contenido TEXT, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+
+
+
+
     public DBTuOficinaDeEmpleo(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -27,6 +32,7 @@ public class DBTuOficinaDeEmpleo extends SQLiteOpenHelper {
         db.execSQL(sqlCreateReqJoven);
         db.execSQL(sqlCreateReqProg);
         db.execSQL(sqlCreateContacto);
+        //db.execSQL(sqlCreateGuiaMipyme);
     }
 
     @Override

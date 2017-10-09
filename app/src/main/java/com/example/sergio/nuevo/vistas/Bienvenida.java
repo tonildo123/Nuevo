@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.network.ServicioRequisitos;
+import com.example.sergio.nuevo.persistencia.PersisContactoYGuiaMipyme;
 import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
@@ -28,6 +29,7 @@ public class Bienvenida extends AppCompatActivity {
     private PersisCronProg cronProg = new PersisCronProg(this);
     private PersisCronJoven cronJoven = new PersisCronJoven(this);
     private PersisRequisitos requisitos = new PersisRequisitos(this);
+    private PersisContactoYGuiaMipyme contactosPagina =  new PersisContactoYGuiaMipyme(this);
     final int codigo_de_repuesta_escritura = 0;
 
     @Override
@@ -97,12 +99,15 @@ public class Bienvenida extends AppCompatActivity {
         NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
         if(actNetInfo != null && actNetInfo.isConnected()){
             obtenerNoticias();
+            obetenerContactos();
             Thread hilo1 = new Thread(){
                 @Override
                 public void run() {
                     obtenerCronogramas();
+
                 }
             };
+
             Thread hilo2 = new Thread(){
                 @Override
                 public void run() {
@@ -125,6 +130,12 @@ public class Bienvenida extends AppCompatActivity {
         requisitos.levantarNoticias("requisitos_joven");
         requisitos.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
         requisitos.levantarNoticias("requisitos_progresar");
+    }
+    private void obetenerContactos(){
+        if(ServicioPagEmpleo.getInstance().getPagEmpleo() != null){
+            contactosPagina.guardarNoticias(ServicioPagEmpleo.getInstance().contacto());
+
+        }
     }
 
     private void obtenerNoticias() {
