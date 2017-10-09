@@ -58,41 +58,49 @@ public class ProgresarConsulta {
     public List<List<String>> obtenerDatos() {
         List<List<String>> datos = new ArrayList<>();
         Document doc = Jsoup.parse(SendGetPost.getInstance().getResponse().toString());
-        Element tabla = doc.getElementById("apl_progresaractdetall_gd#?#1");
-        Elements filasimpares = tabla.getElementsByClass("scGridFieldOdd");
-        Elements primerafila = filasimpares.get(0).getElementsByTag("span");
+        Elements filasimpares = null;
+        Elements primerafila = null;
+        try{
+            Element tabla = doc.getElementById("apl_progresaractdetall_gd#?#1");
+            filasimpares = tabla.getElementsByClass("scGridFieldOdd");
+            primerafila = filasimpares.get(0).getElementsByTag("span");
+        }catch (Exception e){
+            datos = null;
+        }
 
-        for (int i = 0; i < 8; i++) {
-            List<String> lista = new ArrayList();
-            switch (i) {
-                case 0:
-                    lista.add("Cuil");
-                    break;
-                case 1:
-                    lista.add("Nombre Completo");
-                    break;
-                case 2:
-                    lista.add("Localidad");
-                    break;
-                case 3:
-                    lista.add("Provincia");
-                    break;
-                case 4:
-                    lista.add("Email");
-                    break;
-                case 5:
-                    lista.add("Situacion");
-                    break;
-                case 6:
-                    lista.add("Fecha de Cobro");
-                    break;
-                case 7:
-                    lista.add("Boca de Pago");
-                    break;
-            }
-            if (!primerafila.get(i).text().equals("")) {
-                lista.add(primerafila.get(i).text());
-                datos.add(lista);
+        if(filasimpares != null && primerafila != null) {
+            for (int i = 0; i < 8; i++) {
+                List<String> lista = new ArrayList();
+                switch (i) {
+                    case 0:
+                        lista.add("Cuil");
+                        break;
+                    case 1:
+                        lista.add("Nombre Completo");
+                        break;
+                    case 2:
+                        lista.add("Localidad");
+                        break;
+                    case 3:
+                        lista.add("Provincia");
+                        break;
+                    case 4:
+                        lista.add("Email");
+                        break;
+                    case 5:
+                        lista.add("Situacion");
+                        break;
+                    case 6:
+                        lista.add("Fecha de Cobro");
+                        break;
+                    case 7:
+                        lista.add("Boca de Pago");
+                        break;
+                }
+                if (!primerafila.get(i).text().equals("")) {
+                    lista.add(primerafila.get(i).text());
+                    datos.add(lista);
+                }
             }
         }
         return datos;

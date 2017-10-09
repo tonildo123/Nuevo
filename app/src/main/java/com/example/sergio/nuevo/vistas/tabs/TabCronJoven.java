@@ -41,7 +41,7 @@ public class TabCronJoven extends Fragment {
         Transicion.getInstance().animarLinearLayout(linearLayout, 0);
 
         joven = new PersisCronJoven(this.getActivity());
-        cronJoven = joven.levantarNoticias();
+        cronJoven = joven.levantar();
 
         if(cronJoven != null){
             listView = (ListView) v.findViewById(R.id.listCronJov);

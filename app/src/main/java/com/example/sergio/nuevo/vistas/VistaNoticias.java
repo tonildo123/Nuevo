@@ -35,7 +35,7 @@ public class VistaNoticias extends Fragment {
         s.Clase(ServicioPagEmpleo.getInstance());
 
         not = new PersisNoticias(this.getActivity());
-        noticias = not.levantarNoticias();
+        noticias = not.levantar();
 
         if(noticias != null){
             listView = (ListView) v.findViewById(R.id.list);

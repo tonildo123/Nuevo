@@ -11,10 +11,16 @@ import com.google.firebase.messaging.RemoteMessage;
 public class AdministradorFCM extends FirebaseMessagingService {
     public AdministradorFCM() {
     }
+
 // FCM = dCDSiKirhm8:APA91bEjvtkGp3TDaNnbcG1aEArvs8EeRyjXTfmZefZJMsjHrgasreQ0f_9tdjbTO_S-ZjJD5H0ZEgwQIN0tIXEd5QXGHlsbdCHBAzabr3CvcU5I04XwYDlqrfrEaDyQ9r8gknKWIxEo
 
 
-@Override
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+    }
+
+    @Override
 public void onMessageReceived(RemoteMessage remoteMessage) {
 
     String titulo = remoteMessage.getNotification().getTitle();
@@ -24,13 +30,14 @@ public void onMessageReceived(RemoteMessage remoteMessage) {
     Log.i("Título :   ", titulo       );
     Log.i("Texto  :   ", texto        );
 
+    showNotification(titulo,texto);
 }
     private void showNotification(String title, String text) {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(android.R.drawable.stat_sys_warning)
                         .setContentTitle(title)
+                        .setContentInfo(text)
                         .setContentText(text);
 
         NotificationManager notificationManager =

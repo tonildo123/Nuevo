@@ -50,7 +50,7 @@ public class ContactosPagina extends Fragment {
         b3 = (Button)vista.findViewById(R.id.bTel3);
 
         contactosPagina = new PersisContactoYGuiaMipyme(this.getActivity());
-        contactpag = contactosPagina.levantarNoticias();
+        contactpag = contactosPagina.levantar();
         if(contactpag != null){
             cargarVista(vista);
         }

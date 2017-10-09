@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -19,16 +20,27 @@ import java.io.IOException;
  * Created by Operador1 on 05/09/2017.
  */
 
-public class PersisRequisitos {
-    private DBTuOficinaDeEmpleo not;
+public class PersisRequisitos extends SQLiteOpenHelper{
+    private String sqlCreateReqJoven   = "CREATE TABLE requisitos_joven(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+    private String sqlCreateReqProg    = "CREATE TABLE requisitos_progresar(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
 
 
     public PersisRequisitos(Activity activity) {
-        not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
+        super(activity,"DBTuOficinaDeEmpleo",null,1);
+    }
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(sqlCreateReqJoven);
+        db.execSQL(sqlCreateReqProg);
     }
 
-    public Programa levantarNoticias(String nombre) {
-        SQLiteDatabase db = not.getWritableDatabase();
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+
+    public Programa levantar(String nombre) {
+        SQLiteDatabase db = getWritableDatabase();
         Cursor fila = db.rawQuery("select * from "+nombre, null);
         if(!fila.moveToFirst()){
             db.close();
@@ -43,9 +55,9 @@ public class PersisRequisitos {
 
     }
 
-    public void guardarNoticias(Programa programa,String nombre) {
+    public void guardar(Programa programa,String nombre) {
         if(programa != null){
-            SQLiteDatabase db = not.getWritableDatabase();
+            SQLiteDatabase db = getWritableDatabase();
             ContentValues registro = new ContentValues();
             Cursor fila = db.rawQuery("select * from "+nombre, null);
 

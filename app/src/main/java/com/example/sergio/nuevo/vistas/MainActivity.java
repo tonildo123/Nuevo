@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity
             Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228420 "));
             startActivity(llamar);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -148,8 +147,8 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         drawer.closeDrawer(GravityCompat.START,true);
+
         return true;
     }
 

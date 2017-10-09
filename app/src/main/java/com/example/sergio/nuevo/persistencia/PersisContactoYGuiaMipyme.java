@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -19,16 +20,27 @@ import java.io.IOException;
  * Created by Operador1 on 05/09/2017.
  */
 
-public class PersisContactoYGuiaMipyme {
-    private DBTuOficinaDeEmpleo contactosPagina;
+public class PersisContactoYGuiaMipyme extends SQLiteOpenHelper {
+    private String sqlCreateContacto   = "CREATE TABLE contactos_syme(_id INTEGER PRIMARY KEY, contenido TEXT)";
+    // private String sqlCreateGuiaMipyme = "CREATE TABLE guiamipyme_syme(_id INTEGER PRIMARY KEY, contenido TEXT, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
 
 
     public PersisContactoYGuiaMipyme(Activity activity) {
-        contactosPagina = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
+        super(activity, "DBTuOficinaDeEmpleo", null, 1);
+    }
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(sqlCreateContacto);
+        //db.execSQL(sqlCreateGuiaMipyme);
     }
 
-    public String levantarNoticias() {
-        SQLiteDatabase db = contactosPagina.getWritableDatabase();
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+
+    public String levantar() {
+        SQLiteDatabase db = getWritableDatabase();
         Cursor fila = db.rawQuery("select * from contactos_syme", null);
         if(!fila.moveToFirst()){
             db.close();
@@ -42,9 +54,9 @@ public class PersisContactoYGuiaMipyme {
 
     }
 
-    public void guardarNoticias(String contactpag) {
+    public void guardar(String contactpag) {
         if(contactpag != null){
-            SQLiteDatabase db = contactosPagina.getWritableDatabase();
+            SQLiteDatabase db = getWritableDatabase();
             ContentValues registro = new ContentValues();
             Cursor fila = db.rawQuery("select * from contactos_syme", null);
 

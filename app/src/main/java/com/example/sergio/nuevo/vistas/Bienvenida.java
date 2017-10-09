@@ -23,6 +23,9 @@ import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Bienvenida extends AppCompatActivity {
     private PersisNoticias not = new PersisNoticias(this);
@@ -97,7 +100,16 @@ public class Bienvenida extends AppCompatActivity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
-        if(actNetInfo != null && actNetInfo.isConnected()){
+        boolean ping = false;
+        try {
+            String  address = InetAddress.getByName("www.google.com").getHostAddress();
+            ping = true;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(actNetInfo != null && actNetInfo.isConnected() && ping){
             obtenerNoticias();
             obetenerContactos();
             Thread hilo1 = new Thread(){
@@ -126,15 +138,12 @@ public class Bienvenida extends AppCompatActivity {
     }
 
     private void obtenerRequisitos() {
-        requisitos.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
-        requisitos.levantarNoticias("requisitos_joven");
-        requisitos.guardarNoticias(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
-        requisitos.levantarNoticias("requisitos_progresar");
+        requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
+        requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
     }
     private void obetenerContactos(){
         if(ServicioPagEmpleo.getInstance().getPagEmpleo() != null){
-            contactosPagina.guardarNoticias(ServicioPagEmpleo.getInstance().contacto());
-
+            contactosPagina.guardar(ServicioPagEmpleo.getInstance().contacto());
         }
     }
 
@@ -142,20 +151,20 @@ public class Bienvenida extends AppCompatActivity {
         ServicioPagEmpleo.getInstance().obtenerUrls();
 
         if(ServicioPagEmpleo.getInstance().getUrls().size() > 0){
-            if(not.levantarNoticias() == null){
-                not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
+            if(not.levantar() == null){
+                not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
             }else{
-                ServicioPagEmpleo.getInstance().setNovedades(not.levantarNoticias());
-                not.guardarNoticias(ServicioPagEmpleo.getInstance().getNovedades());
+                ServicioPagEmpleo.getInstance().setNovedades(not.levantar());
+                not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
             }
         }
     }
     private void obtenerCronogramas() {
-        if(cronProg.levantarNoticias() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
-            cronProg.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaProg());
+        if(cronProg.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+            cronProg.guardar(ServicioPagEmpleo.getInstance().obtenerCronogramaProg());
         }
-        if(cronJoven.levantarNoticias() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
-            cronJoven.guardarNoticias(ServicioPagEmpleo.getInstance().obtenerCronogramaJoven());
+        if(cronJoven.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+            cronJoven.guardar(ServicioPagEmpleo.getInstance().obtenerCronogramaJoven());
         }
     }
 

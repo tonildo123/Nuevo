@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -20,16 +21,25 @@ import java.util.ArrayList;
  * Created by Operador1 on 31/08/2017.
  */
 
-public class PersisNoticias {
-    private DBTuOficinaDeEmpleo not;
+public class PersisNoticias extends SQLiteOpenHelper{
+    private String sqlCreateNoticias   = "CREATE TABLE noticias(_id INTEGER PRIMARY KEY, titulo TEXT,urlimagen TEXT, dirImagen TEXT, urlparrafo TEXT, parrafo TEXT)";
 
 
     public PersisNoticias(Activity activity) {
-        not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
+        super(activity,"DBTuOficinaDeEmpleo",null,1);
+    }
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(sqlCreateNoticias);
     }
 
-    public ArrayList levantarNoticias() {
-        SQLiteDatabase db = not.getWritableDatabase();
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+
+    public ArrayList levantar() {
+        SQLiteDatabase db = getWritableDatabase();
         Cursor fila = db.rawQuery("select * from noticias", null);
         ArrayList<Noticia> noticias = new ArrayList<>();
 
@@ -50,8 +60,8 @@ public class PersisNoticias {
         }
     }
 
-    public void guardarNoticias(ArrayList<Noticia> novedades) {
-        SQLiteDatabase db = not.getWritableDatabase();
+    public void guardar(ArrayList<Noticia> novedades) {
+        SQLiteDatabase db = getWritableDatabase();
         ContentValues registro = new ContentValues();
         Cursor fila = db.rawQuery("select * from noticias", null);
 

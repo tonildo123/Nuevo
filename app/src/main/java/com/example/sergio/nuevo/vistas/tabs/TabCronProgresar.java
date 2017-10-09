@@ -35,7 +35,7 @@ public class TabCronProgresar extends Fragment {
         s.Clase(ServicioPagEmpleo.getInstance());
 
         prog = new PersisCronProg(this.getActivity());
-        ArrayList progresar = prog.levantarNoticias();
+        ArrayList progresar = prog.levantar();
 
         if(progresar != null){
             listView = (ListView) v.findViewById(R.id.listCronProg);

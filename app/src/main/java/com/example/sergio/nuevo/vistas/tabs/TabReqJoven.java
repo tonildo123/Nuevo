@@ -37,7 +37,7 @@ public class TabReqJoven extends Fragment {
 
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisRequisitos(this.getActivity());
-        joven = reqJoven.levantarNoticias("requisitos_joven");
+        joven = reqJoven.levantar("requisitos_joven");
 
         if(joven != null){
             imagen.setImageBitmap(joven.getImg());

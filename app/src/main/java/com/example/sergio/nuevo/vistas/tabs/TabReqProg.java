@@ -35,7 +35,7 @@ public class TabReqProg extends Fragment {
         View v = inflater.inflate(R.layout.fragment_progresar_requisitos, container, false);
         imagen = v.findViewById(R.id.imgRequisitos);
         reqJoven = new PersisRequisitos(this.getActivity());
-        joven = reqJoven.levantarNoticias("requisitos_progresar");
+        joven = reqJoven.levantar("requisitos_progresar");
 
         if(joven != null){
             cargarVista(v);

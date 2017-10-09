@@ -1,7 +1,7 @@
 package com.example.sergio.nuevo.vistas;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,17 +11,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
 import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 public class ConsultaLiquidacion extends Fragment implements OnClickListener {
 
@@ -56,19 +53,29 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener {
         return view;
     }
     public void cargarResultados(){
-        ResultadoLiquidaciones res = new ResultadoLiquidaciones();
-        FragmentManager m = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, res);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        List<List<String>> datos = ProgresarConsulta.getInstance().obtenerDatos();
+        if(datos != null){
+            ResultadoLiquidaciones res = new ResultadoLiquidaciones(datos);
+            FragmentManager m = getActivity().getSupportFragmentManager();
+            FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, res);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 // Start the animated transition.
-        ft.commit();
+            ft.commit();
+        }else{
+            Snackbar.make(getActivity().findViewById(android.R.id.content),"Revise que todos los datos ingresados esten correctos e intente mas tarde", Snackbar.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.bConsulta:
-                ProgresarConsulta.getInstance().enviarDatos(etCaptcha.getText().toString(),etCuil.getText().toString(),this);
+                if(etCaptcha.getText().toString().length() == 3 && etCuil.getText().toString().length() == 11){
+                    ProgresarConsulta.getInstance().enviarDatos(etCaptcha.getText().toString(),etCuil.getText().toString(),this);
+                }else{
+                    Snackbar.make(getActivity().findViewById(android.R.id.content),"Revise que los datos ingresados tengan la longitud correcta", Snackbar.LENGTH_LONG).show();
+                }
                 break;
             case R.id.btnactcaptcha:
                 ProgresarConsulta.getInstance().getCaptcha(getActivity().findViewById(android.R.id.content),progressBar);
