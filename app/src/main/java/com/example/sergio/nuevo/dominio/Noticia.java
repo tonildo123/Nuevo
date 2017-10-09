@@ -1,6 +1,15 @@
 package com.example.sergio.nuevo.dominio;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+
+import static android.os.Build.*;
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by Operador1 on 29/08/2017.
@@ -15,7 +24,9 @@ public class Noticia {
     private String parrafo;
 
 
+
     public Noticia() {
+
     }
 
     public Noticia(int id, String titulo, String urlImagen, Bitmap foto, String urlParrafo, String parrafo) {
@@ -74,4 +85,5 @@ public class Noticia {
     public void setParrafo(String parrafo) {
         this.parrafo = parrafo;
     }
+
 }

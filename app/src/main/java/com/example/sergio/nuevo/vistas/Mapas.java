@@ -46,21 +46,15 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
                 .snippet("Oficina Central")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
         );
-
-
-
-
         mMap.moveCamera(CameraUpdateFactory.newLatLng(tucuman));
 
         // permisos y parametros necesario para mostar mi posicion
-        if(ActivityCompat.checkSelfPermission(
 
+        if(ActivityCompat.checkSelfPermission(
                 this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
                 PackageManager.PERMISSION_GRANTED){
-
             ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
         }
-
         // seteo mi posicion
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -71,21 +65,16 @@ public class Mapas extends FragmentActivity implements OnMapReadyCallback {
         mMap.setMinZoomPreference(7.5f);
         mMap.setMaxZoomPreference(19.0f);
 
-
         mMap.setMapType(googleMap.MAP_TYPE_NORMAL);
-
-
     }
-    // permisos y parametros necesario para mostar mi posicion
+    // permisos y parametros necesario para mostrar mi posicion // solicitud de permiso de ubicacion
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,  String[] permissions, int[] grantResults) {
         if(requestCode == 1000 ){
-            if(permissions.length>0
+            if(permissions.length== 1
                     && permissions[0].equals(android.Manifest.permission.ACCESS_FINE_LOCATION)
                     && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "permiso de loction aceptado", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-}
+
+ Toast.makeText(this, "permiso de loction aceptado", Toast.LENGTH_SHORT).show();}}}}
+
 

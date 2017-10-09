@@ -4,31 +4,22 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="1"
-        android:title="CONTACTOS : "
+        android:title="CONTACTOS"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_email"
-        android:orderInCategory="2"
-        android:title="EMAIL  "
+        android:orderInCategory="9"
+        android:title="COMUNICARSE POR"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_wathsapp"
-        android:orderInCategory="3"
-        android:title="WATHSAPP  "
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_facebook"
-        android:orderInCategory="4"
-        android:title="FACEBOOK  "
-        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_telefonouno"
         android:orderInCategory="5"
-        android:title="TELEFONO 1 "
+        android:title="TELEFONO capital "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_telefonodos"
         android:orderInCategory="6"
-        android:title="TELEFONO 2 "
+        android:title="TELEFONO predio "
         app:showAsAction="never" />
 </menu>

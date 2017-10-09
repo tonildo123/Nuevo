@@ -4,6 +4,7 @@ import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
 import com.example.sergio.nuevo.dominio.CronogramaProgresar;
 import com.example.sergio.nuevo.dominio.Noticia;
+import com.example.sergio.nuevo.vistas.ContactosPagina;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -240,8 +241,40 @@ public class ServicioPagEmpleo implements Strategy {
             return null;
         }
     }
+
+    public Document getPagEmpleo() {
+        return pagEmpleo;
+    }
+
+
+
     public List<List<String>> getUrls() {
         return urls;
+    }
+
+    public String contacto(){
+
+       ArrayList<String> contactos = new ArrayList<>();
+
+        if(pagEmpleo != null) {
+            Document doc = Jsoup.parse(this.pagEmpleo.toString());
+
+            selectorDiv = doc.getElementsByClass("textwidget").get(1);
+            elements1 = selectorDiv.getElementsByTag("p");
+            for (Element ele: elements1) {
+                contactos.add(ele.text());
+            }
+
+            String cad="";
+            String c="\n";
+                for (String s: contactos) {//
+                    cad =  cad.concat(c).concat(s).concat(c); // concatenamos junto con el salto de linea
+                }
+            return cad;
+
+        }else {
+            return null;
+        }
     }
 }
 
