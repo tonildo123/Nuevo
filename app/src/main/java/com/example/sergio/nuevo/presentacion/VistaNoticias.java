@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
+import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.dominio.Noticia;
@@ -17,7 +18,7 @@ import com.example.sergio.nuevo.dominio.Noticia;
 import java.util.ArrayList;
 
 
-public class VistaNoticias extends Fragment {
+public class VistaNoticias extends Fragment implements A {
     private static final VistaNoticias vnoticia = new VistaNoticias();
     private ArrayList<Noticia> noticias = new ArrayList<>();
     private Servicio s;

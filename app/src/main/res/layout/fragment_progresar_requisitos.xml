@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.vistas.tabs.TabReqProg">
+    tools:context="com.example.sergio.nuevo.presentacion.tabs.TabReqProg">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.sergio.nuevo.vistas.tabs.TabReqJoven">
+        tools:context="com.example.sergio.nuevo.presentacion.tabs.TabReqJoven">
 
         <!-- TODO: Update blank fragment layout -->
 

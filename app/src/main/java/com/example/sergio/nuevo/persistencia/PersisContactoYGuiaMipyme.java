@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -20,28 +19,17 @@ import java.io.IOException;
  * Created by Operador1 on 05/09/2017.
  */
 
-public class PersisContactoYGuiaMipyme extends SQLiteOpenHelper {
-    private String sqlCreateContacto   = "CREATE TABLE contactos_syme(_id INTEGER PRIMARY KEY, contenido TEXT)";
-    // private String sqlCreateGuiaMipyme = "CREATE TABLE guiamipyme_syme(_id INTEGER PRIMARY KEY, contenido TEXT, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+public class PersisContactoYGuiaMipyme {
+    private DBTuOficinaDeEmpleo contactosPagina;
 
 
     public PersisContactoYGuiaMipyme(Activity activity) {
-        super(activity, "DBTuOficinaDeEmpleo", null, 1);
-    }
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sqlCreateContacto);
-        //db.execSQL(sqlCreateGuiaMipyme);
+        contactosPagina = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
-
-    public String levantar() {
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor fila = db.rawQuery("select * from contactos_syme", null);
+    public String levantar(String nombre) {
+        SQLiteDatabase db = contactosPagina.getWritableDatabase();
+        Cursor fila = db.rawQuery("select * from " + nombre, null);
         if(!fila.moveToFirst()){
             db.close();
             return null;
@@ -54,11 +42,12 @@ public class PersisContactoYGuiaMipyme extends SQLiteOpenHelper {
 
     }
 
-    public void guardar(String contactpag) {
+    public void guardar(String nombre ,String contactpag) {
         if(contactpag != null){
-            SQLiteDatabase db = getWritableDatabase();
+            SQLiteDatabase db = contactosPagina.getWritableDatabase();
             ContentValues registro = new ContentValues();
-            Cursor fila = db.rawQuery("select * from contactos_syme", null);
+            Cursor fila = db.rawQuery("select * from "+ nombre, null);
+
 
             boolean b;
             if(!fila.moveToFirst()){
@@ -68,9 +57,9 @@ public class PersisContactoYGuiaMipyme extends SQLiteOpenHelper {
             }
             registro.put("contenido",contactpag);
             if(b){
-                db.update("contactos_syme",registro,"_id=1",null);
+                db.update(nombre,registro,"_id=1",null);
             }else{
-                db.insert("contactos_syme", null, registro);
+                db.insert(nombre, null, registro);
             }
             db.close();
         }

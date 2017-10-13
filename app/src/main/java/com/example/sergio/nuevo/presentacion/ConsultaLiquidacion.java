@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -14,13 +14,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
+import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 import java.util.List;
 
-public class ConsultaLiquidacion extends Fragment implements OnClickListener {
+public class ConsultaLiquidacion extends Fragment implements OnClickListener,A {
 
     private Button consultar;
     private EditText etCuil;

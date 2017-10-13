@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,17 +8,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.tabs.TabReqJoven;
-import com.example.sergio.nuevo.vistas.tabs.TabReqProg;
+import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.tabs.TabReqJoven;
+import com.example.sergio.nuevo.presentacion.tabs.TabReqProg;
 
 
-public class Requisitos extends Fragment {
+public class Requisitos extends Fragment implements A {
     private AppBarLayout appBar;
     private TabLayout tabsRequisitos;
     private ViewPager viewPagerRequisitos;

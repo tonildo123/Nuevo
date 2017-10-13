@@ -1,29 +1,19 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
-import com.example.sergio.nuevo.dominio.Programa;
 import com.example.sergio.nuevo.persistencia.PersisContactoYGuiaMipyme;
-import com.example.sergio.nuevo.persistencia.PersisRequisitos;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +40,7 @@ public class ContactosPagina extends Fragment {
         b3 = (Button)vista.findViewById(R.id.bTel3);
 
         contactosPagina = new PersisContactoYGuiaMipyme(this.getActivity());
-        contactpag = contactosPagina.levantar();
+        contactpag = contactosPagina.levantar("contactos_syme");
         if(contactpag != null){
             cargarVista(vista);
         }

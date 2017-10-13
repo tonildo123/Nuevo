@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 
 import android.app.Activity;
@@ -14,7 +14,8 @@ import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas.tabs;
+package com.example.sergio.nuevo.presentacion.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,13 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.tabs.TabCronJoven;
-import com.example.sergio.nuevo.vistas.tabs.TabCronProgresar;
-import com.example.sergio.nuevo.vistas.tabs.TabGuiaMiPyme;
-import com.example.sergio.nuevo.vistas.tabs.TabObservatorio;
+import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.tabs.TabCronProgresar;
+import com.example.sergio.nuevo.presentacion.tabs.TabCronJoven;
 
 
-public class ModuloMIPyme extends Fragment {
+public class CronogramaDePagos extends Fragment implements A{
     private AppBarLayout appBar;
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -29,7 +28,7 @@ public class ModuloMIPyme extends Fragment {
                              Bundle savedInstanceState) {
         // inflamos la vista con este fragmento
 
-        View view = inflater.inflate(R.layout.fragment_mipyme, container, false);
+        View view = inflater.inflate(R.layout.fragment_cronograma, container, false);
         // crea un acceso a la vista
         View contenedor = (View) container.getParent();
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
@@ -60,7 +59,7 @@ public class ModuloMIPyme extends Fragment {
 
         }
 
-        String[] titulo = {"OBSERVATORIO - OEPÊT", "GUIA MIPyME"};
+        String[] titulo = {"CRONOGRAMA DE PAGO JOVENES", "CRONOGRAMA DE PAGO PROGRESAR"};
 
         @Override
         public Fragment getItem(int position) {
@@ -68,10 +67,10 @@ public class ModuloMIPyme extends Fragment {
             switch (position) {
 
                 case 0:
-                    TabObservatorio tuno = new TabObservatorio();
+                    TabCronJoven tuno = new TabCronJoven();
                     return tuno;
                 case 1:
-                    TabGuiaMiPyme tdos = new TabGuiaMiPyme();
+                    TabCronProgresar tdos = new TabCronProgresar();
                     return tdos;
             }
             return null;

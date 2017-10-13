@@ -1,8 +1,7 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
-import com.google.android.gms.safetynet.SafetyNetApi;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 import java.util.List;
 

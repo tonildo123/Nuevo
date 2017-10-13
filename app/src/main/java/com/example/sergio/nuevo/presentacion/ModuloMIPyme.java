@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.tabs.TabCronProgresar;
-import com.example.sergio.nuevo.vistas.tabs.TabCronJoven;
+import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.tabs.TabGuiaMiPyme;
+import com.example.sergio.nuevo.presentacion.tabs.TabObservatorio;
 
 
-public class CronogramaDePagos extends Fragment {
+public class ModuloMIPyme extends Fragment implements A {
     private AppBarLayout appBar;
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -27,7 +28,7 @@ public class CronogramaDePagos extends Fragment {
                              Bundle savedInstanceState) {
         // inflamos la vista con este fragmento
 
-        View view = inflater.inflate(R.layout.fragment_cronograma, container, false);
+        View view = inflater.inflate(R.layout.fragment_mipyme, container, false);
         // crea un acceso a la vista
         View contenedor = (View) container.getParent();
         appBar = (AppBarLayout) contenedor.findViewById(R.id.appbar);
@@ -58,7 +59,7 @@ public class CronogramaDePagos extends Fragment {
 
         }
 
-        String[] titulo = {"CRONOGRAMA DE PAGO JOVENES", "CRONOGRAMA DE PAGO PROGRESAR"};
+        String[] titulo = {"OBSERVATORIO - OEPÊT", "GUIA MIPyME"};
 
         @Override
         public Fragment getItem(int position) {
@@ -66,10 +67,10 @@ public class CronogramaDePagos extends Fragment {
             switch (position) {
 
                 case 0:
-                    TabCronJoven tuno = new TabCronJoven();
+                    TabObservatorio tuno = new TabObservatorio();
                     return tuno;
                 case 1:
-                    TabCronProgresar tdos = new TabCronProgresar();
+                    TabGuiaMiPyme tdos = new TabGuiaMiPyme();
                     return tdos;
             }
             return null;

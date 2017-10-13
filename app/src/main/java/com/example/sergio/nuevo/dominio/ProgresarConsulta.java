@@ -1,28 +1,18 @@
 package com.example.sergio.nuevo.dominio;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.aplicacion.network.AsynctaskConsultaLiquidacion;
 import com.example.sergio.nuevo.aplicacion.network.AsynctaskGetCaptcha;
-import com.example.sergio.nuevo.aplicacion.network.ObtImagen;
 import com.example.sergio.nuevo.aplicacion.network.SendGetPost;
-import com.example.sergio.nuevo.vistas.ConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.UnsupportedEncodingException;
-import java.net.CookieManager;
-import java.net.HttpURLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 

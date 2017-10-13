@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
 
@@ -14,25 +13,16 @@ import java.util.ArrayList;
  * Created by Operador1 on 04/09/2017.
  */
 
-public class PersisCronJoven extends SQLiteOpenHelper{
-    private String sqlCreateCronJoven  = "CREATE TABLE cronograma_joven(_id INTEGER PRIMARY KEY, terminacionDni TEXT,fecha TEXT)";
+public class PersisCronJoven {
+    private DBTuOficinaDeEmpleo cronProg;
 
 
     public PersisCronJoven(Activity activity) {
-        super(activity, "DBTuOficinaDeEmpleo", null, 1);
-    }
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sqlCreateCronJoven);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        cronProg = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
     public ArrayList levantar() {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = cronProg.getWritableDatabase();
         Cursor fila = db.rawQuery("select * from cronograma_joven", null);
         ArrayList<CronogramaJoven> cron = new ArrayList<>();
 
@@ -50,7 +40,7 @@ public class PersisCronJoven extends SQLiteOpenHelper{
     }
 
     public void guardar(ArrayList<CronogramaJoven> novedades) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = cronProg.getWritableDatabase();
         ContentValues registro = new ContentValues();
 
         for (CronogramaJoven joven : novedades){

@@ -1,9 +1,7 @@
-package com.example.sergio.nuevo.vistas.tabs;
+package com.example.sergio.nuevo.presentacion.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +12,7 @@ import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronProg;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
-import com.example.sergio.nuevo.vistas.VistaNoticias;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion;
 
 
 import android.content.Intent;
@@ -6,18 +6,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
+import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NumerosUtiles extends Fragment {
+public class NumerosUtiles extends Fragment implements A {
 
 
     private Button b1, b2, b3;

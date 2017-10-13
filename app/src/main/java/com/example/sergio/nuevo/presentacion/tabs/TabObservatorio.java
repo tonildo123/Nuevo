@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.vistas.tabs;
+package com.example.sergio.nuevo.presentacion.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,20 +8,9 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronJoven;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.dominio.CronogramaJoven;
-import com.example.sergio.nuevo.persistencia.PersisCronJoven;
-import com.example.sergio.nuevo.vistas.NoticiaWebView;
-import com.example.sergio.nuevo.vistas.caracteristicas.Transicion;
-
-import java.util.ArrayList;
 
 
 public class TabObservatorio extends Fragment {

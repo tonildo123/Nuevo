@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -20,27 +19,16 @@ import java.io.IOException;
  * Created by Operador1 on 05/09/2017.
  */
 
-public class PersisRequisitos extends SQLiteOpenHelper{
-    private String sqlCreateReqJoven   = "CREATE TABLE requisitos_joven(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
-    private String sqlCreateReqProg    = "CREATE TABLE requisitos_progresar(_id INTEGER PRIMARY KEY, contenido TEXT,titulo TEXT,urlimagen TEXT,dirImagen TEXT)";
+public class PersisRequisitos {
+    private DBTuOficinaDeEmpleo not;
 
 
     public PersisRequisitos(Activity activity) {
-        super(activity,"DBTuOficinaDeEmpleo",null,1);
-    }
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sqlCreateReqJoven);
-        db.execSQL(sqlCreateReqProg);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        not = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
     public Programa levantar(String nombre) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = not.getWritableDatabase();
         Cursor fila = db.rawQuery("select * from "+nombre, null);
         if(!fila.moveToFirst()){
             db.close();
@@ -52,12 +40,11 @@ public class PersisRequisitos extends SQLiteOpenHelper{
             db.close();
             return joven;
         }
-
     }
 
     public void guardar(Programa programa,String nombre) {
         if(programa != null){
-            SQLiteDatabase db = getWritableDatabase();
+            SQLiteDatabase db = not.getWritableDatabase();
             ContentValues registro = new ContentValues();
             Cursor fila = db.rawQuery("select * from "+nombre, null);
 

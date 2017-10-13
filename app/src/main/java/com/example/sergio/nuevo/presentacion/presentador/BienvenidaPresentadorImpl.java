@@ -1,103 +1,61 @@
-package com.example.sergio.nuevo.vistas;
+package com.example.sergio.nuevo.presentacion.presentador;
 
-import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Bundle;
+import android.os.AsyncTask;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
-import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.network.ServicioRequisitos;
+import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.dominio.CFactory;
 import com.example.sergio.nuevo.persistencia.PersisContactoYGuiaMipyme;
 import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
+import com.example.sergio.nuevo.presentacion.vistas.BienvenidaView;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Bienvenida extends AppCompatActivity {
-    private PersisNoticias not = new PersisNoticias(this);
-    private PersisCronProg cronProg = new PersisCronProg(this);
-    private PersisCronJoven cronJoven = new PersisCronJoven(this);
-    private PersisRequisitos requisitos = new PersisRequisitos(this);
-    private PersisContactoYGuiaMipyme contactosPagina =  new PersisContactoYGuiaMipyme(this);
-    final int codigo_de_repuesta_escritura = 0;
+/**
+ * Created by Operador1 on 11/10/2017.
+ */
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bienvenida);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+public class BienvenidaPresentadorImpl extends AsyncTask<Object, Object, Void> implements BienvenidaPresentador{
+    private BienvenidaView bienvenidaView;
+    private Activity act;
 
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            codigo_de_repuesta_escritura);
-                }
-            }
-        }
-        Thread hilo2 = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    iniciar();
-                    Intent pasar = new Intent(Bienvenida.this, MainActivity.class );
-                    startActivity(pasar);
-                    finish();
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        };
-        hilo2.start();
+    private PersisNoticias not;
+    private PersisCronProg cronProg;
+    private PersisCronJoven cronJoven;
+    private PersisRequisitos requisitos;
+    private PersisContactoYGuiaMipyme contactosPagina;
+    private SharedPreferences prefs;
+    private static final String ACTIVITY_RESUMED = "activityResumed";
 
+    public BienvenidaPresentadorImpl(BienvenidaView bienvenidaView) {
+        this.bienvenidaView = bienvenidaView;
+        this.act = (Activity)bienvenidaView;
+        not = new PersisNoticias(act);
+        cronProg = new PersisCronProg(act);
+        cronJoven = new PersisCronJoven(act);
+        requisitos = new PersisRequisitos(act);
+        contactosPagina =  new PersisContactoYGuiaMipyme(act);
+        prefs = this.act.getApplicationContext().getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        this.execute();
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case codigo_de_repuesta_escritura: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    permisoEscritura();
-                } else {
-                    System.out.println("El usuario ha rechazado el permiso");
-                }
-                return;
-            }
-        }
-    }
-    public void permisoEscritura(){
-        Intent permisos = new Intent(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        Intent permisos2 = new Intent(Manifest.permission.READ_EXTERNAL_STORAGE);
-
-        startActivity(permisos);
-        startActivity(permisos2);
-
-    }
-
-    private void iniciar() {
-
+    protected Void doInBackground(Object... objects) {
         crearCarpetas();
         ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
+                this.act.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
         boolean ping = false;
@@ -105,8 +63,6 @@ public class Bienvenida extends AppCompatActivity {
             String  address = InetAddress.getByName("www.google.com").getHostAddress();
             ping = true;
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         if(actNetInfo != null && actNetInfo.isConnected() && ping){
@@ -135,6 +91,12 @@ public class Bienvenida extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        bienvenidaView.mostrarContenido();
     }
 
     private void obtenerRequisitos() {
@@ -143,13 +105,12 @@ public class Bienvenida extends AppCompatActivity {
     }
     private void obetenerContactos(){
         if(ServicioPagEmpleo.getInstance().getPagEmpleo() != null){
-            contactosPagina.guardar(ServicioPagEmpleo.getInstance().contacto());
+            contactosPagina.guardar("contactos_syme",ServicioPagEmpleo.getInstance().contacto());
         }
     }
 
     private void obtenerNoticias() {
         ServicioPagEmpleo.getInstance().obtenerUrls();
-
         if(ServicioPagEmpleo.getInstance().getUrls().size() > 0){
             if(not.levantar() == null){
                 not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
@@ -193,5 +154,25 @@ public class Bienvenida extends AppCompatActivity {
             File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
             myNewFolder.mkdir(); //creamos la carpeta
         }
+    }
+
+    @Override
+    public void onResume() {
+        prefs.edit().putBoolean(ACTIVITY_RESUMED, true).apply();
+    }
+    @Override
+    public boolean onPause() {
+        return prefs.getBoolean(ACTIVITY_RESUMED, false);
+    }
+
+    @Override
+    public void onDestroy() {
+        bienvenidaView = null;
+    }
+
+    @Override
+    public A onNavigationItemSelected(MenuItem item) {
+        CFactory fact = new CFactory();
+        return fact.create(item);
     }
 }

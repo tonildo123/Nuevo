@@ -4,7 +4,6 @@ import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
 import com.example.sergio.nuevo.dominio.CronogramaProgresar;
 import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.vistas.ContactosPagina;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

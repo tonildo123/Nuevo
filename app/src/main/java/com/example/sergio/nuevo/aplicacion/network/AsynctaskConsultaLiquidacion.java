@@ -1,21 +1,12 @@
 package com.example.sergio.nuevo.aplicacion.network;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
-import com.example.sergio.nuevo.vistas.ConsultaLiquidacion;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
 
 /**
  * Created by Operador1 on 27/09/2017.
