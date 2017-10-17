@@ -45,33 +45,31 @@ public class MainActivity extends AppCompatActivity
     private BienvenidaPresentador presentador;
     private LinearLayout linearLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
         linearLayout = (LinearLayout)findViewById(R.id.linearlayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            codigo_de_repuesta_escritura);
-                }
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck !=  PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        codigo_de_repuesta_escritura);
             }
         }
 
         // permisos y parametros necesario para mostar mi posicion
 
-        if(ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
-                PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(ActivityCompat.checkSelfPermission(
+                    this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
+                    PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                        codigo_de_repuesta_localizacion);
+            }
         }
+
         presentador = new BienvenidaPresentadorImpl(this);
     }
     @Override
