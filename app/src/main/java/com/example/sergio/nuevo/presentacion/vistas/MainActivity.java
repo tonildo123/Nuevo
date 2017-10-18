@@ -10,7 +10,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,24 +24,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.ContactosPagina;
-import com.example.sergio.nuevo.presentacion.CronogramaDePagos;
-import com.example.sergio.nuevo.presentacion.Mapas;
-import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
-import com.example.sergio.nuevo.presentacion.NumerosUtiles;
-import com.example.sergio.nuevo.presentacion.OfertaCursos;
-import com.example.sergio.nuevo.presentacion.OfertaLaboral;
-import com.example.sergio.nuevo.presentacion.Requisitos;
-import com.example.sergio.nuevo.presentacion.VistaNoticias;
-import com.example.sergio.nuevo.presentacion.presentador.BienvenidaPresentador;
-import com.example.sergio.nuevo.presentacion.presentador.BienvenidaPresentadorImpl;
+import com.example.sergio.nuevo.presentacion.presentador.MainPresentador;
+import com.example.sergio.nuevo.presentacion.presentador.MainPresentadorImpl;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,BienvenidaView {
+        implements NavigationView.OnNavigationItemSelectedListener,MainView {
     final int codigo_de_repuesta_escritura = 0;
     final int codigo_de_repuesta_localizacion = 1000;
-    private BienvenidaPresentador presentador;
+    private MainPresentador presentador;
     private LinearLayout linearLayout;
 
 
@@ -70,7 +60,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        presentador = new BienvenidaPresentadorImpl(this);
+        presentador = new MainPresentadorImpl(this);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode,

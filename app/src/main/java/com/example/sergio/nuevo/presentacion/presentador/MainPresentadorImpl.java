@@ -18,7 +18,7 @@ import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
-import com.example.sergio.nuevo.presentacion.vistas.BienvenidaView;
+import com.example.sergio.nuevo.presentacion.vistas.MainView;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -28,8 +28,8 @@ import java.net.UnknownHostException;
  * Created by Operador1 on 11/10/2017.
  */
 
-public class BienvenidaPresentadorImpl extends AsyncTask<Object, Object, Void> implements BienvenidaPresentador{
-    private BienvenidaView bienvenidaView;
+public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> implements MainPresentador {
+    private MainView mainView;
     private Activity act;
 
     private PersisNoticias not;
@@ -40,9 +40,9 @@ public class BienvenidaPresentadorImpl extends AsyncTask<Object, Object, Void> i
     private SharedPreferences prefs;
     private static final String ACTIVITY_RESUMED = "activityResumed";
 
-    public BienvenidaPresentadorImpl(BienvenidaView bienvenidaView) {
-        this.bienvenidaView = bienvenidaView;
-        this.act = (Activity)bienvenidaView;
+    public MainPresentadorImpl(MainView mainView) {
+        this.mainView = mainView;
+        this.act = (Activity) mainView;
         not = new PersisNoticias(act);
         cronProg = new PersisCronProg(act);
         cronJoven = new PersisCronJoven(act);
@@ -96,7 +96,7 @@ public class BienvenidaPresentadorImpl extends AsyncTask<Object, Object, Void> i
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        bienvenidaView.mostrarContenido();
+        mainView.mostrarContenido();
     }
 
     private void obtenerRequisitos() {
@@ -167,7 +167,7 @@ public class BienvenidaPresentadorImpl extends AsyncTask<Object, Object, Void> i
 
     @Override
     public void onDestroy() {
-        bienvenidaView = null;
+        mainView = null;
     }
 
     @Override

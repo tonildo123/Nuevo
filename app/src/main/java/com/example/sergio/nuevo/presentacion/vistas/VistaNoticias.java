@@ -1,6 +1,7 @@
-package com.example.sergio.nuevo.presentacion;
+package com.example.sergio.nuevo.presentacion.vistas;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,42 +9,56 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.aplicacion.adaptadores.Adaptador;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.dominio.Noticia;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorNoticiaImpl;
 
 import java.util.ArrayList;
 
 
-public class VistaNoticias extends Fragment implements A {
+public class VistaNoticias extends Fragment implements A,ViewFragment {
     private static final VistaNoticias vnoticia = new VistaNoticias();
-    private ArrayList<Noticia> noticias = new ArrayList<>();
-    private Servicio s;
     private ListView listView;
     private AdaptadorNoticia listAdapter;
-    private PersisNoticias not;
+    private View v;
+    private PresentadorNoticiaImpl presentadorNoticia;
 
     public static VistaNoticias getInstance(){return vnoticia;}
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_noticias, container, false);
-//        Intent intent = new Intent(getActivity(), );
-        s = new Servicio();
-        s.Clase(ServicioPagEmpleo.getInstance());
+        v = inflater.inflate(R.layout.fragment_noticias, container, false);
+        listView = (ListView) v.findViewById(R.id.list);
+        presentadorNoticia = new PresentadorNoticiaImpl(this,getActivity());
+        presentadorNoticia.iniciar();
+        // Inflate the layout for this fragment
+        return v;
+    }
 
-        not = new PersisNoticias(this.getActivity());
-        noticias = not.levantar();
 
+    @Override
+    public void setAdapter(ArrayList noticias) {
         if(noticias != null){
-            listView = (ListView) v.findViewById(R.id.list);
             listAdapter = new AdaptadorNoticia(getActivity(),noticias);
             listView.setAdapter(listAdapter);
         }
-        // Inflate the layout for this fragment
-        return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presentadorNoticia.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

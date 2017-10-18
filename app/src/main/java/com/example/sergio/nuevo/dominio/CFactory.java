@@ -1,11 +1,9 @@
 package com.example.sergio.nuevo.dominio;
 
-import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.CronogramaDePagos;
 import com.example.sergio.nuevo.presentacion.Mapas;
 import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
@@ -13,8 +11,7 @@ import com.example.sergio.nuevo.presentacion.NumerosUtiles;
 import com.example.sergio.nuevo.presentacion.OfertaCursos;
 import com.example.sergio.nuevo.presentacion.OfertaLaboral;
 import com.example.sergio.nuevo.presentacion.Requisitos;
-import com.example.sergio.nuevo.presentacion.VistaNoticias;
-import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
+import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
 /**
  * Created by Operador1 on 13/10/2017.

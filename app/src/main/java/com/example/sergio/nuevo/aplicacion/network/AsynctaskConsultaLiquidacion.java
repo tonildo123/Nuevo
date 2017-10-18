@@ -6,7 +6,9 @@ import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
-import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.presentador.IPresentador;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
 
 /**
  * Created by Operador1 on 27/09/2017.
@@ -14,11 +16,11 @@ import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
 
 public class AsynctaskConsultaLiquidacion extends AsyncTask{
     private ProgressBar progressBar;
-    private ConsultaLiquidacion consultaLiquidacion;
+    private PresentadorConsultaLiquidacion presentador;
 
-    public AsynctaskConsultaLiquidacion(ConsultaLiquidacion consultaLiquidacion) {
-        progressBar = consultaLiquidacion.getView().findViewById(R.id.progressBar2);
-        this.consultaLiquidacion = consultaLiquidacion;
+    public AsynctaskConsultaLiquidacion(PresentadorConsultaLiquidacion presentador,ProgressBar progressBar) {
+        this.progressBar = progressBar;
+        this.presentador = presentador;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class AsynctaskConsultaLiquidacion extends AsyncTask{
 
     @Override
     protected void onPostExecute(Object o) {
-        consultaLiquidacion.cargarResultados();
+        presentador.cargarResultados();
         progressBar.setVisibility(View.INVISIBLE);
     }
 

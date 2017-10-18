@@ -3,6 +3,9 @@ package com.example.sergio.nuevo.presentacion;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,10 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorResLiquidaciones;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.presentador.IPresentador;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
 import java.util.List;
 
@@ -19,10 +26,11 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ResultadoLiquidaciones extends Fragment {
-    private ProgresarConsulta prog = ProgresarConsulta.getInstance();
     private List<List<String>> datos;
-    public ResultadoLiquidaciones(List<List<String>> datos) {
+    PresentadorConsultaLiquidacion presentadorConsultaLiquidacion;
+    public ResultadoLiquidaciones(List<List<String>> datos, PresentadorConsultaLiquidacion presentadorConsultaLiquidacion) {
         this.datos = datos;
+        this.presentadorConsultaLiquidacion = presentadorConsultaLiquidacion;
     }
 
 
@@ -40,5 +48,6 @@ public class ResultadoLiquidaciones extends Fragment {
     public void onResume() {
         super.onResume();
         Transicion.getInstance().transicionFragments(getView(),getActivity());
+        presentadorConsultaLiquidacion.onResume();
     }
 }

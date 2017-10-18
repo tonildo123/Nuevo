@@ -6,7 +6,7 @@ import android.widget.ProgressBar;
 import com.example.sergio.nuevo.aplicacion.network.AsynctaskConsultaLiquidacion;
 import com.example.sergio.nuevo.aplicacion.network.AsynctaskGetCaptcha;
 import com.example.sergio.nuevo.aplicacion.network.SendGetPost;
-import com.example.sergio.nuevo.presentacion.ConsultaLiquidacion;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacion;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,10 +38,10 @@ public class ProgresarConsulta {
         return instancia;
     }
 
-    public void enviarDatos(String captcha, String cuil, ConsultaLiquidacion consultaLiquidacion) {
+    public void enviarDatos(String captcha, String cuil, PresentadorConsultaLiquidacion presentador, ProgressBar progressBar) {
         this.cuil = cuil;
         this.captcha = captcha;
-        AsynctaskConsultaLiquidacion asynctaskConsultaLiq = new AsynctaskConsultaLiquidacion(consultaLiquidacion);
+        AsynctaskConsultaLiquidacion asynctaskConsultaLiq = new AsynctaskConsultaLiquidacion(presentador,progressBar);
         asynctaskConsultaLiq.execute();
     }
 
