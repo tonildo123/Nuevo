@@ -12,7 +12,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.presentacion.VistaNoticias;
+import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
 /**
  * Created by JESUS on 21/09/2017.
