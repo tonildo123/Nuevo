@@ -20,31 +20,31 @@ import java.io.IOException;
  */
 
 public class PersisContactoYGuiaMipyme {
-    private DBTuOficinaDeEmpleo contactosPagina;
+    private DBTuOficinaDeEmpleo contactosyGuia;
 
 
     public PersisContactoYGuiaMipyme(Activity activity) {
-        contactosPagina = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
+        contactosyGuia = new DBTuOficinaDeEmpleo(activity,"DBTuOficinaDeEmpleo",null,1);
     }
 
     public String levantar(String nombre) {
-        SQLiteDatabase db = contactosPagina.getWritableDatabase();
+        SQLiteDatabase db = contactosyGuia.getWritableDatabase();
         Cursor fila = db.rawQuery("select * from " + nombre, null);
         if(!fila.moveToFirst()){
             db.close();
             return null;
         }else{
 
-            String contactpag = new String (fila.getString(1));
+            String contactGuia = new String (fila.getString(1));
             db.close();
-            return contactpag;
+            return contactGuia;
         }
 
     }
 
-    public void guardar(String nombre ,String contactpag) {
-        if(contactpag != null){
-            SQLiteDatabase db = contactosPagina.getWritableDatabase();
+    public void guardar(String nombre ,String contactGuia) {
+        if(contactGuia != null){
+            SQLiteDatabase db = contactosyGuia.getWritableDatabase();
             ContentValues registro = new ContentValues();
             Cursor fila = db.rawQuery("select * from "+ nombre, null);
 
@@ -55,7 +55,7 @@ public class PersisContactoYGuiaMipyme {
             }else{
                 b=true;
             }
-            registro.put("contenido",contactpag);
+            registro.put("contenido",contactGuia);
             if(b){
                 db.update(nombre,registro,"_id=1",null);
             }else{

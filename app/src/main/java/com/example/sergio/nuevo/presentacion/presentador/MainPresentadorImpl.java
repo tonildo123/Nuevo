@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.MenuItem;
 
+import com.example.sergio.nuevo.aplicacion.network.ServicioGuiaMipyme;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.aplicacion.network.ServicioRequisitos;
 import com.example.sergio.nuevo.dominio.A;
@@ -36,7 +37,7 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     private PersisCronProg cronProg;
     private PersisCronJoven cronJoven;
     private PersisRequisitos requisitos;
-    private PersisContactoYGuiaMipyme contactosPagina;
+    private PersisContactoYGuiaMipyme perContyGuia;
     private SharedPreferences prefs;
     private static final String ACTIVITY_RESUMED = "activityResumed";
 
@@ -47,7 +48,7 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         cronProg = new PersisCronProg(act);
         cronJoven = new PersisCronJoven(act);
         requisitos = new PersisRequisitos(act);
-        contactosPagina =  new PersisContactoYGuiaMipyme(act);
+        perContyGuia =  new PersisContactoYGuiaMipyme(act);
         prefs = this.act.getApplicationContext().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         this.execute();
     }
@@ -68,6 +69,7 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         if(actNetInfo != null && actNetInfo.isConnected() && ping){
             obtenerNoticias();
             obetenerContactos();
+            obetenerguiamipyme();
             Thread hilo1 = new Thread(){
                 @Override
                 public void run() {
@@ -105,9 +107,15 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     }
     private void obetenerContactos(){
         if(ServicioPagEmpleo.getInstance().getPagEmpleo() != null){
-            contactosPagina.guardar("contactos_syme",ServicioPagEmpleo.getInstance().contacto());
+            perContyGuia.guardar("contactos_syme",ServicioPagEmpleo.getInstance().contacto());
         }
     }
+    private void obetenerguiamipyme(){
+        if(ServicioGuiaMipyme.getInstance().getUrlGuiaMipyme() != null){
+            perContyGuia.guardar("guiamipyme_syme",ServicioGuiaMipyme.getInstance().guiamipyme(ServicioGuiaMipyme.getInstance().getUrlGuiaMipyme()));
+        }
+    }
+
 
     private void obtenerNoticias() {
         ServicioPagEmpleo.getInstance().obtenerUrls();

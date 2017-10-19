@@ -35,7 +35,7 @@
             android:id="@+id/nav_mipyme"
 
             android:icon="@drawable/eye"
-            android:title="MODULO MIPyME" />
+            android:title="MIPyME" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@android:drawable/ic_lock_power_off"

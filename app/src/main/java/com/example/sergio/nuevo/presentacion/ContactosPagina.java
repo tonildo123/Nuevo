@@ -20,8 +20,8 @@ import com.example.sergio.nuevo.persistencia.PersisContactoYGuiaMipyme;
  */
 public class ContactosPagina extends Fragment {
     private String contact = "";
-    private PersisContactoYGuiaMipyme contactosPagina;
-    private String contactpag;
+    private PersisContactoYGuiaMipyme perContyGuia;
+    private String contactGuia;
 
     public ContactosPagina() {
         // Required empty public constructor
@@ -39,9 +39,9 @@ public class ContactosPagina extends Fragment {
         b2 = (Button)vista.findViewById(R.id.bTel2);
         b3 = (Button)vista.findViewById(R.id.bTel3);
 
-        contactosPagina = new PersisContactoYGuiaMipyme(this.getActivity());
-        contactpag = contactosPagina.levantar("contactos_syme");
-        if(contactpag != null){
+        perContyGuia = new PersisContactoYGuiaMipyme(this.getActivity());
+        contactGuia = perContyGuia.levantar("contactos_syme");
+        if(contactGuia != null){
             cargarVista(vista);
         }
 
