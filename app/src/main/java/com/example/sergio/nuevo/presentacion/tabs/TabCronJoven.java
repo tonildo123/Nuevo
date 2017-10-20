@@ -10,9 +10,7 @@ import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronJoven;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisCronJoven;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 
 public class TabCronJoven extends Fragment {
     private ArrayList<CronogramaJoven> cronJoven = new ArrayList<>();
-    private Servicio s;
     private ListView listView;
     private AdaptadorCronJoven listAdapter;
     private PersisCronJoven joven;
@@ -31,8 +28,6 @@ public class TabCronJoven extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cronojov, container, false);
-        s = new Servicio();
-        s.Clase(ServicioPagEmpleo.getInstance());
 
         LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linearlayout);
         Transicion.getInstance().animarLinearLayout(linearLayout, 0);

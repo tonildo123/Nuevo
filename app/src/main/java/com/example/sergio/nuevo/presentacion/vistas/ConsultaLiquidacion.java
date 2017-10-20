@@ -17,7 +17,6 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.presentacion.ResultadoLiquidaciones;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
-import com.example.sergio.nuevo.presentacion.presentador.IPresentador;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacionImpl;
 

@@ -62,18 +62,18 @@
         <!-- [END fcm_default_channel] -->
 
         <service
-            android:name=".aplicacion.servicios.AdministradorFCM">
+            android:name=".servicios.AdministradorFCM">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".aplicacion.servicios.RegistradorFCM">
+            android:name=".servicios.RegistradorFCM">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
-        <service android:name=".aplicacion.servicios.MyJobService"
+        <service android:name=".servicios.MyJobService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>

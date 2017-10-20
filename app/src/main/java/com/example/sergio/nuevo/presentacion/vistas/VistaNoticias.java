@@ -1,7 +1,6 @@
 package com.example.sergio.nuevo.presentacion.vistas;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.adaptadores.Adaptador;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.dominio.A;
-import com.example.sergio.nuevo.persistencia.PersisNoticias;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
-import com.example.sergio.nuevo.dominio.Noticia;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorNoticiaImpl;
 
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.servicios.ServicioCompartir;
+import com.example.sergio.nuevo.servicios.ServicioCompartir;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
 import com.getbase.floatingactionbutton.FloatingActionButton;

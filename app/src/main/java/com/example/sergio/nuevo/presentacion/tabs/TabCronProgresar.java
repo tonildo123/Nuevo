@@ -9,8 +9,6 @@ import android.widget.ListView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorCronProg;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisCronProg;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 
 public class TabCronProgresar extends Fragment {
 //    private ArrayList<CronogramaProgresar> cronProg = new ArrayList<>();
-    private Servicio s;
     private ListView listView;
     private AdaptadorCronProg listAdapter;
     private PersisCronProg prog;
@@ -28,8 +25,6 @@ public class TabCronProgresar extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cronopro, container, false);
-        s = new Servicio();
-        s.Clase(ServicioPagEmpleo.getInstance());
 
         prog = new PersisCronProg(this.getActivity());
         ArrayList progresar = prog.levantar();

@@ -1,4 +1,4 @@
-package com.example.sergio.nuevo.aplicacion.servicios;
+package com.example.sergio.nuevo.servicios;
 
 import android.app.Activity;
 import android.content.Intent;

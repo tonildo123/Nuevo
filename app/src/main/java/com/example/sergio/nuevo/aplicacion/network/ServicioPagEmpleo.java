@@ -1,6 +1,5 @@
 package com.example.sergio.nuevo.aplicacion.network;
 
-import com.example.sergio.nuevo.aplicacion.patrones.Strategy;
 import com.example.sergio.nuevo.dominio.CronogramaJoven;
 import com.example.sergio.nuevo.dominio.CronogramaProgresar;
 import com.example.sergio.nuevo.dominio.Noticia;
@@ -18,7 +17,7 @@ import java.util.List;
  * Created by Sergio on 27/07/2017.
  */
 
-public class ServicioPagEmpleo implements Strategy {
+public class ServicioPagEmpleo {
 
 
     private static final String url = "http://181.14.240.59/Portal";
@@ -45,7 +44,6 @@ public class ServicioPagEmpleo implements Strategy {
         img = img.getInstance();
     }
 
-    @Override
     public ArrayList<Noticia> getNovedades() {
         if (!comparar()) {
             Thread hilopadre = new Thread() {
@@ -104,7 +102,6 @@ public class ServicioPagEmpleo implements Strategy {
         return noticias;
     }
 
-    @Override
     public synchronized void obtenerUrls() {
         try {
             //necesitará protocolo http
@@ -142,12 +139,10 @@ public class ServicioPagEmpleo implements Strategy {
         notifyAll();
     }
 
-    @Override
     public void setNovedades(ArrayList array) {
         this.noticias = array;
     }
 
-    @Override
     public boolean comparar() {
         boolean b = true;
         for (Noticia not : noticias) {

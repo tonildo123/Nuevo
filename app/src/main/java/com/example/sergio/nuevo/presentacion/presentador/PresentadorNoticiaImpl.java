@@ -3,12 +3,6 @@ package com.example.sergio.nuevo.presentacion.presentador;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.ListView;
-
-import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
-import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
-import com.example.sergio.nuevo.aplicacion.patrones.Servicio;
 import com.example.sergio.nuevo.dominio.Noticia;
 import com.example.sergio.nuevo.persistencia.PersisNoticias;
 import com.example.sergio.nuevo.presentacion.vistas.ViewFragment;

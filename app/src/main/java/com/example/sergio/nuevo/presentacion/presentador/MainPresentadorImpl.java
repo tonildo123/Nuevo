@@ -24,6 +24,7 @@ import com.example.sergio.nuevo.presentacion.vistas.MainView;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Date;
 
 /**
  * Created by Operador1 on 11/10/2017.
@@ -102,20 +103,26 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     }
 
     private void obtenerRequisitos() {
-        requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
-        requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
+        Date fechaactual = new Date();
+        if(requisitos.levantar("requisitos_joven") == null || (fechaactual.getTime()-requisitos.getModificacion("requisitos_joven").getTime()) > 604800000){
+            requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaJoven()),"requisitos_joven");
+        }
+        if(requisitos.levantar("requisitos_progresar") == null || (fechaactual.getTime()-requisitos.getModificacion("contactos_syme").getTime()) > 604800000){
+            requisitos.guardar(ServicioRequisitos.getInstance().getNovedades(ServicioRequisitos.getInstance().getUrlProgramaProgresar()),"requisitos_progresar");
+        }
     }
     private void obetenerContactos(){
-        if(ServicioPagEmpleo.getInstance().getPagEmpleo() != null){
+        Date fechaactual = new Date();
+        if(perContyGuia.levantar("contactos_syme") == null || (fechaactual.getTime()-perContyGuia.getModificacion("contactos_syme").getTime()) > 604800000){
             perContyGuia.guardar("contactos_syme",ServicioPagEmpleo.getInstance().contacto());
         }
     }
     private void obetenerguiamipyme(){
-        if(ServicioGuiaMipyme.getInstance().getUrlGuiaMipyme() != null){
+        Date fechaactual = new Date();
+        if(perContyGuia.levantar("guiamipyme_syme") == null || (fechaactual.getTime()-perContyGuia.getModificacion("guiamipyme_syme").getTime()) > 604800000){
             perContyGuia.guardar("guiamipyme_syme",ServicioGuiaMipyme.getInstance().guiamipyme(ServicioGuiaMipyme.getInstance().getUrlGuiaMipyme()));
         }
     }
-
 
     private void obtenerNoticias() {
         ServicioPagEmpleo.getInstance().obtenerUrls();
@@ -129,10 +136,11 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         }
     }
     private void obtenerCronogramas() {
-        if(cronProg.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+        Date fechaactual = new Date();
+        if(cronProg.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0 || (fechaactual.getTime()-cronProg.getModificacion().getTime()) > 604800000){
             cronProg.guardar(ServicioPagEmpleo.getInstance().obtenerCronogramaProg());
         }
-        if(cronJoven.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+        if(cronJoven.levantar() == null && ServicioPagEmpleo.getInstance().getUrls().size() > 0 || (fechaactual.getTime()-cronJoven.getModificacion().getTime()) > 604800000){
             cronJoven.guardar(ServicioPagEmpleo.getInstance().obtenerCronogramaJoven());
         }
     }
