@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent sendIntent = new Intent("android.intent.action.MAIN");
             sendIntent.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
-            sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators("543815442347")+"@s.whatsapp.net"); // envia wathsapp al numero
+            sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators("5493815442347")+"@s.whatsapp.net"); // envia wathsapp al numero
             startActivity(sendIntent);
         } catch (Exception e) {
             Toast.makeText(this, "WhatsApp no está instalado", Toast.LENGTH_SHORT)
