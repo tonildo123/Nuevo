@@ -7,15 +7,20 @@
         android:title="CONTACTOS"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_email"
+        android:id="@+id/action_wathsapp"
         android:orderInCategory="9"
-        android:title="COMUNICARSE POR"
+        android:title="Enviar WATHSAPP"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_email"
+        android:orderInCategory="10"
+        android:title="Enviar E-MAIL"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_telefonouno"
         android:orderInCategory="5"
-        android:title="TELEFONO capital "
+        android:title="TELEFONO centro "
         app:showAsAction="never" />
     <item
         android:id="@+id/action_telefonodos"

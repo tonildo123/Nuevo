@@ -59,7 +59,7 @@ public class ModuloMIPyme extends Fragment implements A {
 
         }
 
-        String[] titulo = {"OBSERVATORIO - OEPÊT", "GUIA MIPyME"};
+        String[] titulo = {"OBSERVATORIO - OEPET", "GUIA MIPyME"};
 
         @Override
         public Fragment getItem(int position) {
