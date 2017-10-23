@@ -187,6 +187,16 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     }
 
     @Override
+    public void iniciar() {
+
+    }
+
+    @Override
+    public void onClick(Object[] o) {
+
+    }
+
+    @Override
     public A onNavigationItemSelected(MenuItem item) {
         CFactory fact = new CFactory();
         return fact.create(item);

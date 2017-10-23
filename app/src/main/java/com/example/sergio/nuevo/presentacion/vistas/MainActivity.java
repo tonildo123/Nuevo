@@ -31,6 +31,7 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.presentacion.ContactosPagina;
 import com.example.sergio.nuevo.presentacion.presentador.MainPresentador;
 import com.example.sergio.nuevo.presentacion.presentador.MainPresentadorImpl;
+import com.example.sergio.nuevo.servicios.ServicioCompartir;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,MainView {
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity
 
         presentador = new MainPresentadorImpl(this);
     }
-    // permisos para escritura
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity
             case codigo_de_repuesta_escritura: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 } else {
                     System.out.println("El usuario ha rechazado el permiso");
                 }
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity
                 }
         }
     }
-
 
     @Override
     public void mostrarContenido() {
@@ -166,10 +164,10 @@ public class MainActivity extends AppCompatActivity
                 m.beginTransaction().replace(R.id.contenedor, new ContactosPagina()).commit();
                 break;
             case R.id.action_wathsapp:// sección comunicarse por wathsapp ....
-                enviaMensajeWhatsApp();
+                ServicioCompartir.enviarWhatsapp(this);
                 break;
             case R.id.action_email:// sección comunicarse por gmail ....
-                enviaMensajeGmail("");
+                ServicioCompartir.enviarGmail(this);
                 break;
             case R.id.action_telefonouno:
                 Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228408 "));
@@ -181,55 +179,6 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void enviaMensajeGmail(String s) {
-        Log.i("Send email", "");
-
-        String[] TO = {" empleo@empleotucuman.gob.ar"};
-        String[] CC = {"OTROMAIL@gmail.com"};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TU ASUNTO");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "ESCRIBE AQUI TU CORREO!!!");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-//            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    public void enviaMensajeWhatsApp() {
-//        PackageManager pm=getPackageManager();
-        try {
-//            Intent waIntent = new Intent(Intent.ACTION_SEND);
-//            waIntent.setType("text/plain");
-//            String text = "Tu texto aquí";
-//
-//            PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-//            waIntent.setPackage("com.whatsapp");
-//
-//            waIntent.putExtra(Intent.EXTRA_TEXT, text);
-//            startActivity(Intent.createChooser(waIntent, "Comunicarse con")); // tambien sirve para enviar wathsapp seleccionando contacto
-
-            Intent sendIntent = new Intent("android.intent.action.MAIN");
-            sendIntent.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
-            sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators("5493815442347")+"@s.whatsapp.net"); // envia wathsapp al numero
-            startActivity(sendIntent);
-        } catch (Exception e) {
-            Toast.makeText(this, "WhatsApp no está instalado", Toast.LENGTH_SHORT)
-                    .show();
-        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

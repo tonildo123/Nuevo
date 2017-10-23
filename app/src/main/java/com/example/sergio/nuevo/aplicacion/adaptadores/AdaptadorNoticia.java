@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Noticia;
-import com.example.sergio.nuevo.presentacion.NoticiaWebView;
+import com.example.sergio.nuevo.presentacion.vistas.NoticiaWebView;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 import java.util.ArrayList;

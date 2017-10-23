@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentacion.NoticiaWebView"
+            android:name=".presentacion.vistas.NoticiaWebView"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

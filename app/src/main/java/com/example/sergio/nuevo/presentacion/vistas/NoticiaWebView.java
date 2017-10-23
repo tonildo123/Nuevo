@@ -1,8 +1,7 @@
-package com.example.sergio.nuevo.presentacion;
+package com.example.sergio.nuevo.presentacion.vistas;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,14 +13,12 @@ import android.widget.ProgressBar;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.servicios.ServicioCompartir;
-import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
-import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 
-public class NoticiaWebView extends AppCompatActivity implements View.OnClickListener{
+public class NoticiaWebView extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<String> urls = new ArrayList<>();
     private ProgressBar progressBar;
     private WebView pagina;
@@ -96,6 +93,7 @@ public class NoticiaWebView extends AppCompatActivity implements View.OnClickLis
         btnsalir = (FloatingActionButton)findViewById(R.id.salir);
         btnsalir.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -117,9 +115,7 @@ public class NoticiaWebView extends AppCompatActivity implements View.OnClickLis
                 pagina.loadUrl(urls.get(this.position));
                 break;
             case R.id.salir:
-                Intent pasar = new Intent(activity.getApplicationContext(), MainActivity.class);
-                Transicion.getInstance().transicionActivity(activity,1);
-                activity.startActivity(pasar);
+                finish();
                 break;
         }
     }
