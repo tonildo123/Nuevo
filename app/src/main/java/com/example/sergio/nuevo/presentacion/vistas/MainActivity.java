@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         presentador = new MainPresentadorImpl(this);
     }
+    // permisos para escritura
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity
             case codigo_de_repuesta_escritura: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    permisoEscritura();
+
                 } else {
                     System.out.println("El usuario ha rechazado el permiso");
                 }
@@ -89,13 +90,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void permisoEscritura() {
-        Intent permisos = new Intent(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        Intent permisos2 = new Intent(Manifest.permission.READ_EXTERNAL_STORAGE);
-
-        startActivity(permisos);
-        startActivity(permisos2);
-    }
 
     @Override
     public void mostrarContenido() {
@@ -218,7 +212,6 @@ public class MainActivity extends AppCompatActivity
     public void enviaMensajeWhatsApp() {
 //        PackageManager pm=getPackageManager();
         try {
-
 //            Intent waIntent = new Intent(Intent.ACTION_SEND);
 //            waIntent.setType("text/plain");
 //            String text = "Tu texto aquí";
