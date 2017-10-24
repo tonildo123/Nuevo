@@ -6,4 +6,5 @@ package com.example.sergio.nuevo.presentacion.vistas;
 
 public interface MainView {
     void mostrarContenido();
+    void actualizarBarraProgreso(int porcentaje);
 }

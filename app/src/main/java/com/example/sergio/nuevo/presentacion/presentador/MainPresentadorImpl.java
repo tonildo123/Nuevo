@@ -56,6 +56,7 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     @Override
     protected Void doInBackground(Object... objects) {
         crearCarpetas();
+        publishProgress(10);
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 this.act.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -67,15 +68,19 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+        publishProgress(20);
         if(actNetInfo != null && actNetInfo.isConnected() && ping){
             obtenerNoticias();
+            publishProgress(70);
             obetenerContactos();
+            publishProgress(80);
             obetenerguiamipyme();
+            publishProgress(90);
             Thread hilo1 = new Thread(){
                 @Override
                 public void run() {
                     obtenerCronogramas();
-
+                    publishProgress(100);
                 }
             };
 
@@ -102,6 +107,11 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         mainView.mostrarContenido();
     }
 
+    @Override
+    protected void onProgressUpdate(Object... values) {
+        mainView.actualizarBarraProgreso((int)values[0]);
+    }
+
     private void obtenerRequisitos() {
         Date fechaactual = new Date();
         if(requisitos.levantar("requisitos_joven") == null || (fechaactual.getTime()-requisitos.getModificacion("requisitos_joven").getTime()) > 604800000){
@@ -126,11 +136,15 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
 
     private void obtenerNoticias() {
         ServicioPagEmpleo.getInstance().obtenerUrls();
+        publishProgress(30);
         if(ServicioPagEmpleo.getInstance().getUrls().size() > 0){
+            publishProgress(40);
             if(not.levantar() == null){
                 not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
+                publishProgress(50);
             }else{
                 ServicioPagEmpleo.getInstance().setNovedades(not.levantar());
+                publishProgress(60);
                 not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
             }
         }

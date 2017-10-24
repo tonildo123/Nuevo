@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +26,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
@@ -33,23 +39,27 @@ import com.example.sergio.nuevo.presentacion.presentador.MainPresentador;
 import com.example.sergio.nuevo.presentacion.presentador.MainPresentadorImpl;
 import com.example.sergio.nuevo.servicios.ServicioCompartir;
 
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,MainView {
+        implements NavigationView.OnNavigationItemSelectedListener, MainView {
     final int codigo_de_repuesta_escritura = 0;
     final int codigo_de_repuesta_localizacion = 1000;
     private MainPresentador presentador;
     private LinearLayout linearLayout;
+    private MaterialProgressBar progressBar;
+    private TextView textView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
-        linearLayout = (LinearLayout)findViewById(R.id.linearlayout);
+        linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if (permissionCheck !=  PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         codigo_de_repuesta_escritura);
             }
         }
@@ -57,16 +67,21 @@ public class MainActivity extends AppCompatActivity
         // permisos y parametros necesario para mostar mi posicion
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(ActivityCompat.checkSelfPermission(
-                    this, android.Manifest.permission.ACCESS_FINE_LOCATION)!=
-                    PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+            if (ActivityCompat.checkSelfPermission(
+                    this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         codigo_de_repuesta_localizacion);
             }
         }
+        progressBar = (MaterialProgressBar) findViewById(R.id.material_design_progressbar);
+        progressBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#1E88E5")));
+        progressBar.setVisibility(View.VISIBLE);
+        textView = (TextView)findViewById(R.id.textView2);
 
         presentador = new MainPresentadorImpl(this);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -80,8 +95,8 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
             case codigo_de_repuesta_localizacion:
-                if(permissions.length== 1
-                    && permissions[0].equals(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                if (permissions.length == 1
+                        && permissions[0].equals(android.Manifest.permission.ACCESS_FINE_LOCATION)
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     Toast.makeText(this, "permiso de localizacion aceptado", Toast.LENGTH_SHORT).show();
@@ -92,12 +107,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void mostrarContenido() {
         LayoutInflater inflator = getLayoutInflater();
-        View view = inflator.inflate(R.layout.activity_main,null);
+        View view = inflator.inflate(R.layout.activity_main, null);
         setContentView(view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        DrawerLayout drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -108,6 +123,12 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager m = getSupportFragmentManager();
         m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+    }
+
+    @Override
+    public void actualizarBarraProgreso(final int porcentaje) {
+        textView.setText(porcentaje+"%");
+        progressBar.setProgress(porcentaje);
     }
 
     @Override
@@ -159,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager m = getSupportFragmentManager();
         String[] email = {"empleo@empleotucuman.gob.ar"}; //Direcciones email  a enviar.
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_settings:
                 m.beginTransaction().replace(R.id.contenedor, new ContactosPagina()).commit();
                 break;
@@ -189,7 +210,7 @@ public class MainActivity extends AppCompatActivity
         m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(item)).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START,true);
+        drawer.closeDrawer(GravityCompat.START, true);
 
         return true;
     }

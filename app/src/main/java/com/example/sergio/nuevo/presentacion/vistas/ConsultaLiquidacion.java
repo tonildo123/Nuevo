@@ -56,7 +56,9 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener,A,V
     }
     public void cargarResultados(List datos){
         if(datos != null){
-            ResultadoLiquidaciones res = new ResultadoLiquidaciones(datos,presentadorConsultaLiquidacion);
+            ResultadoLiquidaciones res = new ResultadoLiquidaciones();
+            res.setDatos(datos);
+            res.setPresentadorConsultaLiquidacion(presentadorConsultaLiquidacion);
             FragmentManager m = getActivity().getSupportFragmentManager();
             FragmentTransaction ft = m.beginTransaction().replace(R.id.contenedor, res);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
