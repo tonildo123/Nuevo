@@ -8,5 +8,5 @@ import com.example.sergio.nuevo.dominio.A;
  */
 
 public interface MainPresentador extends IPresentador{
-    A onNavigationItemSelected(MenuItem item);
+    A onNavigationItemSelected(int item);
 }

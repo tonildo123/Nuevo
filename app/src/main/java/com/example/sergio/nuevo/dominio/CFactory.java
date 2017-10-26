@@ -18,8 +18,8 @@ import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
  */
 
 public class CFactory {
-    public A create(MenuItem item){
-        switch (item.getItemId()){
+    public A create(int item){
+        switch (item){
             case R.id.nav_consulta:
                 return new ConsultaLiquidacion();
             case R.id.nav_noticias:

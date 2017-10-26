@@ -6,10 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.MenuItem;
 
+import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
 import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
+import com.example.sergio.nuevo.presentacion.vistas.ResultadoLiquidaciones;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -39,17 +48,28 @@ public class AdministradorFCM extends FirebaseMessagingService {
         Log.i("Texto  :   ", texto);
 
         showNotification(titulo, texto);
-
     }
+    private void showNotification(final String title, String text) {
+        final Intent intent = new Intent(this, MainActivity.class);
+        switch(title){
+            case "Observatorio":
+                intent.putExtra("Fragments",R.id.nav_mipyme);
+                break;
+            case "Cronogramas":
+                intent.putExtra("Fragments",R.id.nav_mipyme);
+                break;
+            case "Requisitos":
+                intent.putExtra("Fragments",R.id.nav_mipyme);
+                break;
+            case "Mapa":
+                intent.putExtra("Fragments",R.id.nav_mipyme);
+                break;
+            default:
+                intent.putExtra("Fragments",R.id.nav_noticias);
+                break;
+        }
 
-
-
-
-    private void showNotification(String title, String text) {
-
-
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
@@ -62,8 +82,7 @@ public class AdministradorFCM extends FirebaseMessagingService {
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 

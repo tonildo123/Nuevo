@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout linearLayout;
     private MaterialProgressBar progressBar;
     private TextView textView;
+    private String intent;
 
 
     @Override
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
         presentador.onResume();
     }
 
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         FragmentManager m = getSupportFragmentManager();
-        m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(item)).commit();
+        m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(item.getItemId())).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START, true);
@@ -215,5 +216,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if(intent.getExtras() != null){
+            FragmentManager m = getSupportFragmentManager();
+            m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(intent.getExtras().getInt("Fragments"))).commit();
+        }
+    }
 }

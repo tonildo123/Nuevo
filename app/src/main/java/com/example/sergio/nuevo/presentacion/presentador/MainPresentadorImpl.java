@@ -211,7 +211,7 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
     }
 
     @Override
-    public A onNavigationItemSelected(MenuItem item) {
+    public A onNavigationItemSelected(int item) {
         CFactory fact = new CFactory();
         return fact.create(item);
     }
