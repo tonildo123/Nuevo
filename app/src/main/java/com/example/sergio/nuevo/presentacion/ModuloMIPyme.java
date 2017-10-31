@@ -56,7 +56,6 @@ public class ModuloMIPyme extends Fragment implements A {
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         public ViewPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
-
         }
 
         String[] titulo = {"OBSERVATORIO - OEPET", "GUIA MIPyME"};

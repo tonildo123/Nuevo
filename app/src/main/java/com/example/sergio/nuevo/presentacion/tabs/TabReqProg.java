@@ -15,34 +15,41 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.Programa;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitos;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitosImpl;
+import com.example.sergio.nuevo.presentacion.vistas.MainView;
 
 import java.io.UnsupportedEncodingException;
 
 
-public class TabReqProg extends Fragment {
-    private PersisRequisitos reqJoven;
-    private Programa joven;
+public class TabReqProg extends Fragment implements MainView{
     private ImageView imagen;
     private WebView pagina;
+    private View v;
+    private PresentadorRequisitos presentadorRequisitos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_progresar_requisitos, container, false);
+        v = inflater.inflate(R.layout.fragment_progresar_requisitos, container, false);
         imagen = v.findViewById(R.id.imgRequisitos);
-        reqJoven = new PersisRequisitos(this.getActivity());
-        joven = reqJoven.levantar("requisitos_progresar");
-
-        if(joven != null){
-            cargarVista(v);
-        }
+        presentadorRequisitos = PresentadorRequisitosImpl.getInstance();
+        presentadorRequisitos.setVista(this);
+        presentadorRequisitos.iniciar();
 
         return v;
     }
 
-    private void cargarVista(View v) {
-        imagen.setImageBitmap(joven.getImg());
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
+    }
+
+    @Override
+    public void mostrarContenido() {
+        imagen.setImageBitmap(presentadorRequisitos.getRequisito().getImg());
         pagina = (WebView)v.findViewById(R.id.webProgProg);
         WebSettings settings = pagina.getSettings();
         settings.setDefaultTextEncodingName("UTF-8");
@@ -50,20 +57,19 @@ public class TabReqProg extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
             String base64 = null;
             try {
-                base64 = Base64.encodeToString(joven.getContenido().getBytes("UTF-8"), Base64.DEFAULT);
+                base64 = Base64.encodeToString(presentadorRequisitos.getRequisito().getContenido().getBytes("UTF-8"), Base64.DEFAULT);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             pagina.loadData(base64, "text/html; charset=UTF-8", "base64");
         } else {
             String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
-            pagina.loadData(header + joven.getContenido(), "text/html; charset=UTF-8", null);
+            pagina.loadData(header + presentadorRequisitos.getRequisito().getContenido(), "text/html; charset=UTF-8", null);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Transicion.getInstance().transicionFragments(getView(),getActivity());
+    public void actualizarBarraProgreso(int porcentaje) {
+
     }
 }

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout linearLayout;
     private MaterialProgressBar progressBar;
     private TextView textView;
-    private String intent;
+    private int fragments;
+    private boolean isResume;
 
 
     @Override
@@ -122,8 +124,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager m = getSupportFragmentManager();
-        m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+        if(this.fragments != 0){
+            getFragment(this.fragments);
+            this.fragments = 0;
+        }else{
+            FragmentManager m = getSupportFragmentManager();
+            m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+        }
     }
 
     @Override
@@ -139,14 +146,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
+        isResume = true;
         super.onResume();
         presentador.onResume();
+        if(this.fragments != 0){
+            getFragment(this.fragments);
+            this.fragments = 0;
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         presentador.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        isResume = false;
+        super.onStop();
     }
 
     @Override
@@ -219,9 +237,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+
         if(intent.getExtras() != null){
-            FragmentManager m = getSupportFragmentManager();
-            m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(intent.getExtras().getInt("Fragments"))).commit();
+            this.fragments = intent.getExtras().getInt("Fragments");
+            Snackbar.make(getCurrentFocus(),"Fragments "+intent.getExtras().getInt("Fragments"),Snackbar.LENGTH_LONG);
         }
+    }
+    private void getFragment(int fragment){
+        FragmentManager m = getSupportFragmentManager();
+        m.beginTransaction().replace(R.id.contenedor, (Fragment) presentador.onNavigationItemSelected(fragment)).commit();
     }
 }

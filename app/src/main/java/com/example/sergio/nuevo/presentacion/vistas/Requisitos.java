@@ -1,11 +1,10 @@
-package com.example.sergio.nuevo.presentacion;
+package com.example.sergio.nuevo.presentacion.vistas;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -14,14 +13,15 @@ import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.A;
-import com.example.sergio.nuevo.presentacion.tabs.TabReqJoven;
-import com.example.sergio.nuevo.presentacion.tabs.TabReqProg;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitos;
+import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitosImpl;
 
 
-public class Requisitos extends Fragment implements A {
+public class Requisitos extends Fragment implements A,MainView {
     private AppBarLayout appBar;
     private TabLayout tabsRequisitos;
     private ViewPager viewPagerRequisitos;
+    private PresentadorRequisitos presentadorRequisitos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,10 +40,10 @@ public class Requisitos extends Fragment implements A {
         // inserta el tab en el appbar
         appBar.addView(tabsRequisitos);
 
-
-
         viewPagerRequisitos = (ViewPager)view.findViewById(R.id.pagerRequisitos);
-        ViewPagerAdapter paginaAdapter = new ViewPagerAdapter(getFragmentManager());
+        presentadorRequisitos = PresentadorRequisitosImpl.getInstance();
+        presentadorRequisitos.setVista(this);
+        FragmentStatePagerAdapter paginaAdapter = presentadorRequisitos.getViewPagerAdapter(getFragmentManager());
         viewPagerRequisitos.setAdapter(paginaAdapter);
         tabsRequisitos.setupWithViewPager(viewPagerRequisitos);
         // retornamos la viosta cargada
@@ -53,36 +53,28 @@ public class Requisitos extends Fragment implements A {
     public void onDestroy() {
         super.onDestroy();
         appBar.removeView(tabsRequisitos);
+        presentadorRequisitos.onDestroy();
     }
-    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-        public ViewPagerAdapter(FragmentManager fragmentManager){
-            super(fragmentManager);
-        }
-        String[] titulo ={" JOVENES "," PROGRESAR "};
 
-        @Override
-        public Fragment getItem(int position) {
-            // instanciamos los fragmentos de la clase tabs para crear los objetos
-            switch (position){
+    @Override
+    public void onResume() {
+        super.onResume();
+        presentadorRequisitos.onResume();
+    }
 
-                case 0:
-                    TabReqJoven tuno = new TabReqJoven();
-                    return tuno;
-                case 1:
-                    TabReqProg tdos = new TabReqProg();
-                    return tdos;
-            }
-            return null;
-        }
+    @Override
+    public void onPause() {
+        super.onPause();
+        presentadorRequisitos.onPause();
+    }
 
-        @Override
-        public int getCount() {
-            return 2;
-        }
+    @Override
+    public void mostrarContenido() {
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titulo[position];
-        }
+    }
+
+    @Override
+    public void actualizarBarraProgreso(int porcentaje) {
+
     }
 }

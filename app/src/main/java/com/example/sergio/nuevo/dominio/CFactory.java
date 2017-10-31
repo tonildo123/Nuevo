@@ -1,7 +1,5 @@
 package com.example.sergio.nuevo.dominio;
 
-import android.view.MenuItem;
-
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.CronogramaDePagos;
@@ -10,7 +8,7 @@ import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
 import com.example.sergio.nuevo.presentacion.NumerosUtiles;
 import com.example.sergio.nuevo.presentacion.OfertaCursos;
 import com.example.sergio.nuevo.presentacion.OfertaLaboral;
-import com.example.sergio.nuevo.presentacion.Requisitos;
+import com.example.sergio.nuevo.presentacion.vistas.Requisitos;
 import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
 /**
@@ -38,6 +36,8 @@ public class CFactory {
                 return new ModuloMIPyme();
             case R.id.nav_cursos:
                 return new OfertaCursos();
+            case R.layout.fragment_observatorio:
+                return new ModuloMIPyme();
             case R.id.nav_exit:
                 System.exit(0);
         }
