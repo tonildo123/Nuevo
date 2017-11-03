@@ -184,6 +184,13 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
             File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
             myNewFolder.mkdir(); //creamos la carpeta
         }
+        f = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados");
+        if(!f.isDirectory()) {
+            String newFolder = "/resultados"; //cualquierCarpeta es el nombre de la Carpeta que vamos a crear
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
+            myNewFolder.mkdir(); //creamos la carpeta
+        }
     }
 
     @Override

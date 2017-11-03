@@ -25,5 +25,4 @@ public class MyJobService extends JobService{
     public boolean onStopJob(JobParameters jobParameters) {
         return false;
     }
-
 }

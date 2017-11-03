@@ -1,5 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,4 +13,34 @@
         android:id="@+id/grilla"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/floatingActionsMenuGuardarImagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:fab_labelStyle="@style/Etiquetas"
+        fab:fab_addButtonColorNormal="@color/blue800"
+        fab:fab_addButtonSize="normal"
+        fab:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/FABguardarImagen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_icon="@drawable/content_save_settings"
+            fab:fab_colorNormal="@color/blue700"
+            fab:fab_size="mini"
+            fab:fab_title="Guardar Resultado" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/FABguardarMostrarResultados"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_icon="@drawable/view_sequential"
+            fab:fab_colorNormal="@color/blue700"
+            fab:fab_size="mini"
+            fab:fab_title="Ver Resultados" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</android.support.design.widget.CoordinatorLayout>

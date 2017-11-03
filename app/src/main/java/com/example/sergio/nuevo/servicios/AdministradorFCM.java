@@ -80,7 +80,6 @@ public class AdministradorFCM extends FirebaseMessagingService {
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_logo_inst1)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setAutoCancel(true)

@@ -69,7 +69,7 @@ public class PersisNoticias {
             try{
                 fos = new FileOutputStream(myPath);
                 if(novedad.getFoto() != null){
-                    novedad.getFoto().compress(Bitmap.CompressFormat.JPEG, 10, fos);
+                    novedad.getFoto().compress(Bitmap.CompressFormat.JPEG, 50, fos);
                 }
                 fos.flush();
             }catch (FileNotFoundException ex){

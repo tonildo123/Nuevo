@@ -1,6 +1,8 @@
 package com.example.sergio.nuevo.presentacion.presentador;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +13,12 @@ import com.example.sergio.nuevo.dominio.ProgresarConsulta;
 import com.example.sergio.nuevo.presentacion.vistas.ViewConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.vistas.ViewFragment;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,5 +79,28 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
     public void cargarResultados() {
         List<List<String>> datos = ProgresarConsulta.getInstance().obtenerDatos();
         consultaliquidacion.cargarResultados(datos);
+    }
+
+    @Override
+    public void guardarImagenResultado(Bitmap bitmap) {
+        Date fechaactual = new Date();
+        String mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+fechaactual.getMonth()+"-"+fechaactual.getYear()+"-"
+                +fechaactual.getHours()+"."+fechaactual.getMinutes()+"."+fechaactual.getSeconds()+".jpg";
+        OutputStream fout = null;
+        File imageFile = new File(mPath);
+
+        try {
+            fout = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, fout);
+            fout.flush();
+            fout.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

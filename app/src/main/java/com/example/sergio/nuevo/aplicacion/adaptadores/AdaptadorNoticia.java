@@ -3,7 +3,9 @@ package com.example.sergio.nuevo.aplicacion.adaptadores;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,7 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
         return position;
     }
 
+
     public View getView(final int position, View convertView,
                         final ViewGroup parent) {
         // inflamos nuestra vista con el layout
@@ -83,6 +86,11 @@ public class AdaptadorNoticia extends ArrayAdapter<List<List>> {
                 activity.startActivity(pasar);
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            viewHolder.layoutAnimado.setPaddingRelative(0,10,0,0);
+        }
+        viewHolder.layoutAnimado.setPadding(0,10,0,0);
+
         if(view.getScrollY() == 0){
             if (position % 2 == 0) {
                 Transicion.getInstance().animarLinearLayout(viewHolder.layoutAnimado,0);
