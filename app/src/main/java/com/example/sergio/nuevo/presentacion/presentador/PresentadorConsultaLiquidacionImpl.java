@@ -2,6 +2,7 @@ package com.example.sergio.nuevo.presentacion.presentador;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -11,13 +12,13 @@ import android.widget.ProgressBar;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
 import com.example.sergio.nuevo.presentacion.vistas.ViewConsultaLiquidacion;
-import com.example.sergio.nuevo.presentacion.vistas.ViewFragment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import java.util.List;
 public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLiquidacion{
     private Activity activity;
     private ViewConsultaLiquidacion consultaliquidacion;
+    private String mPath;
 
     public PresentadorConsultaLiquidacionImpl(Activity activity, ViewConsultaLiquidacion consultaliquidacion,ProgressBar progressBar) {
         this.activity = activity;
@@ -84,7 +86,7 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
     @Override
     public void guardarImagenResultado(Bitmap bitmap) {
         Date fechaactual = new Date();
-        String mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+fechaactual.getMonth()+"-"+fechaactual.getYear()+"-"
+        mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+fechaactual.getMonth()+"-"+fechaactual.getYear()+"-"
                 +fechaactual.getHours()+"."+fechaactual.getMinutes()+"."+fechaactual.getSeconds()+".jpg";
         OutputStream fout = null;
         File imageFile = new File(mPath);
@@ -102,5 +104,18 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<Bitmap> mostrarImagenesResultados() {
+        ArrayList<Bitmap> imagenes = new ArrayList<>();
+        File directorio = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados");
+        String[] arrArchivos = directorio.list();
+        for (String s:arrArchivos) {
+            File directorioimg = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados/"+s);
+            imagenes.add(BitmapFactory.decodeFile(String.valueOf(directorioimg)));
+        }
+
+        return imagenes;
     }
 }

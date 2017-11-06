@@ -32,8 +32,9 @@
             fab:fab_colorNormal="@color/blue700"
             fab:fab_size="mini"
             fab:fab_title="Guardar Resultado" />
+
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/FABguardarMostrarResultados"
+            android:id="@+id/FABMostrarResultados"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_icon="@drawable/view_sequential"

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,19 +26,12 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
     private List<List<String>> datos;
     private PresentadorConsultaLiquidacion presentadorConsultaLiquidacion;
     private FloatingActionButton btnGuardarImagen;
+    private FloatingActionButton btnMostrarResultadosGuerdados;
     private View v;
     private ListView listview;
 
-    public List<List<String>> getDatos() {
-        return datos;
-    }
-
     public void setDatos(List<List<String>> datos) {
         this.datos = datos;
-    }
-
-    public PresentadorConsultaLiquidacion getPresentadorConsultaLiquidacion() {
-        return presentadorConsultaLiquidacion;
     }
 
     public void setPresentadorConsultaLiquidacion(PresentadorConsultaLiquidacion presentadorConsultaLiquidacion) {
@@ -52,8 +46,10 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
         listview = (ListView) v.findViewById(R.id.grilla);
         listview.setAdapter(new AdaptadorResLiquidaciones(this.getActivity(),datos));
         btnGuardarImagen = (FloatingActionButton)v.findViewById(R.id.FABguardarImagen);
+        btnMostrarResultadosGuerdados = (FloatingActionButton)v.findViewById(R.id.FABMostrarResultados);
 
         btnGuardarImagen.setOnClickListener(this);
+        btnMostrarResultadosGuerdados.setOnClickListener(this);
         return v;
     }
     @Override
@@ -65,11 +61,20 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
 
     @Override
     public void onClick(View view) {
-        listview.setDrawingCacheEnabled(true);
-        listview.buildDrawingCache();
-        listview.setDrawingCacheBackgroundColor(Color.WHITE);
-        Bitmap bitmap = Bitmap.createBitmap(listview.getDrawingCache());
-        listview.setDrawingCacheEnabled(false);
-        presentadorConsultaLiquidacion.guardarImagenResultado(bitmap);
+        switch (view.getId()){
+            case R.id.FABguardarImagen:
+                listview.setDrawingCacheEnabled(true);
+                listview.buildDrawingCache();
+                listview.setDrawingCacheBackgroundColor(Color.WHITE);
+                Bitmap bitmap = Bitmap.createBitmap(listview.getDrawingCache());
+                listview.setDrawingCacheEnabled(false);
+                presentadorConsultaLiquidacion.guardarImagenResultado(bitmap);
+                break;
+            case R.id.FABMostrarResultados:
+                FragmentManager m = getFragmentManager();
+                ResultadosLiquidacionesImgImpl resultadosLiquidacionesImg = new ResultadosLiquidacionesImgImpl(presentadorConsultaLiquidacion);
+                m.beginTransaction().replace(R.id.contenedor,resultadosLiquidacionesImg).commit();
+                break;
+        }
     }
 }
