@@ -86,7 +86,7 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
     @Override
     public void guardarImagenResultado(Bitmap bitmap) {
         Date fechaactual = new Date();
-        mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+fechaactual.getMonth()+"-"+fechaactual.getYear()+"-"
+        mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+(fechaactual.getMonth()+1)+"-"+(fechaactual.getYear()+1900)+"-"
                 +fechaactual.getHours()+"."+fechaactual.getMinutes()+"."+fechaactual.getSeconds()+".jpg";
         OutputStream fout = null;
         File imageFile = new File(mPath);
@@ -107,15 +107,17 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
     }
 
     @Override
-    public ArrayList<Bitmap> mostrarImagenesResultados() {
-        ArrayList<Bitmap> imagenes = new ArrayList<>();
+    public List<List> mostrarImagenesResultados() {
+        List<List> imagenes = new ArrayList();
         File directorio = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados");
         String[] arrArchivos = directorio.list();
         for (String s:arrArchivos) {
+            List list = new ArrayList();
             File directorioimg = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados/"+s);
-            imagenes.add(BitmapFactory.decodeFile(String.valueOf(directorioimg)));
+            list.add(BitmapFactory.decodeFile(String.valueOf(directorioimg)));
+            list.add(s);
+            imagenes.add(list);
         }
-
         return imagenes;
     }
 }

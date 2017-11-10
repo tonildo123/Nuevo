@@ -43,10 +43,12 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_resultado_liquidaciones, container, false);
-        listview = (ListView) v.findViewById(R.id.grilla);
+        listview =  v.findViewById(R.id.grilla);
         listview.setAdapter(new AdaptadorResLiquidaciones(this.getActivity(),datos));
-        btnGuardarImagen = (FloatingActionButton)v.findViewById(R.id.FABguardarImagen);
-        btnMostrarResultadosGuerdados = (FloatingActionButton)v.findViewById(R.id.FABMostrarResultados);
+        btnGuardarImagen = v.findViewById(R.id.FABguardarImagen);
+        btnGuardarImagen.setVisibility(View.VISIBLE);
+        btnGuardarImagen.setTitle("Guardar Resultado");
+        btnMostrarResultadosGuerdados = v.findViewById(R.id.FABMostrarResultados);
 
         btnGuardarImagen.setOnClickListener(this);
         btnMostrarResultadosGuerdados.setOnClickListener(this);

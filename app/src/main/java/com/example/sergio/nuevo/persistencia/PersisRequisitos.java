@@ -63,7 +63,7 @@ public class PersisRequisitos {
             FileOutputStream fos = null;
             try{
                 fos = new FileOutputStream(myPath);
-                programa.getImg().compress(Bitmap.CompressFormat.JPEG, 10, fos);
+                programa.getImg().compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 fos.flush();
             }catch (FileNotFoundException ex){
                 ex.printStackTrace();

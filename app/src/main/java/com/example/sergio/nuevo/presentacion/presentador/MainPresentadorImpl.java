@@ -145,7 +145,10 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
             }else{
                 ServicioPagEmpleo.getInstance().setNovedades(not.levantar());
                 publishProgress(60);
-                not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
+                if(ServicioPagEmpleo.getInstance().getNovedades() != null){
+                    not.guardar(ServicioPagEmpleo.getInstance().getNoticias());
+                }
+
             }
         }
     }

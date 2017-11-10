@@ -3,40 +3,86 @@ package com.example.sergio.nuevo.aplicacion.adaptadores;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
+import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
+import com.example.sergio.nuevo.servicios.ServicioCompartir;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Operador1 on 06/11/2017.
  */
 
-public class AdaptadorImgLiquidaciones extends ArrayAdapter {
-    private Activity activity;
-    private ArrayList<Bitmap> resource;
+public class AdaptadorImgLiquidaciones extends BaseAdapter {
+    private Context context;
+    private List<List> resource;
+    private static SparseArray<Bitmap> imagenesEscaladas = new SparseArray<Bitmap>(7);
 
-    public AdaptadorImgLiquidaciones(@NonNull Activity activity, @NonNull ArrayList<Bitmap> resource) {
-        super(activity, R.layout.imagen_resultados_liquidaciones);
-        this.activity = activity;
+    public AdaptadorImgLiquidaciones(@NonNull Context context, @NonNull List<List> resource) {
+        this.context = context;
         this.resource = resource;
-
     }
 
-    static class ViewHolder{
-        protected ImageView imageView;
+    class Holder
+    {
+        ImageView image;
+
+        TextView textView;
+
+        Button btnBorrarImg;
+
+        Button btnCompartir;
+
+        public Button getBtnBorrarImg() {
+            return btnBorrarImg;
+        }
+
+        public void setBtnBorrarImg(Button btnBorrarImg) {
+            this.btnBorrarImg = btnBorrarImg;
+        }
+
+        public Button getBtnCompartir() {
+            return btnCompartir;
+        }
+
+        public void setBtnCompartir(Button btnCompartir) {
+            this.btnCompartir = btnCompartir;
+        }
+
+        public ImageView getImage()
+        {
+            return image;
+        }
+
+        public void setImage(ImageView image)
+        {
+            this.image = image;
+        }
+
+        public TextView getTextView()
+        {
+            return textView;
+        }
+
+        public void setTextView(TextView textView)
+        {
+            this.textView = textView;
+        }
+
     }
 
     @Override
@@ -50,19 +96,66 @@ public class AdaptadorImgLiquidaciones extends ArrayAdapter {
         return position;
     }
 
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
     @NonNull
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        View view = null;
-        LayoutInflater inflator = activity.getLayoutInflater();
-        view = inflator.inflate(R.layout.imagen_resultados_liquidaciones, null);
-        final ViewHolder viewHolder = new ViewHolder();
+        Holder holder = null;
 
-        viewHolder.imageView = view.findViewById(R.id.imageView4);
+        if (convertView == null)
+        {
+            holder = new Holder();
+            LayoutInflater ltInflate = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+            convertView = ltInflate.inflate(R.layout.imagen_resultados_liquidaciones, null);
 
-        viewHolder.imageView.setImageBitmap(resource.get(position));
+            holder.setTextView((TextView) convertView.findViewById(R.id.textView4));
+            holder.setImage((ImageView) convertView.findViewById(R.id.imageView4));
+            holder.setBtnBorrarImg((Button) convertView.findViewById(R.id.btnBorrarImg));
+            holder.setBtnCompartir((Button) convertView.findViewById(R.id.btnCompartirImg));
 
-        return view;
+            convertView.setTag(holder);
+        }
+        else
+        {
+            holder = (Holder) convertView.getTag();
+        }
+
+
+        if (imagenesEscaladas.get(position) == null)
+        {
+            imagenesEscaladas.put(position, (Bitmap) resource.get(position).get(0));
+        }
+
+        holder.getImage().setImageBitmap(imagenesEscaladas.get(position));
+        holder.getTextView().setText((String)resource.get(position).get(1));
+        holder.getBtnBorrarImg().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File directorioimg = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados/"+resource.get(position).get(1));
+                directorioimg.delete();
+                resource.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+        holder.getBtnCompartir().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File directorioimg = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados/"+resource.get(position).get(1));
+                ServicioCompartir.compartirImagen(directorioimg,context);
+            }
+        });
+
+
+        return convertView;
+    }
+
+    @Override
+    public CharSequence[] getAutofillOptions() {
+        return new CharSequence[0];
     }
 
 }

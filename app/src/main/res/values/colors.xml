@@ -24,4 +24,8 @@
     <color name="blueA200">#448AFF</color>
     <color name="blueA400">#2979FF</color>
     <color name="blueA700">#2962FF</color>
+
+
+    <color name="rojo">#e2ff2954</color>
+    <color name="verde">#e21ad47d</color>
 </resources>
