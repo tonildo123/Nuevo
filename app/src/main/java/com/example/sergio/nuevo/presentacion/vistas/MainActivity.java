@@ -240,7 +240,6 @@ public class MainActivity extends AppCompatActivity
 
         if(intent.getExtras() != null){
             this.fragments = intent.getExtras().getInt("Fragments");
-            Snackbar.make(getCurrentFocus(),"Fragments "+intent.getExtras().getInt("Fragments"),Snackbar.LENGTH_LONG);
         }
     }
     private void getFragment(int fragment){

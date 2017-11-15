@@ -145,7 +145,10 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
             }else{
                 ServicioPagEmpleo.getInstance().setNovedades(not.levantar());
                 publishProgress(60);
-                not.guardar(ServicioPagEmpleo.getInstance().getNovedades());
+                if(ServicioPagEmpleo.getInstance().getNovedades() != null){
+                    not.guardar(ServicioPagEmpleo.getInstance().getNoticias());
+                }
+
             }
         }
     }
@@ -180,6 +183,13 @@ public class MainPresentadorImpl extends AsyncTask<Object, Object, Void> impleme
         f = new File(Environment.getExternalStorageDirectory() + "/SSE/images");
         if(!f.isDirectory()) {
             String newFolder = "/images"; //cualquierCarpeta es el nombre de la Carpeta que vamos a crear
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
+            myNewFolder.mkdir(); //creamos la carpeta
+        }
+        f = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados");
+        if(!f.isDirectory()) {
+            String newFolder = "/resultados"; //cualquierCarpeta es el nombre de la Carpeta que vamos a crear
             String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
             File myNewFolder = new File(extStorageDirectory+ "/SSE" + newFolder);
             myNewFolder.mkdir(); //creamos la carpeta

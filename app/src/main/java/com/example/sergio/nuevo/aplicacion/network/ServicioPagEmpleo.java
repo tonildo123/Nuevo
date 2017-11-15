@@ -26,7 +26,7 @@ public class ServicioPagEmpleo {
     private Element selectorDiv;
     private Elements elements1;
     private Elements elements2;
-    private String text;
+    private String text = "";
     private boolean terminado = false;
     private static final ServicioPagEmpleo not = new ServicioPagEmpleo();
     private ArrayList<Thread> hilos = new ArrayList<>();
@@ -42,6 +42,10 @@ public class ServicioPagEmpleo {
 
     public ServicioPagEmpleo() {
         img = img.getInstance();
+    }
+
+    public ArrayList<Noticia> getNoticias() {
+        return noticias;
     }
 
     public ArrayList<Noticia> getNovedades() {
@@ -60,7 +64,7 @@ public class ServicioPagEmpleo {
                                             public void run() {
                                                 noticias.get(i).setId(i+1);
                                                 noticias.get(i).setUrlImagen(urls.get(i).get(1));
-                                                noticias.get(i).setFoto(img.descargarImagen(urls.get(i).get(1), 650, 350));
+                                                noticias.get(i).setFoto(img.descargarImagen(urls.get(i).get(1), 1048, 748));
                                             }
                                         };
                                         Thread hilonieto2 = new Thread() {
@@ -98,8 +102,11 @@ public class ServicioPagEmpleo {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            return noticias;
+        }else{
+            return null;
         }
-        return noticias;
+
     }
 
     public synchronized void obtenerUrls() {
@@ -166,6 +173,7 @@ public class ServicioPagEmpleo {
 
     private String obtenerParrafo(String s) {
         try {
+            text = "";
             //doc trae el html completo de la url que se le agregue
             doc = Jsoup.connect(s).userAgent("Mozilla").get();
 
@@ -175,13 +183,15 @@ public class ServicioPagEmpleo {
             elements1 = selectorDiv.getElementsByTag("p");
 
 //            recorremos sus elementos y los agregamos al array de urls.
-            text = "";
+
             text = elements1.get(1).text() + " " + elements1.get(2).text();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return text;
+        finally {
+            return text;
+        }
     }
 
     private String obtenerTitulo() {

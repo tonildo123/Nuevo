@@ -6,6 +6,7 @@
 
     <color name="negro_semitransparente">#B2000000</color>
     <color name="transparente">#26000000</color>
+    <color name="transparentefull">#00000000</color>
     <color name="blanco">#fafafa</color>
     <color name="negro">#000000</color>
 
@@ -25,4 +26,8 @@
     <color name="blueA200">#448AFF</color>
     <color name="blueA400">#2979FF</color>
     <color name="blueA700">#2962FF</color>
+
+
+    <color name="rojo">#e2ff2954</color>
+    <color name="verde">#e21ad47d</color>
 </resources>

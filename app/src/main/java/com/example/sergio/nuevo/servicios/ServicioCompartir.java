@@ -2,6 +2,7 @@ package com.example.sergio.nuevo.servicios;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.sergio.nuevo.presentacion.vistas.MainActivity;
+
+import java.io.File;
 
 /**
  * Created by Operador1 on 19/09/2017.
@@ -77,5 +80,12 @@ public abstract class ServicioCompartir {
             Toast.makeText(activity, "WhatsApp no está instalado", Toast.LENGTH_SHORT)
                     .show();
         }
+    }
+
+    public static void compartirImagen(File directorioimg, Context context) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/jpeg");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(directorioimg));
+        context.startActivity(Intent.createChooser(intent, "Compartir con"));
     }
 }

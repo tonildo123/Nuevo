@@ -18,6 +18,7 @@ import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorConsultaLiquidacionImpl;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener,A,V
     }
     private ProgressBar progressBar;
     private PresentadorConsultaLiquidacion presentadorConsultaLiquidacion;
+    private FloatingActionButton btnMostrarResultadosGuerdados;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,13 +43,15 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener,A,V
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_progresar_consultaliq,container,false);
-        etCuil = (EditText)view.findViewById(R.id.etCuil);
-        etCaptcha = (EditText)view.findViewById(R.id.etCaptcha);
-        progressBar = (ProgressBar)view.findViewById(R.id.progressBar2);
-        consultar = (Button) view.findViewById(R.id.bConsulta);
+        etCuil = view.findViewById(R.id.etCuil);
+        etCaptcha = view.findViewById(R.id.etCaptcha);
+        progressBar = view.findViewById(R.id.progressBar2);
+        consultar = view.findViewById(R.id.bConsulta);
         consultar.setOnClickListener(this);
-        btnCaptcha = (Button) view.findViewById(R.id.btnactcaptcha);
+        btnCaptcha = view.findViewById(R.id.btnactcaptcha);
         btnCaptcha.setOnClickListener(this);
+        btnMostrarResultadosGuerdados = view.findViewById(R.id.FABMostrarResultados);
+        btnMostrarResultadosGuerdados.setOnClickListener(this);
         presentadorConsultaLiquidacion = new PresentadorConsultaLiquidacionImpl(getActivity(),this,progressBar);
 
         // Inflate the layout for this fragment
@@ -76,8 +80,15 @@ public class ConsultaLiquidacion extends Fragment implements OnClickListener,A,V
         o[2] = etCuil;
         o[3] = progressBar;
         presentadorConsultaLiquidacion.onClick(o);
-
-    }@Override
+        switch (view.getId()){
+            case R.id.FABMostrarResultados:
+                FragmentManager m = getFragmentManager();
+                ResultadosLiquidacionesImgImpl resultadosLiquidacionesImg = new ResultadosLiquidacionesImgImpl(presentadorConsultaLiquidacion);
+                m.beginTransaction().replace(R.id.contenedor,resultadosLiquidacionesImg).commit();
+                break;
+        }
+    }
+    @Override
     public void onResume() {
         super.onResume();
         Transicion.getInstance().transicionFragments(getView(),getActivity());

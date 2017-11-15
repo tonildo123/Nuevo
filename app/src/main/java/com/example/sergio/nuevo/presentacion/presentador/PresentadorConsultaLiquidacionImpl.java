@@ -1,6 +1,9 @@
 package com.example.sergio.nuevo.presentacion.presentador;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.EditText;
@@ -9,8 +12,14 @@ import android.widget.ProgressBar;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.ProgresarConsulta;
 import com.example.sergio.nuevo.presentacion.vistas.ViewConsultaLiquidacion;
-import com.example.sergio.nuevo.presentacion.vistas.ViewFragment;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +29,7 @@ import java.util.List;
 public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLiquidacion{
     private Activity activity;
     private ViewConsultaLiquidacion consultaliquidacion;
+    private String mPath;
 
     public PresentadorConsultaLiquidacionImpl(Activity activity, ViewConsultaLiquidacion consultaliquidacion,ProgressBar progressBar) {
         this.activity = activity;
@@ -71,5 +81,43 @@ public class PresentadorConsultaLiquidacionImpl implements PresentadorConsultaLi
     public void cargarResultados() {
         List<List<String>> datos = ProgresarConsulta.getInstance().obtenerDatos();
         consultaliquidacion.cargarResultados(datos);
+    }
+
+    @Override
+    public void guardarImagenResultado(Bitmap bitmap) {
+        Date fechaactual = new Date();
+        mPath = Environment.getExternalStorageDirectory().toString() + "/SSE/resultados/" + fechaactual.getDate()+"-"+(fechaactual.getMonth()+1)+"-"+(fechaactual.getYear()+1900)+"-"
+                +fechaactual.getHours()+"."+fechaactual.getMinutes()+"."+fechaactual.getSeconds()+".jpg";
+        OutputStream fout = null;
+        File imageFile = new File(mPath);
+
+        try {
+            fout = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, fout);
+            fout.flush();
+            fout.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<List> mostrarImagenesResultados() {
+        List<List> imagenes = new ArrayList();
+        File directorio = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados");
+        String[] arrArchivos = directorio.list();
+        for (String s:arrArchivos) {
+            List list = new ArrayList();
+            File directorioimg = new File(Environment.getExternalStorageDirectory() + "/SSE/resultados/"+s);
+            list.add(BitmapFactory.decodeFile(String.valueOf(directorioimg)));
+            list.add(s);
+            imagenes.add(list);
+        }
+        return imagenes;
     }
 }
