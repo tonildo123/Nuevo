@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -71,6 +73,7 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
                 Bitmap bitmap = Bitmap.createBitmap(listview.getDrawingCache());
                 listview.setDrawingCacheEnabled(false);
                 presentadorConsultaLiquidacion.guardarImagenResultado(bitmap);
+                Snackbar.make(getView(),"La imagen se ha guardado correctamente",Snackbar.LENGTH_LONG).show();
                 break;
             case R.id.FABMostrarResultados:
                 FragmentManager m = getFragmentManager();
