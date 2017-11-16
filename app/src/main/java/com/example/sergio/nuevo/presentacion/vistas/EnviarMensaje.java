@@ -121,7 +121,7 @@ public class EnviarMensaje extends Fragment  {
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            getActivity().finish();
+
 //            Log.i("Finished sending email...", "");
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(getContext().getApplicationContext(),

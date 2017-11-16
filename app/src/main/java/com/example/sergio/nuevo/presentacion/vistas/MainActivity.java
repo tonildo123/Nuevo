@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity
                 ServicioCompartir.enviarWhatsapp(this);
                 break;
             case R.id.action_email:// sección comunicarse por gmail ....
-                ServicioCompartir.enviarGmail(this);
+                m.beginTransaction().replace(R.id.contenedor, new EnviarMensaje()).commit();
                 break;
             case R.id.action_telefonouno:
                 Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:  4228408 "));
