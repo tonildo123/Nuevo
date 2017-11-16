@@ -9,12 +9,14 @@ import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -152,7 +154,8 @@ public class SendGetPost extends AsyncTask{
 
         return response;
     }
-    public static StringBuilder getFormParams(String pag,String usuario, String contraseña, String cuil, String captcha) throws UnsupportedEncodingException {
+    public static StringBuilder getFormParams
+            (String pag,String usuario, String contraseña, String cuil, String captcha) throws UnsupportedEncodingException {
         int init = 0;
         int sesion = 0;
         int nm = 0;
@@ -219,4 +222,10 @@ public class SendGetPost extends AsyncTask{
         if (cookies != null)
             this.cookies = cookies;
     }
+
+
+
+
+
+
 }

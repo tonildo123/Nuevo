@@ -8,6 +8,8 @@
     <color name="transparente">#26000000</color>
     <color name="transparentefull">#00000000</color>
     <color name="blanco">#fafafa</color>
+    <color name="negro">#000000</color>
+
 
     <!--paleta blue-->
     <color name="blue50">#e3f2fd</color>
