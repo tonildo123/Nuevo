@@ -34,30 +34,7 @@ public abstract class ServicioCompartir {
         intent.putExtra(Intent.EXTRA_TEXT, text);
         activity.startActivity(Intent.createChooser(intent, "Compartir con"));
     }
-    public static void enviarGmail(Activity activity){
-        Log.i("Send email", "");
 
-        String[] TO = {" empleo@empleotucuman.gob.ar"};
-        String[] CC = {"OTROMAIL@gmail.com"};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TU ASUNTO");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "ESCRIBE AQUI TU CORREO!!!");
-
-        try {
-            activity.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            activity.finish();
-//            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(activity,
-                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
     public static void enviarWhatsapp(Activity activity){
         //        PackageManager pm=getPackageManager();
         try {

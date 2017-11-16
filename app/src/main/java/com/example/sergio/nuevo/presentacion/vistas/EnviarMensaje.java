@@ -1,5 +1,6 @@
 package com.example.sergio.nuevo.presentacion.vistas;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
@@ -82,8 +83,6 @@ public class EnviarMensaje extends Fragment  {
         });
 
 
-
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -108,6 +107,8 @@ public class EnviarMensaje extends Fragment  {
 
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setComponent(new ComponentName("com.google.android.gm","com.google.android.gm.ConversationListActivity"));
+        emailIntent.setPackage("com.google.android.gm");
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
 //        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
@@ -119,7 +120,7 @@ public class EnviarMensaje extends Fragment  {
                 "\n" + mail.getText() + "\n"+ telefono.getText() + "\n" + campoMensaje.getText() );
 
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            startActivity(Intent.createChooser(emailIntent, ""));
 
 //            Log.i("Finished sending email...", "");
         } catch (android.content.ActivityNotFoundException ex) {
@@ -128,6 +129,8 @@ public class EnviarMensaje extends Fragment  {
         }
 
         limpiarCampos();
+
+
 
     }
 
