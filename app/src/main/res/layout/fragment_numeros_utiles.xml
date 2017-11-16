@@ -15,10 +15,8 @@
             android:id="@+id/buttonPolicia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_green_dark"
-            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
+            android:background="@drawable/policia"
             android:onClick="llamarPolicias"
-            android:text=" POLICIA "
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -32,12 +30,9 @@
             android:id="@+id/buttonAmbulancia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue400"
-            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
+            android:background="@drawable/ambulancia"
             android:onClick="llamarAmbulancia"
-            android:text="AMBULANCIA"
-            android:textColor="@color/blanco"
-            android:textSize="30sp" />
+            android:textColor="@color/blanco" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,10 +45,8 @@
             android:id="@+id/buttonBomberos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_red_dark"
-            android:drawableLeft="@android:drawable/stat_sys_phone_call_forward"
+            android:background="@drawable/bomberos"
             android:onClick="llamarBomberos"
-            android:text="BOMBEROS"
             android:textSize="30sp" />
     </LinearLayout>
 </LinearLayout>

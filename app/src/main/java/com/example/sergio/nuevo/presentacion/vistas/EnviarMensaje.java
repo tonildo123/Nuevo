@@ -1,5 +1,8 @@
 package com.example.sergio.nuevo.presentacion.vistas;
 
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,29 +15,14 @@ import android.widget.EditText;
 
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.sergio.nuevo.R;
-import com.example.sergio.nuevo.servicios.ServicioCompartir;
 
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 
 public class EnviarMensaje extends Fragment  {
@@ -44,7 +32,9 @@ public class EnviarMensaje extends Fragment  {
     private Spinner opcion;
     private String uri = "http://181.14.240.59/Portal/contacto-5/";
     private String capacitacion = "formacionprofesional@empleotucuman.gob.ar", intermediacionLaboral ="pasantias@empleotucuman.gob.ar",emprendimientos="contacto@mipyme.gob.ar", programadeEmpleo="pulidol@empleotucuman.gob.ar",informacionInstitucional="empleo@empleotucuman.gob.ar";
-    private ArrayList formulario = new ArrayList();
+    private String correo="";
+
+    String gmail ="";
 
 
 
@@ -67,12 +57,78 @@ public class EnviarMensaje extends Fragment  {
         ArrayAdapter<String> adaptadorSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, valores){};
         opcion.setAdapter(adaptadorSpinner);
 
+        enviar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(opcion.getSelectedItem().toString()=="Capacitacion"){
+                    enviarMail(capacitacion);
+                }
+                if(opcion.getSelectedItem().toString()=="Intermediación Laboral"){
+                    enviarMail(intermediacionLaboral);
+                }
+                if(opcion.getSelectedItem().toString()=="Emprendimientos"){
+                    enviarMail(emprendimientos);
+                }
+                if(opcion.getSelectedItem().toString()=="Programas de Empleo"){
+                    enviarMail(programadeEmpleo);
+                }
+                if(opcion.getSelectedItem().toString()=="Información Institucional"){
+                    enviarMail(informacionInstitucional);
+                }
+
+            }
+
+
+        });
+        limpiarCampos();
+
+
 
         // Inflate the layout for this fragment
         return view;
     }
 
 
+
+    public  void enviarMail(String correo) {
+
+//        List<ApplicationInfo> inf = getActivity().getPackageManager().getInstalledApplications(0);
+//        List<String> inf1 = new ArrayList<>();
+//
+//        for (int i =0; i < inf.size(); i++ ){
+//            if(inf.get(i).className != null){
+//                inf1.add(inf.get(i).className);
+//
+//            }
+//
+//        }
+//        Collections.sort(inf1);
+
+        String[] to = {correo}; //aquí pon tu correo
+
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+//        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+
+
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TU ASUNTO");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, nombre.getText() + "\n" + apellido.getText() +
+                "\n" + mail.getText() + "\n"+ telefono.getText() + "\n" + campoMensaje.getText() );
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            getActivity().finish();
+//            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getContext().getApplicationContext(),
+                    "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
     public void limpiarCampos() {
         opcion.getSelectedItem().toString();
