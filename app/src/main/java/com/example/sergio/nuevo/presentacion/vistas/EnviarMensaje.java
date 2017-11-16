@@ -79,9 +79,8 @@ public class EnviarMensaje extends Fragment  {
 
             }
 
-
         });
-        limpiarCampos();
+
 
 
 
@@ -127,6 +126,8 @@ public class EnviarMensaje extends Fragment  {
             Toast.makeText(getContext().getApplicationContext(),
                     "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show();
         }
+
+        limpiarCampos();
 
     }
 
