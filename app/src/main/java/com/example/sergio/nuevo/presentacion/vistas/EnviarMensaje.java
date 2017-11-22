@@ -20,22 +20,15 @@ import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 
 public class EnviarMensaje extends Fragment  {
 
     private Button enviar;
-    private EditText nombre, apellido, mail, telefono, campoMensaje;
+    private EditText nombre, apellido, telefono, campoMensaje;
     private Spinner opcion;
-    private String uri = "http://181.14.240.59/Portal/contacto-5/";
     private String capacitacion = "formacionprofesional@empleotucuman.gob.ar", intermediacionLaboral ="pasantias@empleotucuman.gob.ar",emprendimientos="contacto@mipyme.gob.ar", programadeEmpleo="pulidol@empleotucuman.gob.ar",informacionInstitucional="empleo@empleotucuman.gob.ar";
-    private String correo="";
 
-    String gmail ="";
 
 
 
@@ -47,7 +40,6 @@ public class EnviarMensaje extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_enviarmail,container,false);
         nombre   = (EditText)view.findViewById(R.id.etNombre);
         apellido = (EditText)view.findViewById(R.id.etApellido);
-        mail     = (EditText)view.findViewById(R.id.etEmail);
         telefono = (EditText)view.findViewById(R.id.etTelefono);
         campoMensaje = (EditText)view.findViewById(R.id.etMensaje);
 
@@ -108,7 +100,7 @@ public class EnviarMensaje extends Fragment  {
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 //        emailIntent.setComponent(new ComponentName("com.google.android.gm","com.google.android.gm.ConversationListActivity"));
-        emailIntent.setPackage("com.google.android.gm");
+//        emailIntent.setPackage("com.google.android.gm");
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
 //        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
@@ -117,7 +109,7 @@ public class EnviarMensaje extends Fragment  {
 
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "TU ASUNTO");
         emailIntent.putExtra(Intent.EXTRA_TEXT, nombre.getText() + "\n" + apellido.getText() +
-                "\n" + mail.getText() + "\n"+ telefono.getText() + "\n" + campoMensaje.getText() );
+                "\n" + "\n"+ telefono.getText() + "\n" + campoMensaje.getText() );
 
         try {
             startActivity(Intent.createChooser(emailIntent, ""));
@@ -138,7 +130,6 @@ public class EnviarMensaje extends Fragment  {
         opcion.getSelectedItem().toString();
         apellido.setText("");
         nombre.setText("");
-        mail.setText("");
         telefono.setText("");
         campoMensaje.setText("");
 
