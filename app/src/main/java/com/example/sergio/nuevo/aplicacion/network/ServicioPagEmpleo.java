@@ -20,7 +20,7 @@ import java.util.List;
 public class ServicioPagEmpleo {
 
 
-    private static final String url = "http://181.14.240.59/Portal";
+    private static final String url = "http://181.14.240.59/Portal/";
     private Document doc;
     private Document pagEmpleo;
     private Element selectorDiv;
