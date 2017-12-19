@@ -19,8 +19,8 @@ public class ServicioRequisitos {
     private Document doc;
     private Element selectorDiv;
     private Programa joven;
-    private String urlProgramaJoven = "http://181.14.240.59/Portal/programas-de-empleo/programa-jovenes-con-mas-y-mejor-trabajo/";
-    private String urlProgramaProgresar = "http://181.14.240.59/Portal/programas-de-empleo/progresar/";
+    private String urlProgramaJoven = "http://181.14.240.59/Portal/?page_id=116";
+    private String urlProgramaProgresar = "http://181.14.240.59/Portal/?page_id=627";
     private static final ServicioRequisitos req = new ServicioRequisitos();
 
     public static ServicioRequisitos getInstance(){

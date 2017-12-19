@@ -20,7 +20,7 @@ public class ServicioGuiaMipyme {
     private Element selectorDiv;
     private String  s="";;
 
-    private String urlGuiaMipyme = "http://181.14.240.59/Portal/mipyme/guia-de-financiamiento/";
+    private String urlGuiaMipyme = "http://181.14.240.59/Portal/?page_id=6767";
     private static final ServicioGuiaMipyme guia = new ServicioGuiaMipyme();
 
     public static ServicioGuiaMipyme getInstance(){
