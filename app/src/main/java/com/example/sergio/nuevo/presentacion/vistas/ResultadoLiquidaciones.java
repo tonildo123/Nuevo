@@ -77,7 +77,8 @@ public class ResultadoLiquidaciones extends Fragment implements OnClickListener{
                 break;
             case R.id.FABMostrarResultados:
                 FragmentManager m = getFragmentManager();
-                ResultadosLiquidacionesImgImpl resultadosLiquidacionesImg = new ResultadosLiquidacionesImgImpl(presentadorConsultaLiquidacion);
+                ResultadosLiquidacionesImgImpl resultadosLiquidacionesImg = new ResultadosLiquidacionesImgImpl();
+                resultadosLiquidacionesImg.setPresentador(presentadorConsultaLiquidacion);
                 m.beginTransaction().replace(R.id.contenedor,resultadosLiquidacionesImg).commit();
                 break;
         }

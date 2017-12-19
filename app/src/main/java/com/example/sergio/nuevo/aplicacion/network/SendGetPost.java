@@ -26,13 +26,13 @@ import java.util.List;
  * Created by Operador1 on 26/09/2017.
  */
 
-public class SendGetPost extends AsyncTask{
+public class SendGetPost {
     private static List<String> cookies;
     private HttpURLConnection conn;
     private static CookieManager manager;
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 UBrowser/6.1.2909.1213 Safari/537.36";
-    private String usuario = "usuario";
-    private String contraseña = "12345";
+    private static String usuario = "cdiaz";
+    private static String contraseña = "Tony2015";
     private String captcha;
     private String cuil;
     private Document doc;
@@ -52,12 +52,8 @@ public class SendGetPost extends AsyncTask{
         return response;
     }
 
-    @Override
-    protected Object doInBackground(Object[] objects) {
-        return null;
-    }
 
-    public void sendPost(String postParams, String url) throws Exception {
+    public void sendPost(String postParams, String url,String Referer) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 //        conn.setReadTimeout(10000);
@@ -70,19 +66,16 @@ public class SendGetPost extends AsyncTask{
         conn.setRequestProperty("Accept-Language", "es-419,es;q=0.8");
         conn.setRequestProperty("Cache-Control", "max-age=0");
         conn.setRequestProperty("Connection", "keep-alive");
-        conn.setRequestProperty("Content-Length", Integer.toString(postParams.length()));
+        conn.setRequestProperty("Content-Length", String.valueOf(postParams.length()));
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         for (String cookie : this.cookies) {
             conn.addRequestProperty("Cookie", cookie);
         }
         conn.setRequestProperty("charset", "utf-8");
 
-        for (String cookie : getCookies()) {
-            conn.addRequestProperty("Cookie", cookie);
-        }
         conn.setRequestProperty("Host", "181.14.240.59:12223");
         conn.setRequestProperty("Origin", "http://181.14.240.59:12223");
-        conn.setRequestProperty("Referer", "http://181.14.240.59:12223/sistema/sec_Login/sec_Login.php");
+        conn.setRequestProperty("Referer", Referer);
         conn.setRequestProperty("Upgrade-Insecure-Requests", "1");
         conn.setRequestProperty("User-Agent", USER_AGENT);
 
@@ -96,16 +89,34 @@ public class SendGetPost extends AsyncTask{
         wr.close();
 
         int responseCode = conn.getResponseCode();
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
 
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+        switch(responseCode){
+            case 200:
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream())); //to avoid FNFExeption
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                break;
+            case 400:
+                BufferedReader in1 = new BufferedReader(new InputStreamReader(conn.getErrorStream()))   ; //to avoid FNFExeption
+                while ((inputLine = in1.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in1.close();
+                break;
+            case 500:
+                BufferedReader in2 = new BufferedReader(new InputStreamReader(conn.getInputStream())); //to avoid FNFExeption
+                while ((inputLine = in2.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in2.close();
+                break;
         }
-        in.close();
         this.response = response;
+        conn.disconnect();
     }
 
     public StringBuffer sendGet(String url) throws Exception {
@@ -126,8 +137,8 @@ public class SendGetPost extends AsyncTask{
 
         conn.setRequestProperty("Cache-Control", "max-age=0");
         if (getCookies() != null) {
-            for (String cookie : getCookies()) {
-                conn.addRequestProperty("Cookie", cookie.split(";", 2)[0]);
+            for (String cookie : this.cookies) {
+                conn.addRequestProperty("Cookie", cookie);
             }
         }
         conn.setRequestProperty("Host", "181.14.240.59:12223");
@@ -151,14 +162,15 @@ public class SendGetPost extends AsyncTask{
             response.append(inputLine);
         }
         in.close();
+        conn.disconnect();
 
         return response;
     }
-    public static StringBuilder getFormParams
-            (String pag,String usuario, String contraseña, String cuil, String captcha) throws UnsupportedEncodingException {
+    public static StringBuilder getFormParams (String pag, String cuil, String captcha) throws UnsupportedEncodingException {
         int init = 0;
         int sesion = 0;
         int nm = 0;
+        int nm1 = 0;
         Document doc = Jsoup.parse(pag);
         Elements inputElements = doc.getElementsByTag("input");
         List<String> paramList = new ArrayList<String>();
@@ -189,6 +201,11 @@ public class SendGetPost extends AsyncTask{
                                     if (key.equals("nm_form_submit") && nm != 1 && !value.equals("")) {
                                         nm = 1;
                                         paramList.add(key + "=" + URLEncoder.encode(value, "UTF-8"));
+                                    }else{
+                                        if (key.equals("nmgp_opcao") && nm1 != 1 && !value.equals("")) {
+                                            nm1 = 1;
+                                            paramList.add(key + "=" + URLEncoder.encode(value, "UTF-8"));
+                                        }
                                     }
                                 }
                             }
@@ -197,7 +214,7 @@ public class SendGetPost extends AsyncTask{
                 }
             }
             if(value != null && key != null){
-                if (!value.equals("") && !key.equals("") && !key.equals("script_case_session") && !key.equals("nm_form_submit") && !key.equals("script_case_init")) {
+                if (!value.equals("") && !key.equals("") && !key.equals("script_case_session") && !key.equals("nm_form_submit") && !key.equals("script_case_init") && !key.equals("nmgp_opcao")) {
                     paramList.add(key + "=" + URLEncoder.encode(value, "UTF-8"));
                 }
             }

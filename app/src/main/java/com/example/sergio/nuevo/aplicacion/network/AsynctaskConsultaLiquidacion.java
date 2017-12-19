@@ -31,21 +31,19 @@ public class AsynctaskConsultaLiquidacion extends AsyncTask{
     @Override
     protected Object doInBackground(Object[] o) {
         String pagLog = ProgresarConsulta.getInstance().getPagLog().toString();
-        String usuario = ProgresarConsulta.getInstance().getUsuario();
-        String contraseña = ProgresarConsulta.getInstance().getContraseña();
         String cuil = ProgresarConsulta.getInstance().getCuil();
         String captcha = ProgresarConsulta.getInstance().getCaptcha();
         StringBuffer pagConsulta;
 
         try {
-            StringBuilder postParams = SendGetPost.getFormParams(pagLog,usuario,contraseña,null,null);
-            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrl());
-            pagConsulta = SendGetPost.getInstance().sendGet(ProgresarConsulta.getInstance().getUrlConsulta());
-
-            postParams = SendGetPost.getInstance().getFormParams(pagConsulta.toString(),usuario,contraseña,cuil,captcha);
-            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrlConsulta());
-            postParams = SendGetPost.getInstance().getFormParams(SendGetPost.getInstance().getResponse().toString(),usuario,contraseña,null,null);
-            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrlConsulta());
+            StringBuilder postParams = SendGetPost.getFormParams(pagLog,null,captcha);
+            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrl(),"http://181.14.240.59:12223/sistema/sec_Login/sec_Login.php");
+            postParams = SendGetPost.getFormParams(SendGetPost.getInstance().getResponse().toString(),null,null);
+            SendGetPost.getInstance().sendPost(postParams.toString(), "http://181.14.240.59:12223/sistema/menu_principal/menu_principal.php","http://181.14.240.59:12223/sistema/menu_principal/menu_principal.php");
+            postParams = SendGetPost.getInstance().getFormParams(SendGetPost.getInstance().sendGet(ProgresarConsulta.getInstance().getUrlConsulta()).toString(),cuil,null);
+            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrlConsulta(),ProgresarConsulta.getInstance().getUrlConsulta());
+            postParams = SendGetPost.getInstance().getFormParams(SendGetPost.getInstance().getResponse().toString(),null,null);
+            SendGetPost.getInstance().sendPost(postParams.toString(), ProgresarConsulta.getInstance().getUrlConsulta(),ProgresarConsulta.getInstance().getUrlConsulta());
         } catch (Exception e) {
             e.printStackTrace();
         }
