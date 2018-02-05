@@ -26,9 +26,9 @@ public class ResultadosLiquidacionesImgImpl extends Fragment {
     private GridView viewPager;
     private FloatingActionButton salir;
 
-    public ResultadosLiquidacionesImgImpl(PresentadorConsultaLiquidacion presentadorConsultaLiquidacion) {
-        this.presentadorConsultaLiquidacion = presentadorConsultaLiquidacion;
-    }
+//    public ResultadosLiquidacionesImgImpl(PresentadorConsultaLiquidacion presentadorConsultaLiquidacion) {
+//        this.presentadorConsultaLiquidacion = presentadorConsultaLiquidacion;
+//    }
 
 
     @Override
@@ -41,7 +41,7 @@ public class ResultadosLiquidacionesImgImpl extends Fragment {
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConsultaLiquidacion consultaLiquidacion = new ConsultaLiquidacion();
+                ConsultaLiquidacion consultaLiquidacion = ConsultaLiquidacion.getInstance();
                 FragmentManager m = getFragmentManager();
                 m.beginTransaction().replace(R.id.contenedor,consultaLiquidacion).commit();
             }
@@ -60,5 +60,9 @@ public class ResultadosLiquidacionesImgImpl extends Fragment {
         super.onResume();
         Transicion.getInstance().transicionFragments(getView(),getActivity());
         presentadorConsultaLiquidacion.onResume();
+    }
+
+    public void setPresentador(PresentadorConsultaLiquidacion presentador) {
+        this.presentadorConsultaLiquidacion = presentador;
     }
 }

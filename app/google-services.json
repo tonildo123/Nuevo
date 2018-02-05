@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "221145120529-egdkfbia9ngk4ee3r569trchpdiqqod4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sergio.nuevo",
+            "certificate_hash": "ca4897d417c86683f557f9c65a4470b7fb204b80"
+          }
+        },
+        {
           "client_id": "221145120529-he8r924egm6ba18aeai352jbistuk53e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,6 +38,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyCRWmMpf6vpaj0bfyAprd0Lu5GwA1PdDLA"
+        },
+        {
+          "current_key": "AIzaSyDr0FYojGR10u70s5Yl1fgTqim38P-8p1U"
         }
       ],
       "services": {

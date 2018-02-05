@@ -26,8 +26,6 @@ public class ProgresarConsulta {
     private String url = "http://181.14.240.59:12223/sistema/sec_Login/sec_Login.php";
     private String urlConsulta = "http://181.14.240.59:12223/sistema/progresaractdetall_gd/progresaractdetall_gd.php";
     private StringBuffer pagLog;
-    private String usuario = "usuario";
-    private String contraseña = "12345";
     private String captcha;
     private String cuil;
 
@@ -111,13 +109,6 @@ public class ProgresarConsulta {
 
     public StringBuffer getPagLog() {
         return pagLog;
-    }
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
     }
 
     public String getCaptcha() {
