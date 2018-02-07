@@ -43,12 +43,16 @@ public class CFactory {
         }
         return null;
     }
-    public A crearConCards(int cards){
+    public A crearConMenu(int cards){
         switch (cards){
-            case R.id.card_view1:
+            case R.id.bConsulta:
                 return new ConsultaLiquidacion();
-            case R.id.nav_exit:
-                System.exit(0);
+            case R.id.bMapa:
+                return new Mapas();
+            case R.id.bNoticias:
+                return VistaNoticias.getInstance();
+            case R.id.bMipyme:
+                return new ModuloMIPyme();
         }
         return null;
     }

@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
             this.fragments = 0;
         }else{
             FragmentManager m = getSupportFragmentManager();
-            m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+            m.beginTransaction().replace(R.id.contenedor, BotonesMenu.getInstance()).commit();
         }
     }
 

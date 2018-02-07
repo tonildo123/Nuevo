@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 import com.example.sergio.nuevo.presentacion.tabs.TabGuiaMiPyme;
 import com.example.sergio.nuevo.presentacion.tabs.TabObservatorio;
 
@@ -51,6 +52,12 @@ public class ModuloMIPyme extends Fragment implements A {
     public void onDestroy() {
         super.onDestroy();
         appBar.removeView(tabs);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {

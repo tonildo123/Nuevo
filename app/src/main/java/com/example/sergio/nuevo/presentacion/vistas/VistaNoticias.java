@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.adaptadores.AdaptadorNoticia;
 import com.example.sergio.nuevo.dominio.A;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorNoticiaImpl;
 
 import java.util.ArrayList;
@@ -54,5 +55,6 @@ public class VistaNoticias extends Fragment implements A,ViewFragment {
     @Override
     public void onResume() {
         super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }

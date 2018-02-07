@@ -12,6 +12,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.presentacion.vistas.BotonesMenu;
 import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
@@ -56,7 +57,7 @@ public class Transicion {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                         // handle back button's click listener
                         FragmentManager m = activity.getSupportFragmentManager();
-                        m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
+                        m.beginTransaction().replace(R.id.contenedor, BotonesMenu.getInstance()).commit();
                         return true;
                 }
                 return false;
