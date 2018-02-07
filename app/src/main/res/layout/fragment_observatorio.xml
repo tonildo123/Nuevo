@@ -1,32 +1,32 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearlayout"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/linearlayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.sergio.nuevo.presentacion.tabs.TabCronJoven">
+<!-- TODO: Update blank fragment layout -->
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.sergio.nuevo.presentacion.tabs.TabCronJoven">
+    tools:context="com.example.sergio.nuevo.presentacion.vistas.NoticiaWebView">
+
     <!-- TODO: Update blank fragment layout -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context="com.example.sergio.nuevo.presentacion.vistas.NoticiaWebView">
 
-            <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-
-            <ProgressBar
-                android:id="@+id/progressbar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <WebView
-                android:id="@+id/webObservatorio"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+    <WebView
+        android:id="@+id/webObservatorio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
 
 
 

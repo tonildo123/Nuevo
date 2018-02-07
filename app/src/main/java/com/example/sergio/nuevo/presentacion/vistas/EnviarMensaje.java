@@ -21,15 +21,14 @@ import android.widget.Toast;
 import com.example.sergio.nuevo.R;
 
 
-
 public class EnviarMensaje extends Fragment  {
 
     private Button enviar;
     private EditText nombre, apellido, telefono, campoMensaje;
     private Spinner opcion;
-    private String capacitacion = "formacionprofesional@empleotucuman.gob.ar", intermediacionLaboral ="pasantias@empleotucuman.gob.ar",emprendimientos="contacto@mipyme.gob.ar", programadeEmpleo="pulidol@empleotucuman.gob.ar",informacionInstitucional="empleo@empleotucuman.gob.ar";
-
-
+    private String capacitacion = "formacionprofesional@empleotucuman.gob.ar",
+            intermediacionLaboral ="pasantias@empleotucuman.gob.ar",emprendimientos="contacto@mipyme.gob.ar",
+            programadeEmpleo="pulidol@empleotucuman.gob.ar",informacionInstitucional="empleo@empleotucuman.gob.ar";
 
 
     @Override
@@ -79,10 +78,7 @@ public class EnviarMensaje extends Fragment  {
         return view;
     }
 
-
-
     public  void enviarMail(String correo) {
-
 //        List<ApplicationInfo> inf = getActivity().getPackageManager().getInstalledApplications(0);
 //        List<String> inf1 = new ArrayList<>();
 //
@@ -97,10 +93,9 @@ public class EnviarMensaje extends Fragment  {
 
         String[] to = {correo}; //aquí pon tu correo
 
-
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 //        emailIntent.setComponent(new ComponentName("com.google.android.gm","com.google.android.gm.ConversationListActivity"));
-//        emailIntent.setPackage("com.google.android.gm");
+        emailIntent.setPackage("com.google.android.gm");
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
 //        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");

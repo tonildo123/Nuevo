@@ -85,4 +85,9 @@ public class ModuloMIPyme extends Fragment implements A {
             return titulo[position];
         }
     }
+
+    /**
+     * A simple {@link Fragment} subclass.
+     */
+
 }
