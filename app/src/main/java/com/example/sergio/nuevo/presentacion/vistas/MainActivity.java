@@ -36,7 +36,6 @@ import android.widget.Toast;
 
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.presentacion.ContactosPagina;
-import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
 import com.example.sergio.nuevo.presentacion.presentador.MainPresentador;
 import com.example.sergio.nuevo.presentacion.presentador.MainPresentadorImpl;
 import com.example.sergio.nuevo.servicios.ServicioCompartir;
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bienvenida);
         linearLayout = (LinearLayout) findViewById(R.id.linearlayout);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
@@ -131,7 +129,7 @@ public class MainActivity extends AppCompatActivity
             this.fragments = 0;
         }else{
             FragmentManager m = getSupportFragmentManager();
-            m.beginTransaction().replace(R.id.contenedor, new BotonesMenu()).commit();
+            m.beginTransaction().replace(R.id.contenedor, VistaNoticias.getInstance()).commit();
         }
     }
 

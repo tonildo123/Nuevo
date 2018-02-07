@@ -43,4 +43,13 @@ public class CFactory {
         }
         return null;
     }
+    public A crearConCards(int cards){
+        switch (cards){
+            case R.id.card_view1:
+                return new ConsultaLiquidacion();
+            case R.id.nav_exit:
+                System.exit(0);
+        }
+        return null;
+    }
 }
