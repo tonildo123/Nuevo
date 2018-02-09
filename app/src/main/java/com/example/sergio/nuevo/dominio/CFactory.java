@@ -1,5 +1,10 @@
 package com.example.sergio.nuevo.dominio;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.renderscript.Sampler;
+import android.widget.Button;
+
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
 import com.example.sergio.nuevo.presentacion.CronogramaDePagos;
@@ -43,8 +48,8 @@ public class CFactory {
         }
         return null;
     }
-    public A crearConMenu(int cards){
-        switch (cards){
+    public A crearConMenu(Button[] button){
+        switch (button){
             case R.id.bConsulta:
                 return new ConsultaLiquidacion();
             case R.id.bMapa:
