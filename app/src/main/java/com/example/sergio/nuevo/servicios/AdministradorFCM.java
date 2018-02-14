@@ -61,7 +61,7 @@ public class AdministradorFCM extends FirebaseMessagingService {
             case "Cronogramas":
                 intent.putExtra("Fragments",R.id.nav_CRONOGRAMAtab);
                 break;
-            case "Requisitos":
+            case "Progresar":
                 intent.putExtra("Fragments",R.id.nav_reqtab);
                 break;
             case "Mapa":

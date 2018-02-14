@@ -60,7 +60,7 @@ public class Jovenes extends Fragment implements A{
 
         }
 
-        String[] titulo = {"CRONOGRAMA", "PROGRAMA JOVENES"};
+        String[] titulo = {"REQUISITOS", "CRONOGRAMA"};
 
         @Override
         public Fragment getItem(int position) {
@@ -68,11 +68,11 @@ public class Jovenes extends Fragment implements A{
             switch (position) {
 
                 case 0:
-                    TabCronJoven tuno = new TabCronJoven();
-                    return tuno;
-                case 1:
                     TabReqJoven tdos = new TabReqJoven();
                     return tdos;
+                case 1:
+                    TabCronJoven tuno = new TabCronJoven();
+                    return tuno;
             }
             return null;
         }

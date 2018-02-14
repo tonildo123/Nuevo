@@ -17,7 +17,7 @@ import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitos;
 import com.example.sergio.nuevo.presentacion.presentador.PresentadorRequisitosImpl;
 
 
-public class Requisitos extends Fragment implements A,MainView {
+public class Progresar extends Fragment implements A,MainView {
     private AppBarLayout appBar;
     private TabLayout tabsRequisitos;
     private ViewPager viewPagerRequisitos;

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.sergio.nuevo.dominio.Programa;
 import com.example.sergio.nuevo.persistencia.PersisRequisitos;
+import com.example.sergio.nuevo.presentacion.tabs.TabCronProgresar;
 import com.example.sergio.nuevo.presentacion.vistas.MainView;
 import com.example.sergio.nuevo.presentacion.tabs.TabReqJoven;
 import com.example.sergio.nuevo.presentacion.tabs.TabReqProg;
@@ -66,7 +67,7 @@ public class PresentadorRequisitosImpl implements PresentadorRequisitos{
     @Override
     public FragmentStatePagerAdapter getViewPagerAdapter(FragmentManager fragmentManager) {
         return new FragmentStatePagerAdapter(fragmentManager) {
-            String[] titulo ={" JOVENES "," PROGRESAR "};
+            String[] titulo ={" REQUISITOS "," CRONOGRAMA "};
             @Override
             public int getCount() {
                 return titulo.length;
@@ -76,10 +77,10 @@ public class PresentadorRequisitosImpl implements PresentadorRequisitos{
             public Fragment getItem(int position) {
                 switch (position){
                     case 0:
-                        TabReqJoven tuno = new TabReqJoven();
+                        TabReqProg tuno = new TabReqProg();
                         return tuno;
                     case 1:
-                        TabReqProg tdos = new TabReqProg();
+                        TabCronProgresar tdos = new TabCronProgresar();
                         return tdos;
                 }
                 return null;

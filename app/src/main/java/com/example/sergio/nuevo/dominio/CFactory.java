@@ -1,10 +1,5 @@
 package com.example.sergio.nuevo.dominio;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.renderscript.Sampler;
-import android.widget.Button;
-
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.presentacion.Jovenes;
 import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
@@ -13,7 +8,7 @@ import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
 import com.example.sergio.nuevo.presentacion.NumerosUtiles;
 import com.example.sergio.nuevo.presentacion.OfertaCursos;
 import com.example.sergio.nuevo.presentacion.OfertaLaboral;
-import com.example.sergio.nuevo.presentacion.vistas.Requisitos;
+import com.example.sergio.nuevo.presentacion.vistas.Progresar;
 import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 
 /**
@@ -32,7 +27,7 @@ public class CFactory {
             case R.id.nav_mapas:
                 return new Mapas();
             case R.id.nav_reqtab:
-                return new Requisitos();
+                return new Progresar();
             case R.id.nav_tres:
                 return new NumerosUtiles();
             case R.id.nav_laboral:
@@ -60,6 +55,9 @@ public class CFactory {
                 return new ModuloMIPyme();
             case R.id.bjovenes:
                 return new Jovenes();
+            case R.id.bProresar:
+                return new Progresar();
+
         }
         return null;
     }
