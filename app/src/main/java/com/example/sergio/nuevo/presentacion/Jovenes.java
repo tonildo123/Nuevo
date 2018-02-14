@@ -16,9 +16,10 @@ import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.presentacion.tabs.TabCronProgresar;
 import com.example.sergio.nuevo.presentacion.tabs.TabCronJoven;
+import com.example.sergio.nuevo.presentacion.tabs.TabReqJoven;
 
 
-public class CronogramaDePagos extends Fragment implements A{
+public class Jovenes extends Fragment implements A{
     private AppBarLayout appBar;
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -59,7 +60,7 @@ public class CronogramaDePagos extends Fragment implements A{
 
         }
 
-        String[] titulo = {"CRONOGRAMA DE PAGO JOVENES", "CRONOGRAMA DE PAGO PROGRESAR"};
+        String[] titulo = {"CRONOGRAMA", "PROGRAMA JOVENES"};
 
         @Override
         public Fragment getItem(int position) {
@@ -70,7 +71,7 @@ public class CronogramaDePagos extends Fragment implements A{
                     TabCronJoven tuno = new TabCronJoven();
                     return tuno;
                 case 1:
-                    TabCronProgresar tdos = new TabCronProgresar();
+                    TabReqJoven tdos = new TabReqJoven();
                     return tdos;
             }
             return null;
