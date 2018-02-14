@@ -6,8 +6,8 @@ import android.renderscript.Sampler;
 import android.widget.Button;
 
 import com.example.sergio.nuevo.R;
+import com.example.sergio.nuevo.presentacion.Jovenes;
 import com.example.sergio.nuevo.presentacion.vistas.ConsultaLiquidacion;
-import com.example.sergio.nuevo.presentacion.CronogramaDePagos;
 import com.example.sergio.nuevo.presentacion.Mapas;
 import com.example.sergio.nuevo.presentacion.ModuloMIPyme;
 import com.example.sergio.nuevo.presentacion.NumerosUtiles;
@@ -28,7 +28,7 @@ public class CFactory {
             case R.id.nav_noticias:
                 return VistaNoticias.getInstance();
             case R.id.nav_CRONOGRAMAtab:
-                return new CronogramaDePagos();
+                return new Jovenes();
             case R.id.nav_mapas:
                 return new Mapas();
             case R.id.nav_reqtab:
@@ -48,7 +48,7 @@ public class CFactory {
         }
         return null;
     }
-    public A crearConMenu(Button[] button){
+    public A crearConMenu(int button){
         switch (button){
             case R.id.bConsulta:
                 return new ConsultaLiquidacion();
@@ -58,6 +58,8 @@ public class CFactory {
                 return VistaNoticias.getInstance();
             case R.id.bMipyme:
                 return new ModuloMIPyme();
+            case R.id.bjovenes:
+                return new Jovenes();
         }
         return null;
     }
