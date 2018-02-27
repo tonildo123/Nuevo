@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Operador1 on 05/09/2017.
@@ -27,6 +28,7 @@ public class ServicioRequisitos {
         return req;
     }
     public Programa getNovedades(String url){
+        ArrayList<String> contenido = new ArrayList<>();
         try {
             doc = Jsoup.connect(url).userAgent("Mozilla").get();
             if(doc == null){
@@ -34,18 +36,18 @@ public class ServicioRequisitos {
             }
             selectorDiv = doc.getElementsByClass("text-content").first();
             Element titulo = selectorDiv.getElementsByTag("h1").first();
-            Element urlimg = selectorDiv.getElementsByTag("img").first();
+            Element urlimg = selectorDiv.getElementsByTag("href").first();
             Element select = selectorDiv.getElementsByClass("postview_content").first();
-            Element contenido = new Element("body");
+            contenido.add(titulo.toString());
+
             if(url.equals(urlProgramaProgresar)){
                 Elements elements1 = select.getAllElements();
                 for (Element element:elements1){
-                    if(element.tagName()=="h3" || element.tagName()=="p" || element.tagName()=="ul"){
-                        contenido.append(element.toString());
+
+                    if(element.tagName()=="p" || element.tagName()=="li" ){
+                        contenido.add(element.toString());
                     }
-                    if(element.tagName()=="h3"){
-                        break;
-                    }
+
                 }
                 Bitmap imagen = ObtImagen.getInstance().descargarImagen(urlimg.attr("src"),700,200);
                 joven = new Programa(urlimg.attr("src"),titulo.text(),imagen,contenido.toString());

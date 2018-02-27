@@ -56,19 +56,19 @@ public class AdministradorFCM extends FirebaseMessagingService {
                 intent.putExtra("Fragments",R.layout.fragment_observatorio);
                 break;
             case "MyPyme":
-                intent.putExtra("Fragments",R.id.nav_mipyme);
+                intent.putExtra("Fragments",R.id.bMipyme);
                 break;
-            case "Cronogramas":
-                intent.putExtra("Fragments",R.id.nav_CRONOGRAMAtab);
+            case "Jovenes":
+                intent.putExtra("Fragments",R.id.bjovenes);
                 break;
             case "Progresar":
-                intent.putExtra("Fragments",R.id.nav_reqtab);
+                intent.putExtra("Fragments",R.id.bProresar);
                 break;
             case "Mapa":
-                intent.putExtra("Fragments",R.id.nav_mapas);
+                intent.putExtra("Fragments",R.id.bMapa);
                 break;
             default:
-                intent.putExtra("Fragments",R.id.nav_noticias);
+                intent.putExtra("Fragments",R.id.bNoticias);
                 break;
         }
 

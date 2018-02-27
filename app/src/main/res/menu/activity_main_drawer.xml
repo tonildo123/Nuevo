@@ -2,40 +2,38 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_noticias"
-            android:icon="@drawable/home"
-            android:title="INICIO" />
-        <item
-            android:id="@+id/nav_consulta"
-            android:icon="@android:drawable/ic_menu_help"
-            android:title="CUANDO Y DONDE COBRO" />
-        <item
-            android:id="@+id/nav_reqtab"
-            android:icon="?android:attr/actionModePasteDrawable"
-            android:title="REQUISITOS " />
-        <item
-            android:id="@+id/nav_CRONOGRAMAtab"
-            android:icon="@android:drawable/picture_frame"
-            android:title="CRONOGRAMA DE PAGO" />
-        <item
-            android:id="@+id/nav_mapas"
-            android:icon="@android:drawable/ic_menu_mapmode"
-            android:title="TU OFICINA CERCA" />
+        <!--<item-->
+            <!--android:id="@+id/nav_noticias"-->
+            <!--android:icon="@drawable/home"-->
+            <!--android:title="INICIO" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_consulta"-->
+            <!--android:icon="@android:drawable/ic_menu_help"-->
+            <!--android:title="CUANDO Y DONDE COBRO" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_reqtab"-->
+            <!--android:icon="?android:attr/actionModePasteDrawable"-->
+            <!--android:title="REQUISITOS " />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_CRONOGRAMAtab"-->
+            <!--android:icon="@android:drawable/picture_frame"-->
+            <!--android:title="CRONOGRAMA DE PAGO" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_mapas"-->
+            <!--android:icon="@android:drawable/ic_menu_mapmode"-->
+            <!--android:title="TU OFICINA CERCA" />-->
         <item
             android:id="@+id/nav_laboral"
             android:icon="@drawable/perfecto"
             android:title="OFERTA DE TRABAJO" />
         <item
             android:id="@+id/nav_cursos"
-
             android:icon="@drawable/laptop_mac"
             android:title="CURSOS/CAPACITACION" />
-        <item
-            android:id="@+id/nav_mipyme"
-
-            android:icon="@drawable/eye"
-            android:title="MIPyME" />
+        <!--<item-->
+            <!--android:id="@+id/nav_mipyme"-->
+            <!--android:icon="@drawable/eye"-->
+            <!--android:title="MIPyME" />-->
         <item
             android:id="@+id/nav_exit"
             android:icon="@android:drawable/ic_lock_power_off"
@@ -43,12 +41,9 @@
     </group>
 
     <group>
-        <item android:title="  " />
-        <item android:title="  " />
 
         <item
             android:id="@+id/nav_tres"
-
             android:icon="@android:drawable/stat_sys_speakerphone"
             android:title="LLAMADAS DE EMERGENCIA" />
 

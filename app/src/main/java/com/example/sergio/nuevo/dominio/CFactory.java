@@ -18,26 +18,26 @@ import com.example.sergio.nuevo.presentacion.vistas.VistaNoticias;
 public class CFactory {
     public A create(int item){
         switch (item){
-            case R.id.nav_consulta:
-                return new ConsultaLiquidacion();
-            case R.id.nav_noticias:
-                return VistaNoticias.getInstance();
-            case R.id.nav_CRONOGRAMAtab:
-                return new Jovenes();
-            case R.id.nav_mapas:
-                return new Mapas();
-            case R.id.nav_reqtab:
-                return new Progresar();
+//            case R.id.nav_consulta:
+//                return new ConsultaLiquidacion();
+//            case R.id.nav_noticias:
+//                return VistaNoticias.getInstance();
+//            case R.id.nav_CRONOGRAMAtab:
+//                return new Jovenes();
+//            case R.id.nav_mapas:
+//                return new Mapas();
+//            case R.id.nav_reqtab:
+//                return new Progresar();
             case R.id.nav_tres:
                 return new NumerosUtiles();
             case R.id.nav_laboral:
                 return new OfertaLaboral();
-            case R.id.nav_mipyme:
-                return new ModuloMIPyme();
+//            case R.id.nav_mipyme:
+//                return new ModuloMIPyme();
             case R.id.nav_cursos:
                 return new OfertaCursos();
-            case R.layout.fragment_observatorio:
-                return new ModuloMIPyme();
+//            case R.layout.fragment_observatorio:
+//                return new ModuloMIPyme();
             case R.id.nav_exit:
                 System.exit(0);
         }
