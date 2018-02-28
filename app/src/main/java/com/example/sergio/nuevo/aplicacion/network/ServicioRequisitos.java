@@ -28,7 +28,7 @@ public class ServicioRequisitos {
         return req;
     }
     public Programa getNovedades(String url){
-        ArrayList<String> contenido = new ArrayList<>();
+        Element contenido = new Element("body");
         try {
             doc = Jsoup.connect(url).userAgent("Mozilla").get();
             if(doc == null){
@@ -36,16 +36,16 @@ public class ServicioRequisitos {
             }
             selectorDiv = doc.getElementsByClass("text-content").first();
             Element titulo = selectorDiv.getElementsByTag("h1").first();
-            Element urlimg = selectorDiv.getElementsByTag("href").first();
+            Element urlimg = selectorDiv.getElementsByTag("img").first();
             Element select = selectorDiv.getElementsByClass("postview_content").first();
-            contenido.add(titulo.toString());
+            contenido.append(titulo.toString());
 
             if(url.equals(urlProgramaProgresar)){
                 Elements elements1 = select.getAllElements();
                 for (Element element:elements1){
 
                     if(element.tagName()=="p" || element.tagName()=="li" ){
-                        contenido.add(element.toString());
+                        contenido.append(element.toString());
                     }
 
                 }

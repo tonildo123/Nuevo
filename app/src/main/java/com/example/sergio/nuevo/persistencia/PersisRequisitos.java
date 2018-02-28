@@ -52,7 +52,7 @@ public class PersisRequisitos {
             Cursor fila = db.rawQuery("select * from "+nombre, null);
 
             boolean b;
-            if(!fila.moveToFirst()){
+            if(!fila.moveToFirst(   )){
                 b=false;
             }else{
                 b=true;
