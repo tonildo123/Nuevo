@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.sergio.nuevo.dominio.A;
 import com.example.sergio.nuevo.dominio.Marcadores;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -56,6 +57,11 @@ public class Mapas extends SupportMapFragment  implements OnMapReadyCallback,A {
         mMap.setMaxZoomPreference(19.0f);
 
         mMap.setMapType(googleMap.MAP_TYPE_NORMAL);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }
 

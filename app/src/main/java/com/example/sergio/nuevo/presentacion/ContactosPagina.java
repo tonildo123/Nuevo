@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.sergio.nuevo.R;
 import com.example.sergio.nuevo.aplicacion.network.ServicioPagEmpleo;
 import com.example.sergio.nuevo.persistencia.PersisContactoYGuiaMipyme;
+import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,5 +80,10 @@ public class ContactosPagina extends Fragment {
 
         tcontacto.setText(contact);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Transicion.getInstance().transicionFragments(getView(),getActivity());
     }
 }
