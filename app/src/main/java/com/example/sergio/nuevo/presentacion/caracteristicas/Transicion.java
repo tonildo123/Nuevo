@@ -45,7 +45,7 @@ public class Transicion {
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
         l.setLayoutAnimation(controller);
     }
-    public void transicionFragments(View v, final FragmentActivity activity){
+   public void transicionFragments(View v, final FragmentActivity activity){
         if (v == null) {
             return;
         }
@@ -59,7 +59,7 @@ public class Transicion {
                         FragmentManager m = activity.getSupportFragmentManager();
                         m.beginTransaction().replace(R.id.contenedor, BotonesMenu.getInstance()).commit();
                         return true;
-                }
+                 }
                 return false;
             }
         });

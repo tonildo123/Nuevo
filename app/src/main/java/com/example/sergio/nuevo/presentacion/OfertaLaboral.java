@@ -12,6 +12,10 @@ import com.example.sergio.nuevo.presentacion.caracteristicas.Transicion;
 
 
 public class OfertaLaboral extends Fragment implements A {
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
