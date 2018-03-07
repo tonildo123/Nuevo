@@ -7,11 +7,36 @@
     tools:context="com.example.sergio.nuevo.presentacion.vistas.MainActivity">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="fill_horizontal"
-        android:text="Recibiras Noticias Sobre Cursos de capacitacion"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_weight="0.92"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinnerLocalidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15" />
+
+        <Button
+            android:id="@+id/butonIr"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="IR" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.08"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </LinearLayout>
