@@ -28,9 +28,6 @@ public class OfertaLaboral extends Fragment implements A {
     private AdaptadorOfertaLaboral listAdapter;
     private DBTuOficinaDeEmpleo dbOferta;
 
-
-
-
     private Spinner localidad;
     private Button ir;
 
