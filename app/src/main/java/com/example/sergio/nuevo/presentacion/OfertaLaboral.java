@@ -41,7 +41,8 @@ public class OfertaLaboral extends Fragment implements A {
         ir = (Button) vista.findViewById(R.id.buttonSpinner1);
 
         final String[] valores= new String[]{"San Miguel de Tucuman","Yerba Buena","Banda del Rio Sali","Lules","Tafi Viejo"};
-        ArrayAdapter<String> adaptadorSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, valores){};
+        ArrayAdapter<String> adaptadorSpinner = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                R.layout.support_simple_spinner_dropdown_item, valores){};
         localidad.setAdapter(adaptadorSpinner);
 
 
