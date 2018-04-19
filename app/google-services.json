@@ -1,46 +1,35 @@
 {
   "project_info": {
-    "project_number": "221145120529",
-    "firebase_url": "https://mi-oficina-de-empleo-1d38e.firebaseio.com",
-    "project_id": "mi-oficina-de-empleo-1d38e",
-    "storage_bucket": "mi-oficina-de-empleo-1d38e.appspot.com"
+    "project_number": "460090955216",
+    "firebase_url": "https://tuoficinadeempleo-8f951.firebaseio.com",
+    "project_id": "tuoficinadeempleo-8f951",
+    "storage_bucket": "tuoficinadeempleo-8f951.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:221145120529:android:1e19796c734907ef",
+        "mobilesdk_app_id": "1:460090955216:android:1e19796c734907ef",
         "android_client_info": {
-          "package_name": "com.example.sergio.nuevo"
+          "package_name": "com.empleotucuman.tuoficinadeempleo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "221145120529-egdkfbia9ngk4ee3r569trchpdiqqod4.apps.googleusercontent.com",
+          "client_id": "460090955216-bmq5ltgi2dhnjq43vb8m0bif2rcp2t1d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.sergio.nuevo",
-            "certificate_hash": "ca4897d417c86683f557f9c65a4470b7fb204b80"
+            "package_name": "com.empleotucuman.tuoficinadeempleo",
+            "certificate_hash": "bd7ad2e0d7f9a429f49a9241f266407ded47b686"
           }
         },
         {
-          "client_id": "221145120529-he8r924egm6ba18aeai352jbistuk53e.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.sergio.nuevo",
-            "certificate_hash": "975182f65b5b6d81c68f686524d212eddc5f461c"
-          }
-        },
-        {
-          "client_id": "221145120529-lfk5pr5ciuv19e508oe3tpp9jcpr5g91.apps.googleusercontent.com",
+          "client_id": "460090955216-2f6fat78a6e2ti0g9pfb1kdun2jo84ma.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCRWmMpf6vpaj0bfyAprd0Lu5GwA1PdDLA"
-        },
-        {
-          "current_key": "AIzaSyDr0FYojGR10u70s5Yl1fgTqim38P-8p1U"
+          "current_key": "AIzaSyDPi7dWaIgROOqOxtQLYrim3EpaI5HOFko"
         }
       ],
       "services": {
@@ -51,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "221145120529-lfk5pr5ciuv19e508oe3tpp9jcpr5g91.apps.googleusercontent.com",
+              "client_id": "460090955216-2f6fat78a6e2ti0g9pfb1kdun2jo84ma.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

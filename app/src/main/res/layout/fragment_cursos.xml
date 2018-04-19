@@ -21,10 +21,10 @@
             android:layout_weight="0.15" />
 
         <Button
-            android:id="@+id/butonIr"
+            android:id="@+id/butonIR"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="IR" />
+            android:text="@android:string/ok" />
     </LinearLayout>
 
     <LinearLayout

@@ -1,0 +1,111 @@
+package com.empleotucuman.tuoficinadeempleo.presentacion.presentador;
+
+import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.empleotucuman.tuoficinadeempleo.dominio.Programa;
+import com.empleotucuman.tuoficinadeempleo.persistencia.PersisRequisitos;
+import com.empleotucuman.tuoficinadeempleo.presentacion.tabs.TabCronProgresar;
+import com.empleotucuman.tuoficinadeempleo.presentacion.vistas.MainView;
+import com.empleotucuman.tuoficinadeempleo.presentacion.tabs.TabReqJoven;
+import com.empleotucuman.tuoficinadeempleo.presentacion.tabs.TabReqProg;
+
+/**
+ * Created by Operador1 on 31/10/2017.
+ */
+
+public class PresentadorRequisitosImpl implements PresentadorRequisitos{
+    private MainView vista;
+    private static final PresentadorRequisitosImpl presentador = new PresentadorRequisitosImpl();
+    private Fragment fragment;
+    private PersisRequisitos reqJoven;
+    private Programa requisito;
+
+    public static PresentadorRequisitosImpl getInstance(){return presentador;}
+
+    public void setVista(MainView vista){
+        this.vista = vista;
+        this.fragment = (Fragment)vista;
+    }
+
+    private PresentadorRequisitosImpl() {
+    }
+
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public boolean onPause() {
+        return false;
+    }
+
+    @Override
+    public void onDestroy() {
+        vista = null;
+    }
+
+    @Override
+    public void iniciar() {
+        switch (vista.getClass().toString()){
+            case "class com.empleotucuman.tuoficinadeempleo.presentacion.tabs.TabReqJoven":
+                mostrarContenidoRequisitoJoven();
+                break;
+            case "class com.empleotucuman.tuoficinadeempleo.presentacion.tabs.TabReqProg":
+                mostrarContenidoRequisitoProg();
+                break;
+        }
+    }
+    @Override
+    public void onClick(Object[] o) {
+
+    }
+
+    @Override
+    public FragmentStatePagerAdapter getViewPagerAdapter(FragmentManager fragmentManager) {
+        return new FragmentStatePagerAdapter(fragmentManager) {
+            String[] titulo ={" REQUISITOS "," CRONOGRAMA "};
+            @Override
+            public int getCount() {
+                return titulo.length;
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                switch (position){
+                    case 0:
+                        TabReqProg tuno = new TabReqProg();
+                        return tuno;
+                    case 1:
+                        TabCronProgresar tdos = new TabCronProgresar();
+                        return tdos;
+                }
+                return null;
+            }
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return titulo[position];
+            }
+        };
+    }
+    private void mostrarContenidoRequisitoJoven(){
+        reqJoven = new PersisRequisitos(this.fragment.getActivity());
+        requisito = reqJoven.levantar("requisitos_joven");
+        if(requisito != null){
+            vista.mostrarContenido();
+        }
+    }
+    private void mostrarContenidoRequisitoProg() {
+        reqJoven = new PersisRequisitos(this.fragment.getActivity());
+        requisito = reqJoven.levantar("requisitos_progresar");
+        if(requisito != null){
+            vista.mostrarContenido();
+        }
+    }
+    public Programa getRequisito(){
+        return requisito;
+    }
+}
